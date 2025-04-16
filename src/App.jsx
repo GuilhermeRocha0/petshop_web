@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import PrivateRoute from './Routes/PrivateRoute'
 import EditProfile from './pages/EditProfile'
+import ChangePassword from './pages/ChangePassword'
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
           element={
             <PrivateRoute>
               <EditProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/alterar-senha"
+          element={
+            <PrivateRoute>
+              <ChangePassword />
             </PrivateRoute>
           }
         />

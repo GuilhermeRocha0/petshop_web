@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import api from '../../services/api'
 import { useNavigate, Link } from 'react-router-dom'
+import api from '../../services/api'
+import { logout } from '../../utils/auth'
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -27,6 +28,11 @@ const Profile = () => {
     fetchUser()
   }, [])
 
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
+
   return (
     <div style={{ maxWidth: '400px', margin: '0 auto' }}>
       <h2>Perfil do Usuário</h2>
@@ -47,8 +53,16 @@ const Profile = () => {
           <Link to="/editar-perfil">
             <button style={{ marginTop: '10px' }}>Editar Perfil</button>
           </Link>
+
+          <Link to="/alterar-senha">
+            <button style={{ marginTop: '10px' }}>Alterar Sennha</button>
+          </Link>
         </div>
       )}
+
+      <button onClick={handleLogout} style={{ marginTop: '20px' }}>
+        Sair
+      </button>
     </div>
   )
 }

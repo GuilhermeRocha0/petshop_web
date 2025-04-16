@@ -10,3 +10,7 @@ export const isAuthenticated = () => {
     return false
   }
 }
+
+export const logout = () => {
+  localStorage.removeItem('token')
+}
