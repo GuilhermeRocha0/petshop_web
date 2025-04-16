@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import RegisterUserForm from '../../components/RegisterUserForm'
 import { isAuthenticated } from '../../utils/auth'
+import '../../styles/login.css'
 
 const RegisterUser = () => {
   const navigate = useNavigate()
@@ -14,9 +15,15 @@ const RegisterUser = () => {
   }, [navigate])
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h1>Teste</h1>
-      <RegisterUserForm />
+    
+    
+
+    <div className='login-page'>
+      <h1>Pet da Carla</h1>
+      <div className='login-box'>
+        <RegisterUserForm />
+      </div>
+      
     </div>
   )
 }
