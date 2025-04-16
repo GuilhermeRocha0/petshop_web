@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import LoginForm from '../../components/LoginForm'
 import { isAuthenticated } from '../../utils/auth'
-
+import '../../styles/login.css'
 const Login = () => {
   const navigate = useNavigate() // 👈 Adicione isso aqui
 
@@ -14,9 +14,12 @@ const Login = () => {
   }, [navigate])
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h1>Bem-vindo de volta!</h1>
-      <LoginForm />
+    
+    <div class="login-page">
+      <h1>PET DA CARLA</h1>
+      <div class="login-box">
+        <LoginForm />
+      </div>
     </div>
   )
 }

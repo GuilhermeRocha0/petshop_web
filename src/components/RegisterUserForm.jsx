@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import api from '../services/api'
+import { useNavigate, Link} from 'react-router-dom'
 
 const RegisterUserForm = () => {
   const [formData, setFormData] = useState({
@@ -103,7 +104,13 @@ const RegisterUserForm = () => {
         />
       </div>
 
-      <button type="submit">Cadastrar</button>
+      <div class="button-container">
+        <button type="submit" >Cadastrar</button>
+        <p>
+            Caso já tenha cadastro:
+            <Link to="/login"> faça login aqui</Link>
+          </p>
+      </div>
     </form>
   )
 }
