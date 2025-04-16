@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
 import { logout } from '../../utils/auth'
+import "./profile.css"
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -34,37 +35,53 @@ const Profile = () => {
   }
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h2>Perfil do Usuário</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="painel-container">
+      {/* Barra lateral */}
+      <div className="sidebar">
+        <button>Seus Dados</button>
+        <button>Pets</button>
+        <button>Agendamentos</button>
+        <button
+            onClick={handleLogout}
+            className="sidebar-button"
+            style={{ backgroundColor: 'red', fontWeight: '700', marginTop:'32px' }}
+          >
+            Sair
+          </button>
+      </div>
 
-      {user && (
-        <div>
-          <p>
-            <strong>Nome:</strong> {user.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>CPF:</strong> {user.cpf}
-          </p>
+      {}
+      <div className="painel-conteudo">
+      
+        
 
+        {user && (
+          <>
+            <div className="dado-label">Nome:</div>
+            <div className="dado-info">{user.name}</div>
+
+            <div className="dado-label">Email:</div>
+            <div className="dado-info">{user.email}</div>
+
+            <div className="dado-label">CPF:</div>
+            <div className="dado-info">{user.cpf}</div>
+          </>
+        )}
+
+        <div style={{ marginTop: '30px' }}>
           <Link to="/editar-perfil">
-            <button style={{ marginTop: '10px' }}>Editar Perfil</button>
+            <button className="side">Editar Perfil</button>
           </Link>
-
+          <br />
           <Link to="/alterar-senha">
-            <button style={{ marginTop: '10px' }}>Alterar Sennha</button>
+            <button className="side">Alterar Senha</button>
           </Link>
+          
         </div>
-      )}
-
-      <button onClick={handleLogout} style={{ marginTop: '20px' }}>
-        Sair
-      </button>
+      </div>
     </div>
-  )
+  );
 }
+
 
 export default Profile
