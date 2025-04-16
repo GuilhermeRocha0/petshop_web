@@ -104,7 +104,7 @@ const RegisterUserForm = () => {
         />
       </div>
 
-      <div class="button-container">
+      <div className="button-container">
         <button type="submit" >Cadastrar</button>
         <p>
             Caso já tenha cadastro:

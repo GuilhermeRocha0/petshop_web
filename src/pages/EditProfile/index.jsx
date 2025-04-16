@@ -70,53 +70,61 @@ const EditProfile = () => {
   }
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h2>Editar Perfil</h2>
+    <div className="login-page">
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nome:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <div className="login-box">
+        <h2>Editar Perfil</h2>
 
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
-        <div>
-          <label>CPF:</label>
-          <input
-            type="text"
-            name="cpf"
-            value={formData.cpf}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Nome:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit">Salvar Alterações</button>
-        <Link to="/perfil">
-          <button type="button" style={{ marginLeft: '10px' }}>
-            Cancelar
-          </button>
-        </Link>
-      </form>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label>CPF:</label>
+            <input
+              type="text"
+              name="cpf"
+              value={formData.cpf}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="button-container">
+            <div className='button-junto'>
+            <Link to="/perfil">
+              <button type="button">
+                Cancelar
+              </button>
+            </Link>
+            <button type="submit">Salvar Alterações</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
     </div>
   )
 }

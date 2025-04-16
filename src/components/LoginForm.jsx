@@ -62,7 +62,7 @@ const LoginForm = () => {
           required
         />
       </div>
-      <div class="button-container">
+      <div className="button-container">
         <button type="submit" class="entrar">Entrar</button>
           <p>
             Caso ainda não tenha cadastro:

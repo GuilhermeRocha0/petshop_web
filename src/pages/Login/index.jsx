@@ -15,9 +15,9 @@ const Login = () => {
 
   return (
     
-    <div class="login-page">
+    <div className="login-page">
       <h1>PET DA CARLA</h1>
-      <div class="login-box">
+      <div className="login-box">
         <LoginForm />
       </div>
     </div>

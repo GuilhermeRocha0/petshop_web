@@ -47,55 +47,62 @@ const ChangePassword = () => {
   }
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h2>Alterar Senha</h2>
+    <div className="login-page">
+      <div className="login-box">
+        <h2>Alterar Senha</h2>
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Senha Atual:</label>
-          <input
-            type="password"
-            name="currentPassword"
-            value={formData.currentPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Senha Atual:</label>
+            <input
+              type="password"
+              name="currentPassword"
+              value={formData.currentPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Nova Senha:</label>
-          <input
-            type="password"
-            name="newPassword"
-            value={formData.newPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div>
+            <label>Nova Senha:</label>
+            <input
+              type="password"
+              name="newPassword"
+              value={formData.newPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Confirmar Nova Senha:</label>
-          <input
-            type="password"
-            name="confirmNewPassword"
-            value={formData.confirmNewPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div>
+            <label>Confirmar Nova Senha:</label>
+            <input
+              type="password"
+              name="confirmNewPassword"
+              value={formData.confirmNewPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="button-container">
+            <div className='button-junto'>
+              <button
+                type="button"
+                onClick={() => navigate('/perfil')}
 
-        <button type="submit">Salvar</button>
-        <button
-          type="button"
-          onClick={() => navigate('/perfil')}
-          style={{ marginLeft: '10px' }}
-        >
-          Cancelar
-        </button>
-      </form>
+              >
+                Cancelar
+              </button>
+              <button type="submit">Atualizar Senha</button>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
     </div>
   )
 }
