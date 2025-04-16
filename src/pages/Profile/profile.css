@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+
+.painel-container {
+    display: flex;
+    background-color: #fc8c2c;
+    height: 100vh;
+    font-family: 'League Spartan', sans-serif;
+  }
+  
+  
+  .sidebar {
+    width: 200px;
+    background-color: #fca940;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 30px 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+ 
+  .sidebar button {
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 999px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar button:hover {
+    background-color: #333;
+  }
+  
+
+  .side {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .side:hover {
+    background-color: #333;
+  }
+ 
+  .painel-conteudo {
+    flex: 1;
+    padding: 40px;
+    background-color: #fc8c2c;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .painel-conteudo h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #111;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  
+  .alerta-finalizar {
+    background-color: #111;
+    color: white;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 14px;
+    width: fit-content;
+    align-self: center;
+    margin-bottom: 30px;
+  }
+  
+  
+  .dado-label {
+    color: #111;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .dado-info {
+    background-color: white;
+    color: #888;
+    padding: 10px 16px;
+    border-radius: 999px;
+    width: 100%;
+    max-width: 350px;
+    font-size: 14px;
+  }
+  
