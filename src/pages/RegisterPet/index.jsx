@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import api from '../../services/api'
+import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import api from '../../services/api'
 
-const EditProfile = () => {
+const RegisterPet = () => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    cpf: ''
+    breed: '',
+    age: '',
+    size: 'pequeno',
+    notes: ''
   })
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
@@ -14,32 +16,9 @@ const EditProfile = () => {
 
   const token = localStorage.getItem('token')
 
-  // Busca dados do usuário
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await api.get(`/user/${getUserIdFromToken()}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        const { name, email, cpf } = response.data.user
-        setFormData({ name, email, cpf })
-      } catch (err) {
-        setError('Erro ao buscar dados do usuário.')
-      }
-    }
-
-    fetchUser()
-  }, [])
-
-  const getUserIdFromToken = () => {
-    const payload = JSON.parse(atob(token.split('.')[1]))
-    return payload.id
-  }
-
   const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
 
   const handleSubmit = async e => {
@@ -48,7 +27,7 @@ const EditProfile = () => {
     setError('')
 
     try {
-      const response = await api.put('/user/edit', formData, {
+      const response = await api.post('/pets/register', formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -56,15 +35,14 @@ const EditProfile = () => {
 
       setMessage(response.data.msg)
 
-      // Redirecionar após atualização
       setTimeout(() => {
-        navigate('/perfil')
+        navigate('/pets')
       }, 1000)
     } catch (err) {
       if (err.response?.data?.msg) {
         setError(err.response.data.msg)
       } else {
-        setError('Erro ao atualizar dados.')
+        setError('Erro ao cadastrar o pet.')
       }
     }
   }
@@ -72,7 +50,7 @@ const EditProfile = () => {
   return (
     <div className="login-page">
       <div className="login-box">
-        <h2>Editar Perfil</h2>
+        <h2>Cadastrar Pet</h2>
 
         {message && <p style={{ color: 'green' }}>{message}</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -90,32 +68,58 @@ const EditProfile = () => {
           </div>
 
           <div>
-            <label>Email:</label>
+            <label>Raça:</label>
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="breed"
+              value={formData.breed}
               onChange={handleChange}
               required
             />
           </div>
 
           <div>
-            <label>CPF:</label>
+            <label>Idade:</label>
             <input
-              type="text"
-              name="cpf"
-              value={formData.cpf}
+              type="number"
+              name="age"
+              value={formData.age}
+              min="0"
               onChange={handleChange}
               required
             />
           </div>
+
+          <div>
+            <label>Porte:</label>
+            <select
+              name="size"
+              value={formData.size}
+              onChange={handleChange}
+              required
+            >
+              <option value="pequeno">Pequeno</option>
+              <option value="médio">Médio</option>
+              <option value="grande">Grande</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Observações:</label>
+            <textarea
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+              rows={3}
+            />
+          </div>
+
           <div className="button-container">
             <div className="button-junto">
-              <Link to="/perfil">
+              <Link to="/pets">
                 <button type="button">Cancelar</button>
               </Link>
-              <button type="submit">Salvar Alterações</button>
+              <button type="submit">Cadastrar Pet</button>
             </div>
           </div>
         </form>
@@ -124,4 +128,4 @@ const EditProfile = () => {
   )
 }
 
-export default EditProfile
+export default RegisterPet

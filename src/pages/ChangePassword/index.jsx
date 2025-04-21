@@ -88,19 +88,13 @@ const ChangePassword = () => {
             />
           </div>
           <div className="button-container">
-            <div className='button-junto'>
-              <button
-                type="button"
-                onClick={() => navigate('/perfil')}
-
-              >
+            <div className="button-junto">
+              <button type="button" onClick={() => navigate('/perfil')}>
                 Cancelar
               </button>
               <button type="submit">Atualizar Senha</button>
             </div>
           </div>
-
-
         </form>
       </div>
     </div>

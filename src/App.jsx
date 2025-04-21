@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import RegisterUser from './pages/RegisterUser'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-import PrivateRoute from './Routes/PrivateRoute'
+import PrivateRoute from './routes/PrivateRoute'
 import EditProfile from './pages/EditProfile'
 import ChangePassword from './pages/ChangePassword'
+import Pets from './pages/Pets'
+import RegisterPet from './pages/RegisterPet'
+import EditPet from './pages/EditPet'
 
 function App() {
   return (
@@ -34,6 +37,30 @@ function App() {
           element={
             <PrivateRoute>
               <ChangePassword />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/pets"
+          element={
+            <PrivateRoute>
+              <Pets />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cadastrar-pet"
+          element={
+            <PrivateRoute>
+              <RegisterPet />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/editar-pet/:id"
+          element={
+            <PrivateRoute>
+              <EditPet />
             </PrivateRoute>
           }
         />

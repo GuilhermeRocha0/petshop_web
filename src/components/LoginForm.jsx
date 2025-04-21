@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import api from '../services/api'
-import { useNavigate, Link} from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -63,11 +63,13 @@ const LoginForm = () => {
         />
       </div>
       <div className="button-container">
-        <button type="submit" class="entrar">Entrar</button>
-          <p>
-            Caso ainda não tenha cadastro:
-            <Link to="/cadastrar"> Cadastre-se aqui</Link>
-          </p>
+        <button type="submit" class="entrar">
+          Entrar
+        </button>
+        <p>
+          Caso ainda não tenha cadastro:
+          <Link to="/cadastrar"> Cadastre-se aqui</Link>
+        </p>
       </div>
     </form>
   )

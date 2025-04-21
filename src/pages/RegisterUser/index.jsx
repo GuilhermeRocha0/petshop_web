@@ -15,15 +15,11 @@ const RegisterUser = () => {
   }, [navigate])
 
   return (
-    
-    
-
-    <div className='login-page'>
+    <div className="login-page">
       <h1>Pet da Carla</h1>
-      <div className='login-box'>
+      <div className="login-box">
         <RegisterUserForm />
       </div>
-      
     </div>
   )
 }

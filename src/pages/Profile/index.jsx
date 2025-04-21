@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
 import { logout } from '../../utils/auth'
-import "./profile.css"
+import './profile.css'
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -39,22 +39,25 @@ const Profile = () => {
       {/* Barra lateral */}
       <div className="sidebar">
         <button>Seus Dados</button>
-        <button>Pets</button>
+        <button>
+          <Link to="/pets">Pets</Link>
+        </button>
         <button>Agendamentos</button>
         <button
-            onClick={handleLogout}
-            className="sidebar-button"
-            style={{ backgroundColor: 'red', fontWeight: '700', marginTop:'32px' }}
-          >
-            Sair
-          </button>
+          onClick={handleLogout}
+          className="sidebar-button"
+          style={{
+            backgroundColor: 'red',
+            fontWeight: '700',
+            marginTop: '32px'
+          }}
+        >
+          Sair
+        </button>
       </div>
 
       {}
       <div className="painel-conteudo">
-      
-        
-
         {user && (
           <>
             <div className="dado-label">Nome:</div>
@@ -76,12 +79,10 @@ const Profile = () => {
           <Link to="/alterar-senha">
             <button className="side">Alterar Senha</button>
           </Link>
-          
         </div>
       </div>
     </div>
-  );
+  )
 }
-
 
 export default Profile
