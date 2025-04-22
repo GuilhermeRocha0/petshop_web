@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
+import './registerPet.css'
+
 
 const RegisterPet = () => {
   const [formData, setFormData] = useState({
@@ -48,83 +50,62 @@ const RegisterPet = () => {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-box">
-        <h2>Cadastrar Pet</h2>
+    <div className="register-pet-page">
+  <div className="register-pet-box">
+    <h2>Cadastrar Pet</h2>
 
-        {message && <p style={{ color: 'green' }}>{message}</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+    {message && <p className="msgRegisterPet" style={{ color: 'lightgreen' }}>{message}</p>}
+    {error && <p className="msgRegisterPet" style={{ color: 'red' }}>{error}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Nome:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Nome"
+        required
+      />
+      <input
+        type="text"
+        name="breed"
+        value={formData.breed}
+        onChange={handleChange}
+        placeholder="Raça"
+        required
+      />
+      <input
+        type="number"
+        name="age"
+        value={formData.age}
+        min="0"
+        onChange={handleChange}
+        placeholder="Idade"
+        required
+      />
+      <select name="size" value={formData.size} onChange={handleChange} required>
+        <option value="pequeno">Pequeno</option>
+        <option value="médio">Médio</option>
+        <option value="grande">Grande</option>
+      </select>
+      <textarea
+        name="notes"
+        value={formData.notes}
+        onChange={handleChange}
+        rows={3}
+        placeholder="Observações"
+      />
 
-          <div>
-            <label>Raça:</label>
-            <input
-              type="text"
-              name="breed"
-              value={formData.breed}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label>Idade:</label>
-            <input
-              type="number"
-              name="age"
-              value={formData.age}
-              min="0"
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label>Porte:</label>
-            <select
-              name="size"
-              value={formData.size}
-              onChange={handleChange}
-              required
-            >
-              <option value="pequeno">Pequeno</option>
-              <option value="médio">Médio</option>
-              <option value="grande">Grande</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Observações:</label>
-            <textarea
-              name="notes"
-              value={formData.notes}
-              onChange={handleChange}
-              rows={3}
-            />
-          </div>
-
-          <div className="button-container">
-            <div className="button-junto">
-              <Link to="/pets">
-                <button type="button">Cancelar</button>
-              </Link>
-              <button type="submit">Cadastrar Pet</button>
-            </div>
-          </div>
-        </form>
+      <div className="botoesRegisterPet">
+        <Link to="/pets" className="linkCancelarRegisterPet">
+          <button type="button" className="btnCancelarRegisterPet">Cancelar</button>
+        </Link>
+        <button type="submit" className="btnSalvarRegisterPet">Cadastrar</button>
       </div>
-    </div>
+    </form>
+  </div>
+</div>
+
   )
 }
 

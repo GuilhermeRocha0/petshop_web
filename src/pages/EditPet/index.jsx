@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
+import './editPet.css'
 
 const EditPet = () => {
   const [formData, setFormData] = useState({
@@ -53,8 +54,8 @@ const EditPet = () => {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-box">
+    <div className="edit-pet-page">
+      <div className="edit-pet-box">
         <h2>Editar Pet</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {message && <p style={{ color: 'green' }}>{message}</p>}
@@ -95,10 +96,12 @@ const EditPet = () => {
             onChange={handleChange}
           />
 
-          <Link to="/pets">
-            <button type="button">Cancelar</button>
-          </Link>
-          <button type="submit">Salvar</button>
+<div className="botoesEditPet">
+  <Link to="/pets" className="linkCancelarEditPet">
+    <button type="button" className="btnCancelarEditPet">Cancelar</button>
+  </Link>
+  <button type="submit" className="btnSalvarEditPet">Salvar</button>
+</div>
         </form>
       </div>
     </div>
