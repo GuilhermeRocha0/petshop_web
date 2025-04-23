@@ -77,7 +77,7 @@
   border-radius: 30px;
 }
 
-p {
+p.return-msg {
   text-align: center;
   font-size: 14px;
 }

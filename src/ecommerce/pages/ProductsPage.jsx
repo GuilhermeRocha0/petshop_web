@@ -28,8 +28,8 @@ export default function ProductsPage({
       ></SidebarCart>
       <div className="main-content">
         <ProductList
-          products={products}
           addProductToCart={addProductToCart}
+          products={products}
         ></ProductList>
       </div>
     </div>

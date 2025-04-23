@@ -21,19 +21,19 @@ export default function NavBar({ setShowSidebarCart, selectedProducts }) {
         <nav className={`${show ? 'show' : ''}`}>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/loja">Home</Link>
             </li>
             <li>
-              <Link to="/products">Produtos</Link>
+              <Link to="/loja/produtos">Produtos</Link>
             </li>
             <li>
-              <Link to="/toys">Brinquedos</Link>
+              <Link to="/#">Brinquedos</Link>
             </li>
             <li>
-              <Link to="/food">Alimentos</Link>
+              <Link to="/#">Alimentos</Link>
             </li>
             <li>
-              <Link to="/account">Conta</Link>
+              <Link to="/#">Conta</Link>
             </li>
           </ul>
         </nav>

@@ -16,7 +16,7 @@ export default function Header() {
         <div className="left-side">
           <h2>Bem-vindo ao nosso PetShop</h2>
           <p>Venha conhecer nossos produtos</p>
-          <Link to="/products" className="see-more-button">
+          <Link to="/loja/produtos" className="see-more-button">
             <span>Ver agora</span>
             <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon>
           </Link>

@@ -60,7 +60,18 @@ function EcommerceApp() {
           />
           <Route
             path="/produtos"
-            element={<ProductsPage products={products} />}
+            element={
+              <ProductsPage
+                addToCartTotal={addToCartTotal}
+                removeProductFromCart={removeProductFromCart}
+                selectedProducts={selectedProducts}
+                addProductToCart={addProductToCart}
+                products={products}
+                setShowSidebarCart={setShowSidebarCart}
+                showSidebarCart={showSidebarCart}
+                cartTotal={cartTotal}
+              />
+            }
           />
         </Routes>
       </main>

@@ -38,8 +38,16 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {message && (
+        <p style={{ color: 'green' }} className="return-msg">
+          {message}
+        </p>
+      )}
+      {error && (
+        <p style={{ color: 'red' }} className="return-msg">
+          {error}
+        </p>
+      )}
 
       <div>
         <label>Email:</label>
