@@ -117,9 +117,13 @@ const RegisterPet = () => {
           <div className="button-container">
             <div className="button-junto">
               <Link to="/pets">
-                <button type="button">Cancelar</button>
+                <button type="button" className="form-button">
+                  Cancelar
+                </button>
               </Link>
-              <button type="submit">Cadastrar Pet</button>
+              <button type="submit" className="form-button">
+                Cadastrar Pet
+              </button>
             </div>
           </div>
         </form>
