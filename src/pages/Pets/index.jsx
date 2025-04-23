@@ -116,11 +116,12 @@ const Pets = () => {
               </p>
 
               <div className="button-junto">
-                <Link to={`/editar-pet/${pet._id}`}>
-                  <button>Editar</button>
+                <Link to={`/editar-pet/${pet._id}`} className="form-button">
+                  Editar
                 </Link>
                 <button
                   onClick={() => confirmDelete(pet._id)}
+                  className="form-button"
                   style={{ backgroundColor: 'red' }}
                 >
                   Deletar
@@ -143,8 +144,17 @@ const Pets = () => {
           <div className="modal">
             <p>Tem certeza que deseja excluir este pet?</p>
             <div className="button-junto">
-              <button onClick={() => setShowModal(false)}>Cancelar</button>
-              <button onClick={deletePet} style={{ backgroundColor: 'red' }}>
+              <button
+                onClick={() => setShowModal(false)}
+                className="form-button"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={deletePet}
+                className="form-button"
+                style={{ backgroundColor: 'red' }}
+              >
                 Confirmar Exclusão
               </button>
             </div>

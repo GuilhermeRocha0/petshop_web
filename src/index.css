@@ -252,6 +252,17 @@ header .right-side .image-header {
   flex-direction: column;
   padding-bottom: 1rem;
   margin-bottom: 0.25rem;
+  height: 38rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .product .buttons {
