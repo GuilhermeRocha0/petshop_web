@@ -1,0 +1,88 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Ração Premium para Cães Adultos",
+      "image": "./images/ração2.webp",
+      "rating": 4,
+      "price": 89.9
+    },
+    {
+      "id": 2,
+      "name": "Areia Higiênica para Gatos 4kg Grandes",
+      "image": "./images/areia2.webp",
+      "rating": 4,
+      "price": 27.5
+    },
+    {
+      "id": 3,
+      "name": "Brinquedo Mordedor de Borracha para Cães",
+      "image": "./images/mordedor3.webp",
+      "rating": 5,
+      "price": 15.0
+    },
+    {
+      "id": 4,
+      "name": "Shampoo Antipulgas para Cães e Gatos",
+      "image": "./images/shampoo.webp",
+      "rating": 4,
+      "price": 22.99
+    },
+    {
+      "id": 5,
+      "name": "Comedouro Duplo Inox Marca Jambo",
+      "image": "./images/comedouro.webp",
+      "rating": 5,
+      "price": 34.75
+    },
+    {
+      "id": 6,
+      "name": "Coleira Ajustável para Gatos Zooghy",
+      "image": "./images/coleira.webp",
+      "rating": 4,
+      "price": 12.9
+    },
+    {
+      "id": 7,
+      "name": "Caminha Aconchegante para Pets",
+      "image": "./images/cama.webp",
+      "rating": 4,
+      "price": 119.99
+    },
+    {
+      "id": 8,
+      "name": "Bolinha Interativa de Borracha para Cães",
+      "image": "./images/bola.jpg",
+      "rating": false,
+      "price": 9.99
+    },
+    {
+      "id": 9,
+      "name": "Fonte de Água Automática",
+      "image": "./images/fonte.jpg",
+      "rating": 4,
+      "price": 149.9
+    },
+    {
+      "id": 10,
+      "name": "Petisco Natural para Gatos 80g",
+      "image": "./images/petisco.webp",
+      "rating": 4,
+      "price": 18.4
+    },
+    {
+      "id": 11,
+      "name": "Tapete Higiênico Lavável",
+      "image": "./images/tapete.jpg",
+      "rating": false,
+      "price": 45.0
+    },
+    {
+      "id": 12,
+      "name": "Transportadora para Pets",
+      "image": "./images/trasporte.jpg",
+      "rating": 4,
+      "price": 99.99
+    }
+  ]
+}

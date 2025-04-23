@@ -60,45 +60,76 @@ const EditPet = () => {
         {message && <p style={{ color: 'green' }}>{message}</p>}
 
         <form onSubmit={handleSubmit}>
-          <input
-            name="name"
-            value={formData.name}
-            placeholder="Nome"
-            onChange={handleChange}
-            required
-          />
-          <input
-            name="size"
-            value={formData.size}
-            placeholder="Porte"
-            onChange={handleChange}
-            required
-          />
-          <input
-            name="age"
-            value={formData.age}
-            placeholder="Idade"
-            onChange={handleChange}
-            required
-          />
-          <input
-            name="breed"
-            value={formData.breed}
-            placeholder="Raça"
-            onChange={handleChange}
-            required
-          />
-          <input
-            name="notes"
-            value={formData.notes}
-            placeholder="Notas"
-            onChange={handleChange}
-          />
+          <div>
+            <label>Nome:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <Link to="/pets">
-            <button type="button">Cancelar</button>
-          </Link>
-          <button type="submit">Salvar</button>
+          <div>
+            <label>Raça:</label>
+            <input
+              type="text"
+              name="breed"
+              value={formData.breed}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label>Idade:</label>
+            <input
+              type="number"
+              name="age"
+              value={formData.age}
+              min="0"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label>Porte:</label>
+            <select
+              name="size"
+              value={formData.size}
+              onChange={handleChange}
+              required
+            >
+              <option value="pequeno">Pequeno</option>
+              <option value="médio">Médio</option>
+              <option value="grande">Grande</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Observações:</label>
+            <textarea
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+              rows={3}
+            />
+          </div>
+
+          <div className="button-container">
+            <div className="button-junto">
+              <Link to="/pets">
+                <button type="button" className="form-button">
+                  Cancelar
+                </button>
+              </Link>
+              <button type="submit" className="form-button">
+                Salvar Alterações
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

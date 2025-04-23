@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import LoginForm from '../../components/LoginForm'
 import { isAuthenticated } from '../../utils/auth'
-import '../../styles/login.css'
+import './style.css'
 const Login = () => {
   const navigate = useNavigate() // 👈 Adicione isso aqui
 
