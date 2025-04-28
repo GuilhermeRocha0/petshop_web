@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { faCartShopping, faMoneyBill } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router-dom";
 
 export default function Product({
   id,
@@ -11,6 +12,8 @@ export default function Product({
   price,
   addProductToCart
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="product">
       <div className="product-info">
@@ -23,10 +26,9 @@ export default function Product({
       </div>
 
       <div className="buttons">
-        <Link className="btn-icon" to="/products/123/checkout">
-          <span>Comprar Agora </span>
-          <FontAwesomeIcon icon={faMoneyBill} />
-        </Link>
+        <button className="btn-icon" onClick={() => navigate("/checkout")}>
+          Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
+        </button>
         <button
           onClick={() => addProductToCart(id)}
           className="btn-icon add-to-cart-btn"

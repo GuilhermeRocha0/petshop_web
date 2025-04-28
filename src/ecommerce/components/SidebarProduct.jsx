@@ -22,6 +22,7 @@ export default function SidebarProduct({
           onClick={() => {
             removeProductFromCart(id)
             addToCartTotal(-price)
+            addToCartTotal(-priceSum) 
           }}
         >
           <FontAwesomeIcon icon={faXmark} />

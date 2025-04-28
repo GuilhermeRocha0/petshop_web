@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
+import Checkout from "./pages/Checkout";
 
 function EcommerceApp() {
   const [products, setProducts] = useState([])
@@ -73,6 +74,8 @@ function EcommerceApp() {
               />
             }
           />
+
+          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} />} />
         </Routes>
       </main>
     </div>

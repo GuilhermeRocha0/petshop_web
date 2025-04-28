@@ -11,7 +11,7 @@ import {
 
 export default function Header() {
   return (
-    <header>
+    <header className="head">
       <div className="inner-content">
         <div className="left-side">
           <h2>Bem-vindo ao nosso PetShop</h2>

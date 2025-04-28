@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import SidebarProduct from './SidebarProduct'
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export default function SidebarCart({
   setShowSidebarCart,
@@ -12,6 +13,9 @@ export default function SidebarCart({
   removeProductFromCart,
   addToCartTotal
 }) {
+
+  const navigate = useNavigate();
+
   return (
     <aside className={`sidebar-cart ${showSidebarCart && 'show'}`}>
       <div className="top">
@@ -36,10 +40,9 @@ export default function SidebarCart({
         <b>Total: </b> {cartTotal}
       </div>
 
-      <Link to="/cart/checkout" className="btn-icon">
-        <span>Pagar Agora</span>
-        <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
-      </Link>
+       <button className="pay-button" onClick={() => navigate("/checkout")}>
+                Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
+            </button>
 
       {/* <i>Seu carrinho está vazio</i> */}
     </aside>

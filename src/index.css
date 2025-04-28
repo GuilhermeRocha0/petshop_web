@@ -127,10 +127,10 @@ nav ul li:hover {
 }
 /*Fim Nav*/
 
-header {
+.head {
   background-color: var(--primary-color);
 }
-header .inner-content {
+.head .inner-content {
   max-width: 1600px;
   margin-inline: auto;
   display: grid;
@@ -140,15 +140,15 @@ header .inner-content {
   gap: 4rem;
 }
 
-header .left-side h2 {
+.head .left-side h2 {
   font-size: 2.5rem;
 }
 
-header .left-side {
+.head .left-side {
   color: #fff;
 }
 
-header .left-side p {
+.head .left-side p {
   padding-top: 1rem;
 }
 
@@ -180,13 +180,13 @@ header .right-side .image-header {
     font-size: 1.2rem;
   }
 
-  header .inner-content {
+  .head .inner-content {
     gap: 2rem;
     padding: 1.5rem;
     padding-top: 3rem;
   }
 
-  header .left-side h2 {
+  .head .left-side h2 {
     font-size: 1.8rem;
   }
 
@@ -428,4 +428,77 @@ header .right-side .image-header {
 .sidebar-cart .left-side .remove-product-btn {
   width: 1.5rem;
   height: 1.2rem;
+}
+
+.price{
+  font-size: 19px;
+}
+
+/* checkout */
+.checkout-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.checkout-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #374151;
+}
+
+.checkout-form .form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-form label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.checkout-form input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.flex-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.total-to-pay {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.total-to-pay span {
+  color: #22c55e;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #22c55e;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pay-button:hover {
+  background-color: #16a34a;
 }
