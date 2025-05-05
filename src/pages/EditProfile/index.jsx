@@ -113,9 +113,13 @@ const EditProfile = () => {
           <div className="button-container">
             <div className="button-junto">
               <Link to="/perfil">
-                <button type="button">Cancelar</button>
+                <button type="button" className="form-button">
+                  Cancelar
+                </button>
               </Link>
-              <button type="submit">Salvar Alterações</button>
+              <button type="submit" className="form-button">
+                Salvar Alterações
+              </button>
             </div>
           </div>
         </form>

@@ -68,13 +68,11 @@ const EditPet = () => {
             onChange={handleChange}
             required
           />
-          <input
-            name="size"
-            value={formData.size}
-            placeholder="Porte"
-            onChange={handleChange}
-            required
-          />
+          <select name="size" value={formData.size} onChange={handleChange} required>
+            <option value="pequeno">Pequeno</option>
+            <option value="médio">Médio</option>
+            <option value="grande">Grande</option>
+          </select>
           <input
             name="age"
             value={formData.age}

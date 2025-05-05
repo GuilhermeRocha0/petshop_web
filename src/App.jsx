@@ -9,6 +9,7 @@ import ChangePassword from './pages/ChangePassword'
 import Pets from './pages/Pets'
 import RegisterPet from './pages/RegisterPet'
 import EditPet from './pages/EditPet'
+import EcommerceApp from './ecommerce/EcommerceApp'
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/loja/*" element={<EcommerceApp />} />
       </Routes>
     </Router>
   )
