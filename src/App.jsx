@@ -15,6 +15,7 @@ import RegisterPet from './pages/RegisterPet'
 import EditPet from './pages/EditPet'
 import EcommerceApp from './ecommerce/EcommerceApp'
 import Appointments from './pages/Appointments'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/cadastrar" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/redefinir-senha" element={<ResetPassword />} />
         <Route
           path="/perfil"
           element={
