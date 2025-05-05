@@ -68,7 +68,12 @@ const EditPet = () => {
             onChange={handleChange}
             required
           />
-          <select name="size" value={formData.size} onChange={handleChange} required>
+          <select
+            name="size"
+            value={formData.size}
+            onChange={handleChange}
+            required
+          >
             <option value="pequeno">Pequeno</option>
             <option value="médio">Médio</option>
             <option value="grande">Grande</option>
@@ -87,19 +92,24 @@ const EditPet = () => {
             onChange={handleChange}
             required
           />
-          <input
+          <textarea
             name="notes"
             value={formData.notes}
-            placeholder="Notas"
             onChange={handleChange}
+            rows={3}
+            placeholder="Observações"
           />
 
-<div className="botoesEditPet">
-  <Link to="/pets" className="linkCancelarEditPet">
-    <button type="button" className="btnCancelarEditPet">Cancelar</button>
-  </Link>
-  <button type="submit" className="btnSalvarEditPet">Salvar</button>
-</div>
+          <div className="botoesEditPet">
+            <Link to="/pets" className="linkCancelarEditPet">
+              <button type="button" className="btnCancelarEditPet">
+                Cancelar
+              </button>
+            </Link>
+            <button type="submit" className="btnSalvarEditPet">
+              Salvar
+            </button>
+          </div>
         </form>
       </div>
     </div>
