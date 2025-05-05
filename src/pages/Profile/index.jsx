@@ -35,6 +35,7 @@ const Profile = () => {
   }
 
   return (
+    <div className='page-container'>
     <div className="painel-container">
       {/* Barra lateral */}
       <div className="sidebar">
@@ -81,6 +82,7 @@ const Profile = () => {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   )
 }
