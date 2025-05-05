@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import api from '../../services/api'
 import Sidebar from '../../components/Sidebar/Sidebar'
+import AppointmentForm from '../../components/AppointmentForm'
+import AppointmentCard from '../../components/AppointmentCard'
+import Pagination from '../../components/Pagination'
+import CancelModal from '../../components/CancelModal'
 import './appointments.css'
 
 const Appointments = () => {
@@ -152,67 +156,17 @@ const Appointments = () => {
           </button>
 
           {showForm ? (
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label className="appointment-form-label">Pet:</label>
-                <select
-                  value={selectedPet}
-                  onChange={e => setSelectedPet(e.target.value)}
-                  className="input-standard"
-                >
-                  <option value="">Selecione</option>
-                  {pets.map(pet => (
-                    <option key={pet._id} value={pet._id}>
-                      {pet.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="appointment-form-label">Services:</label>
-                {services && services.length > 0 ? (
-                  services.map(service => (
-                    <div key={service._id} className="service-option-container">
-                      <input
-                        type="checkbox"
-                        className="service-checkbox"
-                        value={service._id}
-                        id={service._id}
-                        name={service._id}
-                        onChange={e => {
-                          const { checked, value } = e.target
-                          setSelectedServices(prev =>
-                            checked
-                              ? [...prev, value]
-                              : prev.filter(id => id !== value)
-                          )
-                        }}
-                      />
-                      <label htmlFor={service._id} className="service-label">
-                        {service.name} - R$ {service.price}
-                      </label>
-                    </div>
-                  ))
-                ) : (
-                  <p>Loading services...</p>
-                )}
-              </div>
-
-              <div>
-                <label className="appointment-form-label">Data e Hora:</label>
-                <input
-                  type="datetime-local"
-                  value={date}
-                  onChange={e => setDate(e.target.value)}
-                  className="input-standard"
-                />
-              </div>
-
-              <button type="submit" className="side">
-                Agendar
-              </button>
-            </form>
+            <AppointmentForm
+              pets={pets}
+              services={services}
+              selectedPet={selectedPet}
+              selectedServices={selectedServices}
+              date={date}
+              setSelectedPet={setSelectedPet}
+              setSelectedServices={setSelectedServices}
+              setDate={setDate}
+              handleSubmit={handleSubmit}
+            />
           ) : (
             <>
               {paginatedAppointments.length === 0 ? (
@@ -220,85 +174,28 @@ const Appointments = () => {
               ) : (
                 <div className="appointment-list">
                   {paginatedAppointments.map(ag => (
-                    <div key={ag._id} className="appointment-card">
-                      <div className="appointment-info">
-                        <p>
-                          <strong>Pet:</strong> {ag.pet.name}
-                        </p>
-                        <p>
-                          <strong>Serviços:</strong>{' '}
-                          {ag.services.map(s => s.name).join(', ')}
-                        </p>
-                        <p>
-                          <strong>Data:</strong>{' '}
-                          {new Date(ag.scheduledDate).toLocaleString()}
-                        </p>
-                        <p>
-                          <strong>Status:</strong> {ag.status}
-                        </p>
-                      </div>
-                      {ag.status !== 'cancelado' && (
-                        <button
-                          onClick={() => handleCancel(ag._id)}
-                          className="cancel-button"
-                        >
-                          Cancelar Agendamento
-                        </button>
-                      )}
-                    </div>
+                    <AppointmentCard
+                      key={ag._id}
+                      ag={ag}
+                      onCancel={handleCancel}
+                    />
                   ))}
                 </div>
               )}
 
-              {/* Paginação atualizada */}
-              <div className="pagination-container">
-                <button
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                  className="pagination-button"
-                >
-                  Página Anterior
-                </button>
-
-                <span className="pagination-info">
-                  Página {currentPage} de {totalPages}
-                </span>
-
-                <button
-                  onClick={() =>
-                    setCurrentPage(prev => Math.min(prev + 1, totalPages))
-                  }
-                  disabled={currentPage === totalPages}
-                  className="pagination-button"
-                >
-                  Próxima Página
-                </button>
-              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             </>
           )}
 
-          {/* Modal de Cancelamento */}
           {showModal && (
-            <div className="modal-background">
-              <div className="modal">
-                <p>Tem certeza que deseja cancelar este agendamento?</p>
-                <div className="button-junto">
-                  <button
-                    onClick={() => setShowModal(false)}
-                    className="form-button"
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    onClick={confirmCancel}
-                    className="form-button"
-                    style={{ backgroundColor: 'red' }}
-                  >
-                    Confirmar Cancelamento
-                  </button>
-                </div>
-              </div>
-            </div>
+            <CancelModal
+              onCancel={() => setShowModal(false)}
+              onConfirm={confirmCancel}
+            />
           )}
         </div>
       </div>
