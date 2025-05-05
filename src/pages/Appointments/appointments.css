@@ -6,22 +6,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.cancel-button {
-  background-color: #ef4444;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-  margin-right: 8px;
-}
-
-.cancel-button:hover {
-  background-color: #b91c1c;
-}
-
 .appointment-form-label {
   display: block;
   color: #000;

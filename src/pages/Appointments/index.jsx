@@ -209,14 +209,6 @@ const Appointments = () => {
                 />
               </div>
 
-              <button
-                type="button"
-                className="cancel-button"
-                onClick={toggleForm}
-              >
-                Cancelar
-              </button>
-
               <button type="submit" className="side">
                 Agendar
               </button>
