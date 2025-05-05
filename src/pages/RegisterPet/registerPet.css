@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+
+.register-pet-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('/fundopetshop.png') no-repeat center center;
+  background-size: cover;
+  font-family: 'League Spartan', sans-serif;
+}
+
+.register-pet-box {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.register-pet-box h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.register-pet-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-pet-box input,
+.register-pet-box select,
+.register-pet-box textarea {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 12px 16px;
+  border-radius: 999px;
+  margin: 8px 0;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.register-pet-box textarea {
+  border-radius: 20px;
+  resize: none;
+}
+
+.register-pet-box input:focus,
+.register-pet-box select:focus,
+.register-pet-box textarea:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(252, 140, 44, 0.5);
+}
+
+
+.register-pet-box button {
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 999px;
+    font-size: 16px;
+    margin: 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .register-pet-box button:hover {
+    background-color: #333;
+  }
+
+.botoesRegisterPet {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.linkCancelarRegisterPet,
+.btnCancelarRegisterPet,
+.btnSalvarRegisterPet {
+  flex: 1;
+  display: block;
+  width: 100%;
+}
+
+.btnCancelarRegisterPet,
+.btnSalvarRegisterPet {
+  padding: 12px 0;
+  border-radius: 999px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btnCancelarRegisterPet {
+  background-color: transparent;
+  border: 2px solid #111;
+  color: #111;
+}
+
+.btnCancelarRegisterPet:hover {
+  background-color: #eee;
+}
+
+.btnSalvarRegisterPet {
+  background-color: #111;
+  color: white;
+}
+
+.btnSalvarRegisterPet:hover {
+  background-color: #333;
+}

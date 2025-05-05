@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
+import './editPet.css'
 
 const EditPet = () => {
   const [formData, setFormData] = useState({
@@ -53,83 +54,52 @@ const EditPet = () => {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-box">
+    <div className="edit-pet-page">
+      <div className="edit-pet-box">
         <h2>Editar Pet</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {message && <p style={{ color: 'green' }}>{message}</p>}
 
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Nome:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <input
+            name="name"
+            value={formData.name}
+            placeholder="Nome"
+            onChange={handleChange}
+            required
+          />
+          <select name="size" value={formData.size} onChange={handleChange} required>
+            <option value="pequeno">Pequeno</option>
+            <option value="médio">Médio</option>
+            <option value="grande">Grande</option>
+          </select>
+          <input
+            name="age"
+            value={formData.age}
+            placeholder="Idade"
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="breed"
+            value={formData.breed}
+            placeholder="Raça"
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="notes"
+            value={formData.notes}
+            placeholder="Notas"
+            onChange={handleChange}
+          />
 
-          <div>
-            <label>Raça:</label>
-            <input
-              type="text"
-              name="breed"
-              value={formData.breed}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label>Idade:</label>
-            <input
-              type="number"
-              name="age"
-              value={formData.age}
-              min="0"
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label>Porte:</label>
-            <select
-              name="size"
-              value={formData.size}
-              onChange={handleChange}
-              required
-            >
-              <option value="pequeno">Pequeno</option>
-              <option value="médio">Médio</option>
-              <option value="grande">Grande</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Observações:</label>
-            <textarea
-              name="notes"
-              value={formData.notes}
-              onChange={handleChange}
-              rows={3}
-            />
-          </div>
-
-          <div className="button-container">
-            <div className="button-junto">
-              <Link to="/pets">
-                <button type="button" className="form-button">
-                  Cancelar
-                </button>
-              </Link>
-              <button type="submit" className="form-button">
-                Salvar Alterações
-              </button>
-            </div>
-          </div>
+<div className="botoesEditPet">
+  <Link to="/pets" className="linkCancelarEditPet">
+    <button type="button" className="btnCancelarEditPet">Cancelar</button>
+  </Link>
+  <button type="submit" className="btnSalvarEditPet">Salvar</button>
+</div>
         </form>
       </div>
     </div>
