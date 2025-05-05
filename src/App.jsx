@@ -1,5 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import RegisterUser from './pages/RegisterUser'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
@@ -10,10 +14,12 @@ import Pets from './pages/Pets'
 import RegisterPet from './pages/RegisterPet'
 import EditPet from './pages/EditPet'
 import EcommerceApp from './ecommerce/EcommerceApp'
+import Appointments from './pages/Appointments'
 
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <Routes>
         <Route path="/cadastrar" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
@@ -62,6 +68,14 @@ function App() {
           element={
             <PrivateRoute>
               <EditPet />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/agendamentos"
+          element={
+            <PrivateRoute>
+              <Appointments />
             </PrivateRoute>
           }
         />
