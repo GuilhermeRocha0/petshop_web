@@ -17,7 +17,7 @@ const Appointments = () => {
   const [date, setDate] = useState('')
 
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 5
+  const itemsPerPage = 6
 
   const [showForm, setShowForm] = useState(false)
   const toggleForm = () => setShowForm(prev => !prev)
@@ -218,32 +218,36 @@ const Appointments = () => {
               {paginatedAppointments.length === 0 ? (
                 <p>Você ainda não tem agendamentos.</p>
               ) : (
-                paginatedAppointments.map(ag => (
-                  <div key={ag._id} className="appointment-card">
-                    <p>
-                      <strong>Pet:</strong> {ag.pet.name}
-                    </p>
-                    <p>
-                      <strong>Serviços:</strong>{' '}
-                      {ag.services.map(s => s.name).join(', ')}
-                    </p>
-                    <p>
-                      <strong>Data:</strong>{' '}
-                      {new Date(ag.scheduledDate).toLocaleString()}
-                    </p>
-                    <p>
-                      <strong>Status:</strong> {ag.status}
-                    </p>
-                    {ag.status !== 'cancelado' && (
-                      <button
-                        onClick={() => handleCancel(ag._id)}
-                        className="cancel-button"
-                      >
-                        Cancelar Agendamento
-                      </button>
-                    )}
-                  </div>
-                ))
+                <div className="appointment-list">
+                  {paginatedAppointments.map(ag => (
+                    <div key={ag._id} className="appointment-card">
+                      <div className="appointment-info">
+                        <p>
+                          <strong>Pet:</strong> {ag.pet.name}
+                        </p>
+                        <p>
+                          <strong>Serviços:</strong>{' '}
+                          {ag.services.map(s => s.name).join(', ')}
+                        </p>
+                        <p>
+                          <strong>Data:</strong>{' '}
+                          {new Date(ag.scheduledDate).toLocaleString()}
+                        </p>
+                        <p>
+                          <strong>Status:</strong> {ag.status}
+                        </p>
+                      </div>
+                      {ag.status !== 'cancelado' && (
+                        <button
+                          onClick={() => handleCancel(ag._id)}
+                          className="cancel-button"
+                        >
+                          Cancelar Agendamento
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
               )}
 
               {/* Paginação atualizada */}
