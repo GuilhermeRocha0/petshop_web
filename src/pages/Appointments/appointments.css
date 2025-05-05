@@ -58,9 +58,9 @@
 }
 
 .input-standard {
-  border: 1px solid #6ee7b7;
+  border: 1px solid #ccc;
   padding: 12px 24px;
-  border-radius: 999px;
+  border-radius: 8px;
   margin: 8px 0;
   font-size: 15px;
   outline: none;
