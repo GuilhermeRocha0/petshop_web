@@ -16,10 +16,12 @@ const Appointments = () => {
   const [selectedServices, setSelectedServices] = useState([])
   const [date, setDate] = useState('')
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 5
+
   const [showForm, setShowForm] = useState(false)
   const toggleForm = () => setShowForm(prev => !prev)
 
-  // Estado para controlar o modal de cancelamento
   const [showModal, setShowModal] = useState(false)
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null)
 
@@ -27,23 +29,16 @@ const Appointments = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token')
-        if (!token) {
-          throw new Error('Token não encontrado')
-        }
+        if (!token) throw new Error('Token não encontrado')
 
         const resPets = await api.get('/pets', {
           headers: { Authorization: `Bearer ${token}` }
         })
-        console.log('Pets recebidos:', resPets.data)
-
         setPets(resPets.data.pets || [])
 
         const resServices = await api.get('/services')
-        console.log('Serviços recebidos:', resServices.data)
-
         setServices(resServices.data.services || [])
 
-        // Carrega os agendamentos ao carregar a página
         const resAppointments = await api.get('/appointments', {
           headers: { Authorization: `Bearer ${token}` }
         })
@@ -72,7 +67,7 @@ const Appointments = () => {
     }
 
     try {
-      const res = await api.post(
+      await api.post(
         '/appointments',
         {
           petId: selectedPet,
@@ -90,13 +85,12 @@ const Appointments = () => {
       setDate('')
       setShowForm(false)
 
-      // Atualiza a lista de agendamentos após a criação
       const updated = await api.get('/appointments', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setAppointments(updated.data.appointments || [])
     } catch (err) {
-      toast.success('Agendamento cancelado com sucesso!')
+      toast.error('Erro ao criar agendamento.')
     }
   }
 
@@ -121,7 +115,6 @@ const Appointments = () => {
         }
       )
 
-      // Atualiza a lista de agendamentos após o cancelamento
       const updated = await api.get('/appointments', {
         headers: { Authorization: `Bearer ${token}` }
       })
@@ -133,6 +126,19 @@ const Appointments = () => {
       toast.error('Erro ao cancelar o agendamento.')
     }
   }
+
+  // Ordena os agendamentos por data decrescente
+  const sortedAppointments = [...appointments].sort(
+    (a, b) => new Date(b.scheduledDate) - new Date(a.scheduledDate)
+  )
+
+  // Paginação
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const paginatedAppointments = sortedAppointments.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  )
+  const totalPages = Math.ceil(sortedAppointments.length / itemsPerPage)
 
   return (
     <div className="page-container">
@@ -146,34 +152,34 @@ const Appointments = () => {
           </button>
 
           {showForm ? (
-            // Formulário direto na página
             <form onSubmit={handleSubmit}>
               <div>
-                <label>Pet:</label>
+                <label className="appointment-form-label">Pet:</label>
                 <select
                   value={selectedPet}
                   onChange={e => setSelectedPet(e.target.value)}
+                  className="input-standard"
                 >
                   <option value="">Selecione</option>
-                  {pets && pets.length > 0 ? (
-                    pets.map(pet => (
-                      <option key={pet._id} value={pet._id}>
-                        {pet.name}
-                      </option>
-                    ))
-                  ) : (
-                    <option>Carregando pets...</option>
-                  )}
+                  {pets.map(pet => (
+                    <option key={pet._id} value={pet._id}>
+                      {pet.name}
+                    </option>
+                  ))}
                 </select>
               </div>
+
               <div>
-                <label>Serviços:</label>
+                <label className="appointment-form-label">Services:</label>
                 {services && services.length > 0 ? (
                   services.map(service => (
-                    <div key={service._id}>
+                    <div key={service._id} className="service-option-container">
                       <input
                         type="checkbox"
+                        className="service-checkbox"
                         value={service._id}
+                        id={service._id}
+                        name={service._id}
                         onChange={e => {
                           const { checked, value } = e.target
                           setSelectedServices(prev =>
@@ -183,32 +189,44 @@ const Appointments = () => {
                           )
                         }}
                       />
-                      {service.name} - R$ {service.price}
+                      <label htmlFor={service._id} className="service-label">
+                        {service.name} - R$ {service.price}
+                      </label>
                     </div>
                   ))
                 ) : (
-                  <p>Carregando serviços...</p>
+                  <p>Loading services...</p>
                 )}
               </div>
+
               <div>
-                <label>Data e Hora:</label>
+                <label className="appointment-form-label">Data e Hora:</label>
                 <input
                   type="datetime-local"
                   value={date}
                   onChange={e => setDate(e.target.value)}
+                  className="input-standard"
                 />
               </div>
+
+              <button
+                type="button"
+                className="cancel-button"
+                onClick={toggleForm}
+              >
+                Cancelar
+              </button>
+
               <button type="submit" className="side">
                 Agendar
               </button>
             </form>
           ) : (
-            // Exibição dos agendamentos
             <>
-              {appointments.length === 0 ? (
+              {paginatedAppointments.length === 0 ? (
                 <p>Você ainda não tem agendamentos.</p>
               ) : (
-                appointments.map(ag => (
+                paginatedAppointments.map(ag => (
                   <div key={ag._id} className="appointment-card">
                     <p>
                       <strong>Pet:</strong> {ag.pet.name}
@@ -235,6 +253,31 @@ const Appointments = () => {
                   </div>
                 ))
               )}
+
+              {/* Paginação atualizada */}
+              <div className="pagination-container">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="pagination-button"
+                >
+                  Página Anterior
+                </button>
+
+                <span className="pagination-info">
+                  Página {currentPage} de {totalPages}
+                </span>
+
+                <button
+                  onClick={() =>
+                    setCurrentPage(prev => Math.min(prev + 1, totalPages))
+                  }
+                  disabled={currentPage === totalPages}
+                  className="pagination-button"
+                >
+                  Próxima Página
+                </button>
+              </div>
             </>
           )}
 

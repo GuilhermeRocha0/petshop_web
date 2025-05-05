@@ -2,15 +2,102 @@
   background-color: #f5f5f5;
   border-radius: 10px;
   padding: 16px;
-  margin-bottom: 16px;
+  margin-top: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cancel-button {
   background-color: #ef4444;
+  color: white;
+  padding: 10px 16px;
   border: none;
-  padding: 8px 12px;
   border-radius: 6px;
-  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  margin-right: 8px;
+}
+
+.cancel-button:hover {
+  background-color: #b91c1c;
+}
+
+.appointment-form-label {
+  display: block;
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.input-standard {
+  border: 1px solid #6ee7b7;
+  padding: 12px 24px;
+  border-radius: 999px;
+  margin: 8px 0;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.service-option-container {
+  margin-bottom: 8px;
+}
+
+.service-checkbox {
+  display: none;
+}
+
+.service-label {
+  display: block;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 12px 24px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s ease;
+  user-select: none;
   font-weight: 600;
+}
+
+.service-checkbox:checked + .service-label {
+  background-color: #6ee7b7;
+  border: 1px solid #6ee7b7;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  background-color: #6ee7b7;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+  background-color: #34d399;
+}
+
+.pagination-button:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 15px;
 }
