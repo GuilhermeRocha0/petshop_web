@@ -57,111 +57,78 @@ const Pets = () => {
   }
 
   return (
-    <div className="painel-container">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <button>
-          <Link to="/perfil">Seus Dados</Link>
-        </button>
-        <button>
-          <Link to="/pets">Pets</Link>
-        </button>
-        <button>Agendamentos</button>
-        <button
-          onClick={handleLogout}
-          className="sidebar-button"
-          style={{
-            backgroundColor: 'red',
-            fontWeight: '700',
-            marginTop: '32px'
-          }}
-        >
-          Sair
-        </button>
-      </div>
-
-      {/* Conteúdo */}
-      <div className="painel-conteudo">
-        <h2>Seus Pets</h2>
-
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-
-        {pets.length === 0 ? (
-          <p>Você ainda não cadastrou nenhum pet.</p>
-        ) : (
-          pets.map(pet => (
-            <div
-              key={pet._id}
+    
+      <div className="page-container">
+        <div className="painel-container">
+          {/* Sidebar */}
+          <div className="sidebar">
+            <button>
+              <Link to="/perfil">Seus Dados</Link>
+            </button>
+            <button>
+              <Link to="/pets">Pets</Link>
+            </button>
+            <button>Agendamentos</button>
+            <button
+              onClick={handleLogout}
+              className="sidebar-button"
               style={{
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                padding: '10px',
-                marginBottom: '10px'
+                backgroundColor: 'red',
+                fontWeight: '700',
+                marginTop: '32px'
               }}
             >
-              <p>
-                <strong>Nome:</strong> {pet.name}
-              </p>
-              <p>
-                <strong>Raça:</strong> {pet.breed}
-              </p>
-              <p>
-                <strong>Porte:</strong> {pet.size}
-              </p>
-              <p>
-                <strong>Idade:</strong> {pet.age}
-              </p>
-              <p>
-                <strong>Observações:</strong> {pet.notes || '-'}
-              </p>
-
-              <div className="button-junto">
-                <Link to={`/editar-pet/${pet._id}`} className="form-button">
-                  Editar
-                </Link>
-                <button
-                  onClick={() => confirmDelete(pet._id)}
-                  className="form-button"
-                  style={{ backgroundColor: 'red' }}
-                >
-                  Deletar
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-
-        <div style={{ marginTop: '20px' }}>
-          <Link to="/cadastrar-pet">
-            <button className="side">Cadastrar Novo Pet</button>
-          </Link>
-        </div>
-      </div>
-
-      {/* Modal de confirmação */}
-      {showModal && (
-        <div className="modal-background">
-          <div className="modal">
-            <p>Tem certeza que deseja excluir este pet?</p>
-            <div className="button-junto">
-              <button
-                onClick={() => setShowModal(false)}
-                className="form-button"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={deletePet}
-                className="form-button"
-                style={{ backgroundColor: 'red' }}
-              >
-                Confirmar Exclusão
-              </button>
+              Sair
+            </button>
+          </div>
+    
+          {/* Conteúdo */}
+          <div className="painel-conteudo">
+            <h2>Seus Pets</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+    
+            {pets.length === 0 ? (
+              <p>Você ainda não cadastrou nenhum pet.</p>
+            ) : (
+              pets.map(pet => (
+                <div key={pet._id} className="pet-card">
+                  <p><strong>Nome:</strong> {pet.name}</p>
+                  <p><strong>Raça:</strong> {pet.breed}</p>
+                  <p><strong>Porte:</strong> {pet.size}</p>
+                  <p><strong>Idade:</strong> {pet.age}</p>
+                  <p><strong>Observações:</strong> {pet.notes || '-'}</p>
+    
+                  <div className="button-junto">
+                    <Link to={`/editar-pet/${pet._id}`} className="form-button">Editar</Link>
+                    <button onClick={() => confirmDelete(pet._id)} className="form-button" style={{ backgroundColor: 'red' }}>Deletar</button>
+                  </div>
+                </div>
+              ))
+            )}
+    
+            <div style={{ marginTop: '20px' }}>
+              <Link to="/cadastrar-pet">
+                <button className="side">Cadastrar Novo Pet</button>
+              </Link>
             </div>
           </div>
         </div>
-      )}
-    </div>
+    
+        {/* Modal */}
+        {showModal && (
+          <div className="modal-background">
+            <div className="modal">
+              <p>Tem certeza que deseja excluir este pet?</p>
+              <div className="button-junto">
+                <button onClick={() => setShowModal(false)} className="form-button">Cancelar</button>
+                <button onClick={deletePet} className="form-button" style={{ backgroundColor: 'red' }}>Confirmar Exclusão</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    
+    
   )
 }
 
