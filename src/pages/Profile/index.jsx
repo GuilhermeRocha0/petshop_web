@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
 import { logout } from '../../utils/auth'
 import './profile.css'
+import Sidebar from '../../components/Sidebar'
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -29,60 +30,38 @@ const Profile = () => {
     fetchUser()
   }, [])
 
-  const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
-
   return (
-    <div className='page-container'>
-    <div className="painel-container">
-      {/* Barra lateral */}
-      <div className="sidebar">
-        <button>Seus Dados</button>
-        <button>
-          <Link to="/pets">Pets</Link>
-        </button>
-        <button>Agendamentos</button>
-        <button
-          onClick={handleLogout}
-          className="sidebar-button"
-          style={{
-            backgroundColor: 'red',
-            fontWeight: '700',
-            marginTop: '32px'
-          }}
-        >
-          Sair
-        </button>
-      </div>
+    <div className="page-container">
+      <div className="painel-container">
+        {/* Barra lateral */}
+        <Sidebar />
 
-      {}
-      <div className="painel-conteudo">
-        {user && (
-          <>
-            <div className="dado-label">Nome:</div>
-            <div className="dado-info">{user.name}</div>
+        {}
+        <div className="painel-conteudo">
+          {user && (
+            <>
+              <div className="dado-label">Nome:</div>
+              <div className="dado-info">{user.name}</div>
 
-            <div className="dado-label">Email:</div>
-            <div className="dado-info">{user.email}</div>
+              <div className="dado-label">Email:</div>
+              <div className="dado-info">{user.email}</div>
 
-            <div className="dado-label">CPF:</div>
-            <div className="dado-info">{user.cpf}</div>
-          </>
-        )}
+              <div className="dado-label">CPF:</div>
+              <div className="dado-info">{user.cpf}</div>
+            </>
+          )}
 
-        <div style={{ marginTop: '30px' }}>
-          <Link to="/editar-perfil">
-            <button className="side">Editar Perfil</button>
-          </Link>
-          <br />
-          <Link to="/alterar-senha">
-            <button className="side">Alterar Senha</button>
-          </Link>
+          <div style={{ marginTop: '30px' }}>
+            <Link to="/editar-perfil">
+              <button className="side">Editar Perfil</button>
+            </Link>
+            <br />
+            <Link to="/alterar-senha">
+              <button className="side">Alterar Senha</button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   )
 }

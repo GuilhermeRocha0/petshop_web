@@ -1,134 +1,171 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import Sidebar from '../../components/Sidebar/index'
 import api from '../../services/api'
-import { logout } from '../../utils/auth'
+import PetCard from '../../components/PetCard'
+import PetForm from '../../components/PetForm'
+import Pagination from '../../components/Pagination'
+import Modal from '../../components/Modal'
 import './pets.css'
-import './modal.css'
 
 const Pets = () => {
   const [pets, setPets] = useState([])
-  const [error, setError] = useState('')
-  const [selectedPet, setSelectedPet] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 6
+
+  const [showForm, setShowForm] = useState(false)
+  const [editingPet, setEditingPet] = useState(null)
   const [showModal, setShowModal] = useState(false)
-  const navigate = useNavigate()
+  const [selectedPetId, setSelectedPetId] = useState(null)
 
-  const token = localStorage.getItem('token')
-
-  const fetchPets = async () => {
-    try {
-      const response = await api.get('/pets', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      setPets(response.data.pets)
-    } catch (err) {
-      setError('Erro ao carregar pets.')
-    }
+  const toggleForm = () => {
+    setEditingPet(null)
+    setShowForm(prev => !prev)
   }
 
   useEffect(() => {
     fetchPets()
   }, [])
 
-  const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
+  const fetchPets = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      toast.error('Token não encontrado')
+      return
+    }
 
-  const confirmDelete = petId => {
-    setSelectedPet(petId)
-    setShowModal(true)
-  }
-
-  const deletePet = async () => {
     try {
-      await api.delete(`/pets/${selectedPet}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      const res = await api.get('/pets', {
+        headers: { Authorization: `Bearer ${token}` }
       })
-      setPets(pets.filter(pet => pet._id !== selectedPet))
-      setShowModal(false)
+      setPets(res.data.pets || [])
     } catch (err) {
-      setError('Erro ao deletar o pet.')
-      setShowModal(false)
+      toast.error('Erro ao carregar pets.')
     }
   }
 
+  const handleSubmit = async (e, name, size, age, breed, notes) => {
+    e.preventDefault()
+
+    const token = localStorage.getItem('token')
+    if (!token) {
+      toast.error('Sessão expirada.')
+      return
+    }
+
+    if (!name || !size || !breed || age === '' || isNaN(age)) {
+      toast.error('Preencha todos os campos obrigatórios.')
+      return
+    }
+
+    try {
+      if (editingPet) {
+        await api.put(
+          `/pets/${editingPet._id}/edit`,
+          { name, size, age, breed, notes },
+          { headers: { Authorization: `Bearer ${token}` } }
+        )
+        toast.success('Pet atualizado com sucesso!')
+      } else {
+        await api.post(
+          '/pets/register',
+          { name, size, age, breed, notes },
+          { headers: { Authorization: `Bearer ${token}` } }
+        )
+        toast.success('Pet cadastrado com sucesso!')
+      }
+
+      setShowForm(false)
+      setEditingPet(null)
+      fetchPets()
+    } catch (err) {
+      toast.error('Erro ao salvar pet.')
+    }
+  }
+
+  const handleEdit = pet => {
+    setEditingPet(pet)
+    setShowForm(true)
+  }
+
+  const handleDelete = id => {
+    setSelectedPetId(id)
+    setShowModal(true)
+  }
+
+  const confirmDelete = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      toast.error('Sessão expirada.')
+      return
+    }
+
+    try {
+      await api.delete(`/pets/${selectedPetId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      toast.success('Pet deletado com sucesso!')
+      fetchPets()
+    } catch (err) {
+      toast.error('Erro ao deletar pet.')
+    }
+
+    setShowModal(false)
+  }
+
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const paginatedPets = pets.slice(startIndex, startIndex + itemsPerPage)
+  const totalPages = Math.ceil(pets.length / itemsPerPage)
+
   return (
-    
-      <div className="page-container">
-        <div className="painel-container">
-          {/* Sidebar */}
-          <div className="sidebar">
-            <button>
-              <Link to="/perfil">Seus Dados</Link>
-            </button>
-            <button>
-              <Link to="/pets">Pets</Link>
-            </button>
-            <button>Agendamentos</button>
-            <button
-              onClick={handleLogout}
-              className="sidebar-button"
-              style={{
-                backgroundColor: 'red',
-                fontWeight: '700',
-                marginTop: '32px'
-              }}
-            >
-              Sair
-            </button>
-          </div>
-    
-          {/* Conteúdo */}
-          <div className="painel-conteudo">
-            <h2>Seus Pets</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-    
-            {pets.length === 0 ? (
-              <p>Você ainda não cadastrou nenhum pet.</p>
-            ) : (
-              pets.map(pet => (
-                <div key={pet._id} className="pet-card">
-                  <p><strong>Nome:</strong> {pet.name}</p>
-                  <p><strong>Raça:</strong> {pet.breed}</p>
-                  <p><strong>Porte:</strong> {pet.size}</p>
-                  <p><strong>Idade:</strong> {pet.age}</p>
-                  <p><strong>Observações:</strong> {pet.notes || '-'}</p>
-    
-                  <div className="button-junto">
-                    <Link to={`/editar-pet/${pet._id}`} className="form-button">Editar</Link>
-                    <button onClick={() => confirmDelete(pet._id)} className="form-button" style={{ backgroundColor: 'red' }}>Deletar</button>
-                  </div>
+    <div className="page-container">
+      <div className="painel-container">
+        <Sidebar />
+        <div className="painel-conteudo">
+          <h2>Seus Pets</h2>
+
+          <button onClick={toggleForm} className="side">
+            {showForm ? 'Voltar para Lista' : 'Novo Pet'}
+          </button>
+
+          {showForm ? (
+            <PetForm editingPet={editingPet} handleSubmit={handleSubmit} />
+          ) : (
+            <>
+              {paginatedPets.length === 0 ? (
+                <p className="message">Você ainda não tem pets.</p>
+              ) : (
+                <div className="pet-list">
+                  {paginatedPets.map(pet => (
+                    <PetCard
+                      key={pet._id}
+                      pet={pet}
+                      onEdit={() => handleEdit(pet)}
+                      onDelete={() => handleDelete(pet._id)}
+                    />
+                  ))}
                 </div>
-              ))
-            )}
-    
-            <div style={{ marginTop: '20px' }}>
-              <Link to="/cadastrar-pet">
-                <button className="side">Cadastrar Novo Pet</button>
-              </Link>
-            </div>
-          </div>
+              )}
+
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </>
+          )}
+
+          {showModal && (
+            <Modal
+              onCancel={() => setShowModal(false)}
+              onConfirm={confirmDelete}
+              modalMessage="Tem certeza que deseja excluir este pet?"
+              buttonMessage="Excluir Pet"
+            />
+          )}
         </div>
-    
-        {/* Modal */}
-        {showModal && (
-          <div className="modal-background">
-            <div className="modal">
-              <p>Tem certeza que deseja excluir este pet?</p>
-              <div className="button-junto">
-                <button onClick={() => setShowModal(false)} className="form-button">Cancelar</button>
-                <button onClick={deletePet} className="form-button" style={{ backgroundColor: 'red' }}>Confirmar Exclusão</button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
-    
-    
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
-.pet-list {
-  max-height: 60vh; /* ou a altura que você quiser */
+.appointment-list {
+  max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -13,7 +13,7 @@
   margin-top: 4px;
 }
 
-.pet-card {
+.appointment-card {
   display: grid;
   grid-template-columns: 2fr 1fr;
   align-items: flex-end;
@@ -25,7 +25,7 @@
   width: 100%;
 }
 
-.pet-info {
+.appointment-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -48,7 +48,7 @@
   background-color: #b91c1c;
 }
 
-.pet-form-label {
+.appointment-form-label {
   display: block;
   color: #000;
   font-weight: 700;
@@ -65,40 +65,66 @@
   font-size: 15px;
   outline: none;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
-.edit-button {
-  max-height: 40px;
-  background-color: #6ee7b7; /* azul */
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
+.service-option-container {
+  margin-bottom: 8px;
+}
+
+.service-checkbox {
+  display: none;
+}
+
+.service-label {
+  display: block;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-  margin-top: 8px;
+  border-radius: 8px;
+  padding: 12px 24px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  font-weight: 600;
 }
 
-.delete-button {
-  max-height: 40px;
-  background-color: #ef4444; /* vermelho */
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-  margin-top: 8px;
+.service-checkbox:checked + .service-label {
+  background-color: #6ee7b7;
+  border: 1px solid #6ee7b7;
 }
 
-.edit-button:hover,
-.delete-button:hover {
-  filter: brightness(0.8);
-}
-
-.pet-actions {
+.pagination-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  background-color: #6ee7b7;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+  background-color: #34d399;
+}
+
+.pagination-button:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 15px;
 }

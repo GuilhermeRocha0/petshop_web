@@ -75,6 +75,11 @@ const LoginForm = () => {
           Entrar
         </button>
         <p>
+          Esqueceu a senha?
+          <Link to="/redefinir-senha">Redefinir Senha</Link>
+        </p>
+
+        <p>
           Caso ainda não tenha cadastro:
           <Link to="/cadastrar"> Cadastre-se aqui</Link>
         </p>
