@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import api from '../../services/api'
-import Sidebar from '../../components/Sidebar/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import AppointmentForm from '../../components/AppointmentForm'
 import AppointmentCard from '../../components/AppointmentCard'
 import Pagination from '../../components/Pagination'
-import CancelModal from '../../components/CancelModal'
+import Modal from '../../components/Modal'
 import './appointments.css'
 
 const Appointments = () => {
@@ -192,9 +192,11 @@ const Appointments = () => {
           )}
 
           {showModal && (
-            <CancelModal
+            <Modal
               onCancel={() => setShowModal(false)}
               onConfirm={confirmCancel}
+              modalMessage="Tem certeza que deseja cancelar este agendamento?"
+              buttonMessage="Cancelar Agendamento"
             />
           )}
         </div>

@@ -11,8 +11,6 @@ import PrivateRoute from './routes/PrivateRoute'
 import EditProfile from './pages/EditProfile'
 import ChangePassword from './pages/ChangePassword'
 import Pets from './pages/Pets'
-import RegisterPet from './pages/RegisterPet'
-import EditPet from './pages/EditPet'
 import EcommerceApp from './ecommerce/EcommerceApp'
 import Appointments from './pages/Appointments'
 import ResetPassword from './pages/ResetPassword'
@@ -54,22 +52,6 @@ function App() {
           element={
             <PrivateRoute>
               <Pets />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/cadastrar-pet"
-          element={
-            <PrivateRoute>
-              <RegisterPet />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/editar-pet/:id"
-          element={
-            <PrivateRoute>
-              <EditPet />
             </PrivateRoute>
           }
         />

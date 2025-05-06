@@ -13,6 +13,12 @@ const AppointmentCard = ({ ag, onCancel }) => (
         <strong>Data:</strong> {new Date(ag.scheduledDate).toLocaleString()}
       </p>
       <p>
+        <strong>Tempo estimado:</strong> {ag.totalEstimatedTime}
+      </p>
+      <p>
+        <strong>Preço: R$</strong> {ag.totalPrice}
+      </p>
+      <p>
         <strong>Status:</strong> {ag.status}
       </p>
     </div>

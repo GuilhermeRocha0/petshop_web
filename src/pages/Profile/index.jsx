@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import api from '../../services/api'
 import { logout } from '../../utils/auth'
 import './profile.css'
-import Sidebar from '../../components/Sidebar/Sidebar'
+import Sidebar from '../../components/Sidebar'
 
 const Profile = () => {
   const [user, setUser] = useState(null)
