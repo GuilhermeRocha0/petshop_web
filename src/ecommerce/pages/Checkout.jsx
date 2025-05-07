@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Checkout({cartTotal}) {
+export default function CheckoutPage({ selectedProducts, cartTotal }) {
   const navigate = useNavigate();
-  
+
   const [form, setForm] = useState({
     cardName: "",
     cardNumber: "",
@@ -14,10 +14,10 @@ export default function Checkout({cartTotal}) {
 
   const [errors, setErrors] = useState({});
 
-
+  const newErrors = {};
 
   const validate = () => {
-    const newErrors = {};
+
     if (!form.cardName) newErrors.cardName = "Nome no cartão é obrigatório";
     if (!form.cardNumber) newErrors.cardNumber = "Número do cartão é obrigatório";
     if (!form.expiry) newErrors.expiry = "Validade é obrigatória";
@@ -38,13 +38,53 @@ export default function Checkout({cartTotal}) {
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    const { name, value } = e.target;
+
+    let newValue = value;
+
+    
+    if (name === "cardNumber") {
+      const digits = value.replace(/\D/g, "").slice(0, 16);
+      newValue = digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+    }
+
+    if (form.cardNumber.replace(/\s/g, "").length < 16) {
+      newErrors.cardNumber = "O número do cartão deve ter 16 dígitos";
+    }
+
+    if (name === "expiry") {
+      const digits = value.replace(/\D/g, "").slice(0, 4);
+      newValue = digits.length >= 3 ? digits.replace(/(\d{2})(\d{1,2})/, "$1/$2") : digits;
+    }
+
+    if (name === "cvv") {
+      newValue = value.replace(/\D/g, "").slice(0, 3);
+    }
+
+    setForm({ ...form, [name]: newValue });
+    setErrors({ ...errors, [name]: "" });
   };
 
   return (
     <div className="checkout-container">
       <h1>Finalizar Pagamento</h1>
+
+      <div className="products-summary">
+        <h2>Produtos Selecionados:</h2>
+        {selectedProducts.length === 0 ? (
+          <p>Seu carrinho está vazio.</p>
+        ) : (
+          <ul>
+            {selectedProducts.map((product) => (
+              <li key={product.id}>
+                {product.name} - R$ {product.price.toFixed(2)}
+              </li>
+            ))}
+          </ul>
+        )}
+        <h3>Total: <span>R$ {cartTotal.toFixed(2)}</span></h3>
+      </div>
+
       <form onSubmit={handleSubmit} className="checkout-form">
         <div className="form-group">
           <label>Nome no Cartão</label>
@@ -53,6 +93,7 @@ export default function Checkout({cartTotal}) {
             name="cardName"
             value={form.cardName}
             onChange={handleChange}
+            placeholder="Nome impresso no cartão"
           />
           {errors.cardName && <p className="error">{errors.cardName}</p>}
         </div>
@@ -60,11 +101,12 @@ export default function Checkout({cartTotal}) {
         <div className="form-group">
           <label>Número do Cartão</label>
           <input
+
             type="text"
             name="cardNumber"
             value={form.cardNumber}
             onChange={handleChange}
-            maxLength="16"
+            placeholder="1234 5678 9012 3456"
           />
           {errors.cardNumber && <p className="error">{errors.cardNumber}</p>}
         </div>
@@ -78,7 +120,6 @@ export default function Checkout({cartTotal}) {
               value={form.expiry}
               onChange={handleChange}
               placeholder="MM/AA"
-              maxLength="5"
             />
             {errors.expiry && <p className="error">{errors.expiry}</p>}
           </div>
@@ -90,7 +131,7 @@ export default function Checkout({cartTotal}) {
               name="cvv"
               value={form.cvv}
               onChange={handleChange}
-              maxLength="3"
+              placeholder="123"
             />
             {errors.cvv && <p className="error">{errors.cvv}</p>}
           </div>
@@ -103,14 +144,10 @@ export default function Checkout({cartTotal}) {
             name="address"
             value={form.address}
             onChange={handleChange}
+            placeholder="Rua, número, bairro, cidade"
           />
           {errors.address && <p className="error">{errors.address}</p>}
         </div>
-
-        <div className="total-to-pay">
-  <h2>Total a Pagar: <span>R$ {cartTotal.toFixed(2)}</span></h2>
-</div>
-
 
         <button type="submit" className="pay-button">Confirmar Pagamento</button>
       </form>
