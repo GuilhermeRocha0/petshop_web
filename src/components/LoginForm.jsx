@@ -1,3 +1,4 @@
+// src/components/LoginForm.jsx
 import React, { useState } from 'react'
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
@@ -20,13 +21,11 @@ const LoginForm = () => {
 
     try {
       const response = await api.post('/auth/login', formData)
-
       setMessage(response.data.msg)
       localStorage.setItem('token', response.data.token)
-
-      navigate('/perfil') // redireciona para rota privada
+      navigate('/perfil')
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.msg) {
+      if (err.response?.data?.msg) {
         setError(err.response.data.msg)
       } else {
         setError('Erro ao fazer login.')
@@ -35,56 +34,68 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-
-      {message && (
-        <p style={{ color: 'green' }} className="return-msg">
-          {message}
-        </p>
-      )}
-      {error && (
-        <p style={{ color: 'red' }} className="return-msg">
-          {error}
-        </p>
-      )}
-
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+    <div className="main-login">
+      <div className="esq-login">
+        <img src="../../public/images/dog.png" className="image" alt="Pet" />
       </div>
 
-      <div>
-        <label>Senha:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="button-container">
-        <button type="submit" className="form-button">
-          Entrar
-        </button>
-        <p>
-          Esqueceu a senha?
-          <Link to="/redefinir-senha">Redefinir Senha</Link>
-        </p>
+      <div className="dir-login">
+        <form className="box" onSubmit={handleSubmit}>
+          <div className="login-title">Bem-vindo de volta! 🐾</div>
 
-        <p>
-          Caso ainda não tenha cadastro:
-          <Link to="/cadastrar"> Cadastre-se aqui</Link>
-        </p>
+          {message && (
+            <p style={{ color: 'green' }} className="return-msg">
+              {message}
+            </p>
+          )}
+          {error && (
+            <p style={{ color: 'red' }} className="return-msg">
+              {error}
+            </p>
+          )}
+
+          <div className="textfield">
+            <label htmlFor="email">Email</label>
+            <input
+              className="inputs"
+              type="email"
+              name="email"
+              placeholder="Email:"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="textfield">
+            <label htmlFor="password">Senha</label>
+            <input
+              className="inputs"
+              type="password"
+              name="password"
+              placeholder="Senha:"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <p>
+            Esqueceu sua senha? <Link to="/redefinir-senha">Redefina aqui</Link>
+          </p>
+
+          <br />
+
+          <button className="btn" type="submit">
+            Login
+          </button>
+
+          <p>
+            Caso não tenha conta: <Link to="/cadastrar">Cadastre-se</Link>
+          </p>
+        </form>
       </div>
-    </form>
+    </div>
   )
 }
 

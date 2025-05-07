@@ -14,12 +14,7 @@ const Login = () => {
   }, [navigate])
 
   return (
-    <div className="login-page">
-      <h1>PET DA CARLA</h1>
-      <div className="login-box">
         <LoginForm />
-      </div>
-    </div>
   )
 }
 

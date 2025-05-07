@@ -89,3 +89,130 @@ p.return-msg {
 a {
   font-weight: 700;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.main-login {
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #F80, #FFF8DC);
+}
+
+.image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 890px;
+}
+
+.login-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.esq-login {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dir-login {
+  width: 70vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 35px;
+  background-color: rgb(248, 164, 67);
+  border: 6px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.466);
+}
+
+.textfield {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 14px 0px;
+  width: 100%;
+}
+
+.textfield > label {
+  color: rgb(0, 0, 0);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.inputs {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff;
+  font-size: 14pt;
+  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.466);
+  outline: none;
+}
+
+.btn {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: rgb(48, 119, 201);
+  color: aliceblue;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+p {
+  font-size: 15px;
+  text-align: center;
+}
+
+.return-msg {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
