@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -27,7 +28,7 @@ const LoginForm = () => {
       navigate('/perfil') // redireciona para rota privada
     } catch (err) {
       if (err.response && err.response.data && err.response.data.msg) {
-        setError(err.response.data.msg)
+        toast.error(err.response.data.msg)
       } else {
         setError('Erro ao fazer login.')
       }
@@ -41,11 +42,6 @@ const LoginForm = () => {
       {message && (
         <p style={{ color: 'green' }} className="return-msg">
           {message}
-        </p>
-      )}
-      {error && (
-        <p style={{ color: 'red' }} className="return-msg">
-          {error}
         </p>
       )}
 
@@ -76,7 +72,7 @@ const LoginForm = () => {
         </button>
         <p>
           Esqueceu a senha?
-          <Link to="/redefinir-senha">Redefinir Senha</Link>
+          <Link to="/redefinir-senha"> Redefinir Senha</Link>
         </p>
 
         <p>

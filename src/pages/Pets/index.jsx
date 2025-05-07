@@ -53,8 +53,15 @@ const Pets = () => {
       return
     }
 
+    const breedRegex = /^[A-Za-zÀ-ÿ\s'-]+$/
+
     if (!name || !size || !breed || age === '' || isNaN(age)) {
       toast.error('Preencha todos os campos obrigatórios.')
+      return
+    }
+
+    if (!breedRegex.test(breed)) {
+      toast.error('Somente letras e/ou espaços são permitidos no campo "Raça".')
       return
     }
 

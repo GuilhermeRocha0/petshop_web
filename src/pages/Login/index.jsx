@@ -5,7 +5,7 @@ import LoginForm from '../../components/LoginForm'
 import { isAuthenticated } from '../../utils/auth'
 import './style.css'
 const Login = () => {
-  const navigate = useNavigate() // 👈 Adicione isso aqui
+  const navigate = useNavigate() // Adicione isso aqui
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -15,11 +15,17 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <h1>PET DA CARLA</h1>
+        {/* Silhuetas */}
+  <img src="/images/silhuetas.jpg" alt="Silhuetas" className="silhuetas" />
+      <h1 className="LogoLogin">
+      PET<span>da</span>CARLA
+        </h1>
       <div className="login-box">
         <LoginForm />
       </div>
     </div>
+
+    
   )
 }
 
