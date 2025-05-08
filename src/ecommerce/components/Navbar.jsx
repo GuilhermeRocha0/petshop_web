@@ -15,7 +15,7 @@ export default function NavBar({ setShowSidebarCart, selectedProducts }) {
     <div className="nav">
       <div className="inner-content">
         <h1 className="logo">
-          PET<span>da</span>CARLA
+          <Link to="/">PET<span>da</span>CARLA</Link>
         </h1>
 
         <nav className={`${show ? 'show' : ''}`}>

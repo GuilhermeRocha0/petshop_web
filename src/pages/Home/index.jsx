@@ -1,5 +1,6 @@
 import React from "react";
 import './home.css'
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -12,17 +13,17 @@ const Home = () => {
 
           <ul id="nav_list">
             <li className="nav-item active">
-              <a href="#home">Ecomerce</a>
+              <Link to="/loja">Ecomerce</Link>
             </li>
             <li className="nav-item">
-              <a href="#homeu">Agendamentos</a>
+              <Link to="/agendamentos">Agendamentos</Link>
             </li>
             <li className="nav-item">
-              <a href="#homer">Sobre nós</a>
+              <Link>Sobre nós</Link>
             </li>
           </ul>
 
-          <button className="btn-default">Cadastre-se</button>
+          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
 
           <button id="mobile_btn">
             <i className="fa-solid fa-bars"></i>
@@ -32,17 +33,17 @@ const Home = () => {
         <div id="mobile_menu">
           <ul id="mobile_nav_list">
             <li className="nav-item">
-              <a href="#home">Ecomerce</a>
+              <Link to="/loja">Ecomerce</Link>
             </li>
             <li className="nav-item">
-              <a href="#homeu">Agendamentos</a>
+              <Link to="/agendamentos">Agendamentos</Link>
             </li>
             <li className="nav-item">
-              <a href="#homer">Sobre nós</a>
+              <Link>Sobre nós</Link>
             </li>
           </ul>
 
-          <button className="btn-default">Cadastre-se</button>
+          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
         </div>
       </header>
 
