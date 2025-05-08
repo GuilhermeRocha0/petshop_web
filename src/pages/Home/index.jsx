@@ -4,10 +4,10 @@ import './home.css'
 const Home = () => {
   return (
     <div>
-      <header>
+      <header className="ho-header">
         <nav id="navbar">
-          <i className="fa-solid fa-paw" id="nav_logo">
-            Pet <span>da</span> Carla
+          <i className="fa-solid fa-paw"  id="nav_logo">
+             <span> </span>Pet <span>da</span> Carla
           </i>
 
           <ul id="nav_list">
@@ -50,8 +50,8 @@ const Home = () => {
         <section id="home">
           <div className="shape"></div>
           <div id="cta">
-            <h1 className="title">
-              🐾 O cuidado que seu pet merece, com carinho de
+            <h1 className="ho-title">
+              🐾O cuidado que seu pet merece, com carinho de
               <span> Verdade!</span>
             </h1>
 
@@ -61,7 +61,7 @@ const Home = () => {
 
             <div id="cta_buttons" style={{ display: "flex", gap: "20px" }}>
               <a href="#" className="btn-default">
-                ??????
+                Agendar já
               </a>
 
               <a href="tel:+55555555555555" id="phone_button">
@@ -100,22 +100,22 @@ const Home = () => {
               {
                 img: "./images/banho2.png",
                 title: "🛁 Banho",
-                description: `Seu pet limpinho, cheiroso e feliz! 💦\nUtilizamos produtos específicos para cada tipo de pelagem e tomamos todo o cuidado que seu bichinho merece.`,
+                description: `Seu pet limpinho, cheiroso e feliz! 💦\ntomamos todo o cuidado que seu bichinho merece.`,
               },
               {
                 img: "./images/tosa2.png",
                 title: "✂️ Tosa",
-                description: `Estilo e conforto para seu pet! ✨\nTosas higiênicas, na tesoura ou máquina, com carinho e profissionais especializados.`,
+                description: `Estilo saúde e conforto para seu pet! ✨\nTosas higiênicas, na tesoura ou máquina, com carinho e profissionais. `,
               },
               {
                 img: "./images/ecomerce2.png",
                 title: "🛒 Loja Online",
-                description: `Rações, brinquedos, acessórios e mais, com entrega rápida e segura.`,
+                description: `Tudo para seu pet com carinho! 🐾 \nRações, brinquedos, acessórios e mais, com entrega rápida e segura.`,
               },
               {
                 img: "./images/loja2.png",
                 title: "🏪 Loja Física",
-                description: `Ambiente acolhedor e uma variedade de produtos esperando por você.`,
+                description: `Estamos esperando por você 🐶🎈\nAmbiente acolhedor e uma variedade de produtos esperando por você.`,
               },
             ].map((item, index) => (
               <div className="dish" key={index}>
@@ -183,31 +183,43 @@ const Home = () => {
               ))}
             </div>
 
-            <button className="btn-default">Ver mais avaliações</button>
-            <img src="./images/wave.svg" className="imga" alt="" />
+            <button className="btn-default-fi">Ver mais avaliações</button>
+           
           </div>
         </section>
       </main>
 
-      <footer>
-        <img src="./images/wave.svg" className="imga" alt="" />
+      <footer className="footer">
+  <div className="footer-container">
+    <p>© 2025 Pet da Carla — Todos os direitos reservados.</p>
 
-        <div id="footer-items">
-          <span id="copyright">
-            © 2025 Pet da Carla — Todos os direitos reservados. <br />
-            🐾 Banho e Tosa • Loja Online • Loja Física <br />
-            📍 Rua dos Pets Felizes, 123 - São Paulo, SP <br />
-            📞 (11) 94076-4312 <br />
-            ✉️ contato@petdacarla.com.br <br />
-            Siga a gente nas redes sociais: <br />
-            <i className="fa-brands fa-facebook"></i> PET_CARLA_OFC/
-            <br />
-            <i className="fa-brands fa-instagram"></i> PET_CARLA_OFC
-            <br />
-            <i className="fa-brands fa-whatsapp"></i> (11)94076-4312
-          </span>
-        </div>
-      </footer>
+    <p>
+      <i className="fa-solid fa-bone"></i> Banho e Tosa • Loja Online • Loja Física
+    </p>
+
+    <p>
+      <i className="fa-solid fa-location-dot"></i> Rua salgato, 123 - São Paulo, SP
+    </p>
+
+    <p>
+      <i className="fa-solid fa-phone"></i> (11) 94076-4312
+    </p>
+
+    <p>
+      <i className="fa-solid fa-envelope"></i>{" "}
+      <a href="mailto:contato@petdacarla.com.br">contato@petdacarla.com.br</a>
+    </p>
+
+    <p>Siga a gente nas redes sociais:</p>
+
+    <div className="social-footer">
+      <a href="#"><i className="fa-brands fa-facebook"></i> PET_CARLA_OFC</a>
+      <a href="#"><i className="fa-brands fa-instagram"></i> PET_CARLA_OFC</a>
+      <a href="#"><i className="fa-brands fa-whatsapp"></i> (11) 94076-4312</a>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 };
