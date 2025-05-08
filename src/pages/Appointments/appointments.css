@@ -23,6 +23,8 @@
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+
+  text-align: left;
 }
 
 .appointment-info {
@@ -42,6 +44,10 @@
   font-weight: bold;
   transition: all 0.3s ease-in-out;
   margin-top: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cancel-button:hover {
