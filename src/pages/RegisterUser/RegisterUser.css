@@ -31,16 +31,16 @@ html, body {
 }
 
 .dir-login {
-  width: 50vw;
+  width: 45vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.box {
+.cad-box {
   width: 70%;
-  max-width: 450px;
+  max-width: 550px;
   background-color: rgb(248, 164, 67);
   border: 6px solid white;
   border-radius: 20px;
@@ -48,8 +48,8 @@ html, body {
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.466);
 }
 
-.login-title {
-  font-size: 32px;
+.cad-login-title {
+  font-size: 40px;
   font-weight: 700;
   color: white;
   text-align: center;
@@ -70,7 +70,7 @@ html, body {
   margin-bottom: 5px;
 }
 
-.inputs {
+.cad-inputs {
   width: 100%;
   border: none;
   border-radius: 10px;

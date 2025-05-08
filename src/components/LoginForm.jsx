@@ -34,14 +34,14 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="main-login">
-      <div className="esq-login">
+    <div className="lo-main-login">
+      <div className="lo-esq-login">
         <img src="../../public/images/dog.png" className="image" alt="Pet" />
       </div>
 
-      <div className="dir-login">
-        <form className="box" onSubmit={handleSubmit}>
-          <div className="login-title">Bem-vindo de volta! 🐾</div>
+      <div className="lo-dir-login">
+        <form className="lo-box" onSubmit={handleSubmit}>
+          <div className="lo-login-title">Bem-vindo de volta! 🐾</div>
 
           {message && (
             <p style={{ color: 'green' }} className="return-msg">
@@ -54,10 +54,10 @@ const LoginForm = () => {
             </p>
           )}
 
-          <div className="textfield">
+          <div className="lo-textfield">
             <label htmlFor="email">Email</label>
             <input
-              className="inputs"
+              className="lo-inputs"
               type="email"
               name="email"
               placeholder="Email:"
@@ -67,10 +67,10 @@ const LoginForm = () => {
             />
           </div>
 
-          <div className="textfield">
+          <div className="lo-textfield">
             <label htmlFor="password">Senha</label>
             <input
-              className="inputs"
+              className="lo-inputs"
               type="password"
               name="password"
               placeholder="Senha:"
@@ -80,9 +80,11 @@ const LoginForm = () => {
             />
           </div>
 
+          <div className="lo-p">
           <p>
             Esqueceu sua senha? <Link to="/redefinir-senha">Redefina aqui</Link>
           </p>
+          </div>
 
           <br />
 
