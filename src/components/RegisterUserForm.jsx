@@ -49,8 +49,8 @@ const RegisterUserForm = () => {
   }
 
   return (
-    <div className="box">
-      <div className="login-title">Faça seu cadastro 🐶!</div>
+    <div className="cad-box">
+      <div className="cad-login-title">Faça seu cadastro 🐶!</div>
 
       {message && <p className="success-msg">{message}</p>}
       {error && <p className="error-msg">{error}</p>}
@@ -59,7 +59,7 @@ const RegisterUserForm = () => {
         <div className="textfield">
           <label htmlFor="name">Nome</label>
           <input
-            className="inputs"
+            className="cad-inputs"
             type="text"
             id="name"
             name="name"
@@ -73,7 +73,7 @@ const RegisterUserForm = () => {
         <div className="textfield">
           <label htmlFor="cpf">CPF</label>
           <input
-            className="inputs"
+            className="cad-inputs"
             type="text"
             id="cpf"
             name="cpf"
@@ -87,7 +87,7 @@ const RegisterUserForm = () => {
         <div className="textfield">
           <label htmlFor="email">Email</label>
           <input
-            className="inputs"
+            className="cad-inputs"
             type="email"
             id="email"
             name="email"
@@ -101,7 +101,7 @@ const RegisterUserForm = () => {
         <div className="textfield">
           <label htmlFor="password">Senha</label>
           <input
-            className="inputs"
+            className="cad-inputs"
             type="password"
             id="password"
             name="password"
@@ -115,7 +115,7 @@ const RegisterUserForm = () => {
         <div className="textfield">
           <label htmlFor="confirmPassword">Confirme sua senha</label>
           <input
-            className="inputs"
+            className="cad-inputs"
             type="password"
             id="confirmPassword"
             name="confirmPassword"
