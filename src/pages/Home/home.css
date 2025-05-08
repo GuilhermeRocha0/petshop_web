@@ -1,0 +1,485 @@
+#menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #FFF8DC;
+}
+
+#dishes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.dish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    gap: 18px;
+    width: 25%;
+    padding: 20px;
+    background-color: aliceblue;
+    box-shadow:0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dish-heart {
+    position: absolute;
+    background-color: burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.563rem;
+    color: aliceblue;
+    width: 70px;
+    height: 70px;
+    right: -10px;
+    top: -10px;
+    border-radius: 0px 37.5px 0px 42.5px;
+}
+
+.dish-description{
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.dish-rate{
+    color: gold;
+}
+
+.dish-price{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1170px){
+    #dishes{
+      flex-wrap: wrap; 
+      justify-content: center;
+    }
+
+    .dish{
+        width: calc(50% - 12px);
+    }
+}
+
+@media screen and (max-width: 900px){
+    .dish{
+        width: 100%;
+    }
+
+    #menu .section-subtitle{
+        text-align: center;
+    }
+}
+#testimonials {
+    min-height: calc(100vh - 91px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    background-color: #FFF8DC;
+}
+
+#testimonials_chef{
+    width: 500px;
+    height: auto;
+}
+
+#testimonials .section-subtitle{
+    font-size: 3rem;
+}
+
+#testimonials_content{
+    width: 50%;
+}
+
+#feedbacks{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+#feedback {
+    display:flex;
+    align-items: center;
+    gap: 20px;
+    background-color: aliceblue;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1) ;
+}
+
+.feedback-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.feedback-content p{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.feedback-content p span{
+    color: gold;
+}
+
+@media screen and (max-width: 1170px){
+    #testimonials{
+        flex-direction: column;
+    }
+
+    #testimonials .section-subtitle{
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    #testimonials_chef{
+        display: none;
+    }
+
+    #testimonials_content{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 600px){
+   #testimonials .section-subtitle{
+    font-size: 2rem;
+   }
+
+    .feedback{
+    flex-direction: column;
+   } 
+   #feedbacks{
+    width: 110%;
+   }
+
+   #testimonials_content{
+    width: 100%;
+   }
+} 
+footer {
+    background-color:rgb(0, 0, 0);
+    height: 270px;
+    color: #000000;
+}
+
+#footer_items{
+    display: flex ;
+    justify-content: space-between;
+    padding: 0px 8% 24px 8% ;
+    align-items: center ;
+}
+
+#copyright{
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+}
+header{
+    width: 100%;
+    padding: 28px 8%;
+    position: sticky;
+    top: 0;
+    background-color: #F80;
+    z-index: 3;
+}
+
+#navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#navbar span{
+    font-family: "Font Awesome 6 Free";
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    font-size: 24px;
+}
+
+
+#nav_logo{
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+}
+
+#nav_list{
+    display: flex;
+    list-style: none;
+    gap: 48px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.nav-item.active a {
+    color: #ffffff;
+    border-bottom: 3px solid rgb(48, 119, 201);
+}
+
+#mobile_btn{
+    display: none;
+}
+
+#mobile_menu{
+    display: none;
+}
+
+@media screen and (max-width: 1170px){
+    #nav_list,
+    #navbar .btn-default{
+        display:none
+    }
+
+    #mobile_btn {
+        display:block;
+        border: none;
+        background-color: transparent;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    #mobile_menu.active{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #mobile_nav_list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 12px 0px;
+    }
+
+    #mobile_nav_list .nav-item{
+        list-style: none;
+        text-align: center;
+    }
+}
+#home{
+    display: flex;
+    min-height: calc(100vh - 91px);
+    position: relative;
+    background: linear-gradient(to bottom, #F80, #FFF8DC);
+    height: 100vh;
+    margin: 0;
+}
+
+#cta{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 5%;
+}
+
+#cta .title{
+    font-size: 4rem;
+    color: #1d1d1d;
+    width: 1000px;
+}
+
+@media screen and (max-width: 1170px){
+    #cta .title{
+        font-size: 2rem;
+        color: #1d1d1d;
+        width: 400px;
+    }
+}
+
+#cta .title span {
+    color: #fff;
+}
+
+#cta .description{
+    font-size: 1.2rem;
+}
+
+#cta__buttons {
+    display: flex;
+    gap: 24px !important;
+}
+
+#cta_buttons a {
+    text-decoration: none;
+    color: #1d1d1d;
+}
+
+#phone_button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background-color: #fff;
+    padding: 8px 14px;  
+    font-weight: 500;
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+#phone_button button {
+    box-shadow: none;
+    background-color: rgb(211, 185, 39);
+    color: rgb(0, 0, 0) !important;
+}
+
+#phone_button button:hover{
+    background-color: rgb(0, 0, 0);
+    color: aliceblue !important;
+}
+
+
+#banner{
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    width: 75%;
+    z-index: 2;
+    
+}
+
+#banner img {
+    height: 100%;
+    width: fit-content;
+}
+
+.shape{
+    background-color: transparent;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    border-radius: 40% 30%  0% 20%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+
+
+@media screen and (max-width: 1170px){
+    #home{
+        min-height: 100%;
+        padding-top: 0px;
+    }
+
+    #banner,
+    #banner img,
+    #home .shape{
+        display: none;
+    }
+
+    #cta {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('header.css');
+@import url('Home.css');
+@import url('menu.css');
+@import url('testimonials.css');
+@import url('footer.css');
+
+
+*{
+    font-family: 'Poppins',sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+section{
+    padding: 28px 8%;
+}
+
+.btn-default{
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color .3s ease;
+    
+}
+
+.btn-default:hover{
+    background-color: rgb(48, 119, 201);
+    color: aliceblue !important;
+}
+
+.social-media-buttons {
+    display: flex;
+    gap: 18px;
+}
+
+.social-media-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 40px;
+    background-color: #fff;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #1d1d1d;
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow .3s ease;
+}
+
+.social-media-buttons a:hover{
+    box-shadow: 0px 0px 12px 8px rgba(0, 0, 0, 0.1);
+    color: rgb(255, 255, 255);
+}
+
+.social-media-buttons a #zap{
+    color: rgb(152, 248, 8);
+}
+
+.social-media-buttons a #insta{
+    color: rgb(213, 60, 243);
+}
+
+.social-media-buttons a #face{
+    color: rgb(48, 119, 201);
+}
+
+
+.section-title{
+    color:burlywood;
+    font-size: 1.563rem;
+}
+
+.section-subtitle{
+    font-size: 2.1875rem;
+}

@@ -14,6 +14,7 @@ import Pets from './pages/Pets'
 import EcommerceApp from './ecommerce/EcommerceApp'
 import Appointments from './pages/Appointments'
 import ResetPassword from './pages/ResetPassword'
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/cadastrar" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
         <Route path="/redefinir-senha" element={<ResetPassword />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/perfil"
           element={
