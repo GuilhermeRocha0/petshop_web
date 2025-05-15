@@ -16,10 +16,10 @@ const RegisterUser = () => {
 
   return (
     <div className="main-login">
-      <div className="esq-login">
+      <div className="cad-esq-login">
         <img src="../../public/images/dog.png" className="image" alt="Ilustração Pet" />
       </div>
-      <div className="dir-login">
+      <div className="cad-dir-login">
         <RegisterUserForm />
       </div>
     </div>

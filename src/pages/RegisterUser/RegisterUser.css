@@ -14,7 +14,10 @@ html, body {
 .main-login {
   width: 100vw;
   height: 100vh;
+  background-repeat: no-repeat;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(to bottom, rgb(51, 206, 154), #FFF8DC);
 }
 
@@ -27,11 +30,11 @@ html, body {
 
 .image {
   width: 100%;
-  max-width: 890px;
+  max-width: 89rem;
 }
 
-.dir-login {
-  width: 45vw;
+.cad-dir-login {
+  width: 70vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -40,56 +43,56 @@ html, body {
 
 .cad-box {
   width: 70%;
-  max-width: 550px;
+  max-width: 55rem;
   background-color: rgb(248, 164, 67);
-  border: 6px solid white;
-  border-radius: 20px;
-  padding: 30px 35px;
-  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.466);
+  border: 0.6rem solid white;
+  border-radius: 2rem;
+  padding: 3rem 3.5rem;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.466);
 }
 
 .cad-login-title {
-  font-size: 40px;
+  font-size: 4rem;
   font-weight: 700;
   color: white;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .textfield {
   display: flex;
   flex-direction: column;
-  margin: 14px 0;
+  margin: 1.4rem 0;
 }
 
 .textfield > label {
   font-style: italic;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: black;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .cad-inputs {
   width: 100%;
   border: none;
-  border-radius: 10px;
-  padding: 13px;
-  font-size: 14px;
+  border-radius: 1rem;
+  padding: 1.4rem;
+  font-size: 1.4rem;
   background-color: white;
-  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2);
   outline: none;
 }
 
 .btn {
   width: 100%;
-  padding: 12px;
-  margin-top: 10px;
+  padding: 1.2rem;
+  margin-top: 1rem;
   background-color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 1.2rem;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1.6rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -98,12 +101,12 @@ html, body {
   background-color: rgb(48, 119, 201);
   color: white;
   transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .paragraph {
-  margin-top: 12px;
-  font-size: 14px;
+  margin-top: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
 }
 
@@ -117,4 +120,70 @@ html, body {
   color: red;
   font-weight: 500;
   text-align: center;
+}
+
+
+/* Responsividade para telas menores que 768px */
+@media screen and (max-width: 768px) {
+  */
+
+  body {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cad-esq-login {
+    display: none;
+    /* Oculta imagem lateral */
+  }
+
+  .cad-dir-login {
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  .cad-dir-login {
+    padding: 0;
+}
+
+  .cad-box {
+    width: 100%;
+    border-width: 0.3rem;
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .cad-login-title {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .cad-textfield>label {
+    font-size: 1.8rem;
+  }
+
+  .cad-inputs {
+    font-size: 1.6rem;
+    padding: 1.2rem;
+  }
+
+  .cad-btn {
+    font-size: 1.6rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .cad-p p {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .return-msg {
+    font-size: 1.4rem;
+    text-align: center;
+  }
 }

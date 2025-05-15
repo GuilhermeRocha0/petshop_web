@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import './home.css'
 import { Link } from "react-router-dom";
 
 const Home = () => {
+
+  const [menuActive, setMenuActive] = useState(false);
+
+  const handleMobileMenu = () => {
+    setMenuActive(!menuActive);
+  };
+
   return (
     <div>
       <header className="ho-header">
         <nav id="navbar">
-          <i className="fa-solid fa-paw"  id="nav_logo">
-             <span> </span>Pet <span>da</span> Carla
+          <i className="fa-solid fa-paw" id="nav_logo">
+            <span> </span>Pet <span>da</span> Carla
           </i>
 
           <ul id="nav_list">
@@ -25,12 +32,12 @@ const Home = () => {
 
           <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
 
-          <button id="mobile_btn">
-            <i className="fa-solid fa-bars"></i>
+          <button id="mobile_btn" onClick={handleMobileMenu}>
+            <i className={menuActive ? 'fa fa-x' : 'fa fa-bars'}></i>
           </button>
         </nav>
 
-        <div id="mobile_menu">
+        <div id="mobile_menu" className={menuActive ? 'active' : ''}>
           <ul id="mobile_nav_list">
             <li className="nav-item">
               <Link to="/loja">Ecomerce</Link>
@@ -185,41 +192,41 @@ const Home = () => {
             </div>
 
             <button className="btn-default-fi">Ver mais avaliações</button>
-           
+
           </div>
         </section>
       </main>
 
       <footer className="footer">
-  <div className="footer-container">
-    <p>© 2025 Pet da Carla — Todos os direitos reservados.</p>
+        <div className="footer-container">
+          <p>© 2025 Pet da Carla — Todos os direitos reservados.</p>
 
-    <p>
-      <i className="fa-solid fa-bone"></i> Banho e Tosa • Loja Online • Loja Física
-    </p>
+          <p>
+            <i className="fa-solid fa-bone"></i> Banho e Tosa • Loja Online • Loja Física
+          </p>
 
-    <p>
-      <i className="fa-solid fa-location-dot"></i> Rua salgato, 123 - São Paulo, SP
-    </p>
+          <p>
+            <i className="fa-solid fa-location-dot"></i> Rua salgato, 123 - São Paulo, SP
+          </p>
 
-    <p>
-      <i className="fa-solid fa-phone"></i> (11) 94076-4312
-    </p>
+          <p>
+            <i className="fa-solid fa-phone"></i> (11) 94076-4312
+          </p>
 
-    <p>
-      <i className="fa-solid fa-envelope"></i>{" "}
-      <a href="mailto:contato@petdacarla.com.br">contato@petdacarla.com.br</a>
-    </p>
+          <p>
+            <i className="fa-solid fa-envelope"></i>{" "}
+            <a href="mailto:contato@petdacarla.com.br">contato@petdacarla.com.br</a>
+          </p>
 
-    <p>Siga a gente nas redes sociais:</p>
+          <p>Siga a gente nas redes sociais:</p>
 
-    <div className="social-footer">
-      <a href="#"><i className="fa-brands fa-facebook"></i> PET_CARLA_OFC</a>
-      <a href="#"><i className="fa-brands fa-instagram"></i> PET_CARLA_OFC</a>
-      <a href="#"><i className="fa-brands fa-whatsapp"></i> (11) 94076-4312</a>
-    </div>
-  </div>
-</footer>
+          <div className="social-footer">
+            <a href="#"><i className="fa-brands fa-facebook"></i> PET_CARLA_OFC</a>
+            <a href="#"><i className="fa-brands fa-instagram"></i> PET_CARLA_OFC</a>
+            <a href="#"><i className="fa-brands fa-whatsapp"></i> (11) 94076-4312</a>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );

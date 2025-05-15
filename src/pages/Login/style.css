@@ -4,31 +4,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 5rem;
   background-color: #f9a34e;
 
   height: 100vh;
 }
 
 .login-page h1 {
-  font-size: 32px;
+  font-size: 3.2rem;
   font-weight: 800;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 }
 
 .cad-login-box {
   background-color: #f68632;
-  padding: 40px 30px;
-  border-radius: 10px;
+  padding: 4rem 3rem;
+  border-radius: 1rem;
   width: 100%;
-  max-width: 500px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.212);
+  max-width: 50rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.212);
 }
 
 .login-box label {
   display: block;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   color: #1f1f1f;
 }
 
@@ -36,13 +36,13 @@
 .login-box select,
 .login-box textarea {
   width: 100%;
-  padding: 12px;
+  padding: 1.2rem;
   border-radius: 25px;
   border: none;
   outline: none;
   background-color: #fff;
-  font-size: 14px;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
   box-sizing: border-box;
   resize: none;
 }
@@ -50,21 +50,21 @@
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 1.2rem;
+  margin-top: 1rem;
 }
 
 .form-button {
-  padding: 12px;
-  font-size: 16px;
+  padding: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  border: 2px solid #1f1f1f;
-  border-radius: 6px;
+  border: 0.2rem solid #1f1f1f;
+  border-radius: 0.6rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
   color: #fff;
   background-color: #1f1f1f;
   transition: 0.3s;
@@ -73,12 +73,12 @@
 .form-button:hover {
   background-color: transparent;
   color: black;
-  border: 2px solid black;
+  border: 0.2rem solid black;
 }
 
 p.return-msg {
   text-align: center;
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 .button-junto {
@@ -98,7 +98,8 @@ a {
   font-family: 'Poppins', sans-serif;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -117,14 +118,14 @@ html, body {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 890px;
+  width: 89rem;
 }
 
 .lo-login-title {
-  font-size: 42px;
+  font-size: 4.2rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .lo-esq-login {
@@ -149,11 +150,12 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 30px 35px;
+  padding: 3rem 3.5rem;
   background-color: rgb(248, 164, 67);
-  border: 6px solid rgb(255, 255, 255);
-  border-radius: 20px;
-  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.466);
+  border: 0.6rem solid rgb(255, 255, 255);
+  border-radius: 2rem;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.466);
+  z-index: 1;
 }
 
 .lo-textfield {
@@ -161,26 +163,26 @@ html, body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin: 14px 0px;
+  margin: 1.4rem 0;
   width: 100%;
 }
 
-.lo-textfield > label {
+.lo-textfield>label {
   color: rgb(0, 0, 0);
   font-style: italic;
   font-weight: bold;
-  font-size: 24px;
-  margin-bottom: 5px;
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .lo-inputs {
   width: 100%;
   border: none;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 1rem;
+  padding: 1.5rem;
   background-color: #fff;
-  font-size: 14pt;
-  box-shadow: 10px 10px 50px rgba(255, 196, 119, 0);
+  font-size: 1.4rem;
+  box-shadow: 1rem 1rem 5rem rgba(255, 196, 119, 0);
   outline: none;
 }
 
@@ -190,29 +192,94 @@ html, body {
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border-radius: 12px;
-  padding: 10px 14px;
+  border-radius: 1.2rem;
+  padding: 1rem 1.4rem;
   font-weight: 600;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .lo-btn:hover {
   background-color: rgb(48, 119, 201);
   color: aliceblue;
   transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .lo-p {
-  font-size: 15px;
+  font-size: 1.5rem;
   text-align: center;
 }
 
 .return-msg {
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsividade para telas menores que 768px */
+@media screen and (max-width: 768px) {
+  */
+
+  body {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  .lo-esq-login {
+    display: none;
+    /* Oculta imagem lateral */
+  }
+
+  .lo-dir-login {
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  .lo-dir-login {
+    padding: 0;
+}
+
+  .lo-box {
+    width: 100%;
+    border-width: 0.3rem;
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .lo-login-title {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .lo-textfield>label {
+    font-size: 1.8rem;
+  }
+
+  .lo-inputs {
+    font-size: 1.6rem;
+    padding: 1.2rem;
+  }
+
+  .lo-btn {
+    font-size: 1.6rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .lo-p p {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .return-msg {
+    font-size: 1.4rem;
+    text-align: center;
+  }
 }
