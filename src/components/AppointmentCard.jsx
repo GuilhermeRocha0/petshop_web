@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppointmentCard = ({ ag, onCancel }) => (
+const AppointmentCard = ({ ag, onCancel, userRole }) => (
   <div className="appointment-card">
     <div className="appointment-info">
       <p>
@@ -21,7 +21,19 @@ const AppointmentCard = ({ ag, onCancel }) => (
       <p>
         <strong>Status:</strong> {ag.status}
       </p>
+
+      {userRole === 'ADMIN' && ag.userId && (
+        <>
+          <p>
+            <strong>Usuário:</strong> {ag.userId.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {ag.userId.email}
+          </p>
+        </>
+      )}
     </div>
+
     {ag.status !== 'cancelado' && (
       <button onClick={() => onCancel(ag._id)} className="cancel-button">
         Cancelar Agendamento

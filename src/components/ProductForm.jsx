@@ -76,7 +76,11 @@ const ProductForm = ({ editingProduct, handleSubmit, categories }) => {
       </select>
 
       <label className="product-form-label">Imagem (obrigatório):</label>
-      <input type="file" onChange={handleImageChange} />
+      <input
+        type="file"
+        onChange={handleImageChange}
+        className="input-standard"
+      />
 
       <label className="product-form-label">Descrição:</label>
       <textarea

@@ -47,7 +47,9 @@ const AppointmentForm = ({
               }}
             />
             <label htmlFor={service._id} className="service-label">
-              {service.name} - R$ {service.price}
+              {service.name} | Tempo Estimado: {service.estimatedTime}min - R$
+              {''}
+              {service.price}
             </label>
           </div>
         ))

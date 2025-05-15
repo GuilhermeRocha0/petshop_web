@@ -63,8 +63,12 @@
   border-radius: 8px;
   margin: 8px 0;
   font-size: 15px;
-  outline: none;
   transition: all 0.3s ease;
+}
+
+.input-standard:focus,
+.input-standard:hover {
+  outline: 1px solid #6ee7b7;
 }
 
 .edit-button {

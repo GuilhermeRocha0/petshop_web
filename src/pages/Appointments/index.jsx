@@ -29,11 +29,39 @@ const Appointments = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null)
 
+  const [userRole, setUserRole] = useState(null)
+
+  const fetchAppointments = async (role, token) => {
+    try {
+      let resAppointments
+      if (role === 'ADMIN') {
+        resAppointments = await api.get('/appointments/all', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      } else {
+        resAppointments = await api.get('/appointments', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      }
+      setAppointments(resAppointments.data.appointments || [])
+    } catch (err) {
+      toast.error('Erro ao carregar agendamentos.')
+    }
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token')
-        if (!token) throw new Error('Token não encontrado')
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        if (!token || !user) {
+          toast.error('Você precisa estar logado.')
+          navigate('/login')
+          return
+        }
+
+        setUserRole(user.role)
 
         const resPets = await api.get('/pets', {
           headers: { Authorization: `Bearer ${token}` }
@@ -43,10 +71,7 @@ const Appointments = () => {
         const resServices = await api.get('/services')
         setServices(resServices.data.services || [])
 
-        const resAppointments = await api.get('/appointments', {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        setAppointments(resAppointments.data.appointments || [])
+        await fetchAppointments(user.role, token)
       } catch (err) {
         console.error(err)
         toast.error('Erro ao carregar dados.')
@@ -54,7 +79,7 @@ const Appointments = () => {
     }
 
     fetchData()
-  }, [])
+  }, [navigate])
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -66,7 +91,8 @@ const Appointments = () => {
 
     const token = localStorage.getItem('token')
     if (!token) {
-      toast.error('Sessão expirada, por favor realize o login novamente!')
+      toast.error('Sessão expirada, por favor faça login novamente!')
+      navigate('/login')
       return
     }
 
@@ -89,10 +115,7 @@ const Appointments = () => {
       setDate('')
       setShowForm(false)
 
-      const updated = await api.get('/appointments', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      setAppointments(updated.data.appointments || [])
+      await fetchAppointments(userRole, token)
     } catch (err) {
       toast.error('Erro ao criar agendamento.')
     }
@@ -106,7 +129,8 @@ const Appointments = () => {
   const confirmCancel = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      toast.error('Sessão expirada, por favor realize o login novamente!')
+      toast.error('Sessão expirada, por favor faça login novamente!')
+      navigate('/login')
       return
     }
 
@@ -119,10 +143,7 @@ const Appointments = () => {
         }
       )
 
-      const updated = await api.get('/appointments', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      setAppointments(updated.data.appointments || [])
+      await fetchAppointments(userRole, token)
 
       toast.success('Agendamento cancelado com sucesso!')
       setShowModal(false)
@@ -149,7 +170,11 @@ const Appointments = () => {
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">
-          <h2>Seus Agendamentos</h2>
+          <h2>
+            {userRole === 'ADMIN'
+              ? 'Todos os Agendamentos'
+              : 'Seus Agendamentos'}
+          </h2>
 
           <button onClick={toggleForm} className="side">
             {showForm ? 'Voltar para Lista' : 'Novo Agendamento'}
@@ -178,6 +203,7 @@ const Appointments = () => {
                       key={ag._id}
                       ag={ag}
                       onCancel={handleCancel}
+                      userRole={userRole}
                     />
                   ))}
                 </div>

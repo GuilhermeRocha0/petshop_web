@@ -79,7 +79,10 @@
 }
 
 .service-checkbox {
-  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
 }
 
 .service-label {
@@ -92,6 +95,16 @@
   transition: background-color 0.3s ease;
   user-select: none;
   font-weight: 600;
+}
+
+.service-label:hover,
+.service-label:focus {
+  outline: 1px solid #6ee7b7;
+}
+
+.service-option-container:hover .service-label,
+.service-option-container:focus-within .service-label {
+  outline: 1px solid #6ee7b7;
 }
 
 .service-checkbox:checked + .service-label {
