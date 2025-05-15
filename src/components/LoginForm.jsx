@@ -21,8 +21,12 @@ const LoginForm = () => {
 
     try {
       const response = await api.post('/auth/login', formData)
-      setMessage(response.data.msg)
+
+      // Salva o token e a role no localStorage
       localStorage.setItem('token', response.data.token)
+      localStorage.setItem('user', JSON.stringify(response.data.user))
+
+      setMessage(response.data.msg)
       navigate('/perfil')
     } catch (err) {
       if (err.response?.data?.msg) {
@@ -81,9 +85,10 @@ const LoginForm = () => {
           </div>
 
           <div className="lo-p">
-          <p>
-            Esqueceu sua senha? <Link to="/redefinir-senha">Redefina aqui</Link>
-          </p>
+            <p>
+              Esqueceu sua senha?{' '}
+              <Link to="/redefinir-senha">Redefina aqui</Link>
+            </p>
           </div>
 
           <br />

@@ -18,7 +18,10 @@
   font-size: 62.5%;
 }
 
-html, body, input, textarea {
+html,
+body,
+input,
+textarea {
   font-size: 1.6rem;
 }
 
@@ -30,6 +33,10 @@ body {
 a {
   text-decoration: none;
   color: unset;
+}
+
+textarea {
+  resize: none;
 }
 
 button {

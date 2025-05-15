@@ -15,6 +15,7 @@ import EcommerceApp from './ecommerce/EcommerceApp'
 import Appointments from './pages/Appointments'
 import ResetPassword from './pages/ResetPassword'
 import Home from './pages/Home'
+import Products from './pages/Products'
 
 function App() {
   return (
@@ -62,6 +63,14 @@ function App() {
           element={
             <PrivateRoute>
               <Appointments />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/produtos"
+          element={
+            <PrivateRoute>
+              <Products />
             </PrivateRoute>
           }
         />
