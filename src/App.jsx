@@ -16,6 +16,7 @@ import Appointments from './pages/Appointments'
 import ResetPassword from './pages/ResetPassword'
 import Home from './pages/Home'
 import Products from './pages/Products'
+import Services from './pages/Services'
 
 function App() {
   return (
@@ -71,6 +72,14 @@ function App() {
           element={
             <PrivateRoute>
               <Products />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/servicos"
+          element={
+            <PrivateRoute>
+              <Services />
             </PrivateRoute>
           }
         />
