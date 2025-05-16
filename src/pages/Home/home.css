@@ -332,7 +332,7 @@
 }
 
 #cta{
-    width: 35%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     gap: 2.8rem;
@@ -340,7 +340,7 @@
 }
 
 #cta .ho-title{
-    font-size: 4rem;
+    font-size: 6rem;
     color: #1d1d1d;
     padding-top: 80px;
 }
@@ -358,7 +358,7 @@
 }
 
 #cta .description{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 #cta__buttons {
@@ -421,7 +421,7 @@
 
 
 
-@media screen and (max-width: 1170px){
+@media screen and (max-width: 1527px){
     #home{
         min-height: 100%;
         padding-top: 0rem;

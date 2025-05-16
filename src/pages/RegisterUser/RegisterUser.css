@@ -26,23 +26,27 @@ html, body {
   height: 100vh;
   display: flex;
   align-items: flex-end;
+  z-index: 1;
 }
 
 .image {
   width: 100%;
   max-width: 89rem;
+  z-index: 1;
 }
 
 .cad-dir-login {
-  width: 70vw;
+  width: 90vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 700px;
+  z-index: 2;
 }
 
 .cad-box {
-  width: 70%;
+  width: 70vw;
   max-width: 55rem;
   background-color: rgb(248, 164, 67);
   border: 0.6rem solid white;
@@ -122,9 +126,47 @@ html, body {
   text-align: center;
 }
 
+.ponto{
+  padding-top: 0.8rem;
+  text-align: center;
+}
 
-/* Responsividade para telas menores que 768px */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .cad-esq-login {
+    display: none;
+  }
+  body {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+  .cad-dir-login {
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
+  }
+  .cad-dir-login {
+    padding: 0;
+}
+.cad-login-title{
+  font-size: 4.2rem;
+}
+}
+
+@media screen and (max-width: 1100px) {
+  .cad-login-title{
+    font-size: 3.8rem;
+  }
+}
+
+@media screen and (max-width: 1007px) {
+  .lo-login-title{
+    font-size: 2.8rem;
+  }
+}
+
+@media screen and (max-width: 783px) {
   */
 
   body {

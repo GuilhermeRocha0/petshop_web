@@ -97,7 +97,7 @@ const LoginForm = () => {
             Login
           </button>
 
-          <p>
+          <p className='ponto'>
             Caso não tenha conta: <Link to="/cadastrar">Cadastre-se</Link>
           </p>
         </form>
