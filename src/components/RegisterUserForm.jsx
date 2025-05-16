@@ -128,7 +128,7 @@ const RegisterUserForm = () => {
 
         <br />
         <button type="submit" className="btn">Cadastre-se</button>
-        <p>
+        <p className='ponto'>
           Já tem uma conta? <Link to="/login">Entre</Link>
         </p>
       </form>

@@ -126,6 +126,11 @@ html, body {
   text-align: center;
 }
 
+.ponto{
+  padding-top: 0.8rem;
+  text-align: center;
+}
+
 @media screen and (max-width: 1200px) {
   .cad-esq-login {
     display: none;
