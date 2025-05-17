@@ -33,21 +33,27 @@
   gap: 4px;
 }
 
-.cancel-button {
-  max-height: 40px;
-  background-color: #ef4444;
+.edit-button,
+.appointment-card .confirm-button,
+.appointment-card .cancel-button {
+  max-height: 4rem;
   color: white;
-  padding: 10px 16px;
+  padding: 1rem 1.6rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
-  margin-top: 8px;
+  margin-top: 0.8rem;
+  width: 100%;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.appointment-card .confirm-button {
+  background-color: #27ae60;
+}
+
+.appointment-card .cancel-button {
+  background-color: #ef4444;
 }
 
 .cancel-button:hover {
@@ -58,24 +64,24 @@
   display: block;
   color: #000;
   font-weight: 700;
-  font-size: 18px;
-  margin-top: 16px;
-  margin-bottom: 4px;
+  font-size: 1.8rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.4rem;
 }
 
 .input-standard {
   border: 1px solid #ccc;
-  padding: 12px 24px;
-  border-radius: 8px;
-  margin: 8px 0;
-  font-size: 15px;
+  padding: 1.2rem 2.4rem;
+  border-radius: 0.8rem;
+  margin: 0.8rem 0;
+  font-size: 1.5rem;
   outline: none;
   transition: all 0.3s ease;
   width: 100%;
 }
 
 .service-option-container {
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
 }
 
 .service-checkbox {
@@ -88,8 +94,8 @@
 .service-label {
   display: block;
   cursor: pointer;
-  border-radius: 8px;
-  padding: 12px 24px;
+  border-radius: 0.8rem;
+  padding: 1.2rem 2.4rem;
   background-color: white;
   border: 1px solid #ccc;
   transition: background-color 0.3s ease;
@@ -116,12 +122,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 .pagination-button {
-  padding: 8px 16px;
-  margin: 0 10px;
+  padding: 0.8rem 1.6rem;
+  margin: 0 1rem;
   background-color: #6ee7b7;
   color: white;
   border: none;
@@ -142,8 +148,8 @@
 }
 
 .pagination-info {
-  font-size: 16px;
+  font-size: 1.6rem rem rem rem;
   font-weight: 600;
   color: #000;
-  margin: 0 15px;
+  margin: 0 1.5rem rem rem rem;
 }

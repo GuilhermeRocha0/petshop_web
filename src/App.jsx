@@ -17,6 +17,7 @@ import ResetPassword from './pages/ResetPassword'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import Services from './pages/Services'
+import Categories from './pages/Categories'
 
 function App() {
   return (
@@ -64,6 +65,14 @@ function App() {
           element={
             <PrivateRoute>
               <Appointments />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/categorias"
+          element={
+            <PrivateRoute>
+              <Categories />
             </PrivateRoute>
           }
         />

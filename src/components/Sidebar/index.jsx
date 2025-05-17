@@ -40,6 +40,9 @@ export default function Sidebar() {
           <Link to="/admin/servicos" className="sidebar-link">
             Serviços
           </Link>
+          <Link to="/admin/categorias" className="sidebar-link">
+            Categorias
+          </Link>
           <Link to="/admin/produtos" className="sidebar-link">
             Produtos
           </Link>

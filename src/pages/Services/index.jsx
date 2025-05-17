@@ -158,6 +158,7 @@ const Services = () => {
               onConfirm={confirmDelete}
               modalMessage="Tem certeza que deseja excluir este serviço?"
               buttonMessage="Excluir Serviço"
+              isDelete={true}
             />
           )}
         </div>

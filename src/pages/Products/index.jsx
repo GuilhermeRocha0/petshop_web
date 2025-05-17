@@ -204,6 +204,7 @@ const Products = () => {
               onConfirm={confirmDelete}
               modalMessage="Tem certeza que deseja excluir este produto?"
               buttonMessage="Excluir Produto"
+              isDelete={true}
             />
           )}
         </div>

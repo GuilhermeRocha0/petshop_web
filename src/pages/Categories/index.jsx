@@ -2,32 +2,32 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Sidebar from '../../components/Sidebar/index'
 import api from '../../services/api'
-import PetCard from '../../components/PetCard'
-import PetForm from '../../components/PetForm'
+import CategoryCard from '../../components/CategoryCard'
+import CategoryForm from '../../components/CategoryForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
-import './pets.css'
+import './categories.css'
 
-const Pets = () => {
-  const [pets, setPets] = useState([])
+const Categories = () => {
+  const [categories, setCategories] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
 
   const [showForm, setShowForm] = useState(false)
-  const [editingPet, setEditingPet] = useState(null)
+  const [editingCategory, setEditingCategory] = useState(null)
   const [showModal, setShowModal] = useState(false)
-  const [selectedPetId, setSelectedPetId] = useState(null)
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null)
 
   const toggleForm = () => {
-    setEditingPet(null)
+    setEditingCategory(null)
     setShowForm(prev => !prev)
   }
 
   useEffect(() => {
-    fetchPets()
+    fetchCategories()
   }, [])
 
-  const fetchPets = async () => {
+  const fetchCategories = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Token não encontrado')
@@ -35,16 +35,16 @@ const Pets = () => {
     }
 
     try {
-      const res = await api.get('/pets', {
+      const res = await api.get('/categories', {
         headers: { Authorization: `Bearer ${token}` }
       })
-      setPets(res.data.pets || [])
+      setCategories(res.data || [])
     } catch (err) {
-      toast.error('Erro ao carregar pets.')
+      toast.error('Erro ao carregar categorias.')
     }
   }
 
-  const handleSubmit = async (e, name, size, age, breed, notes) => {
+  const handleSubmit = async (e, name) => {
     e.preventDefault()
 
     const token = localStorage.getItem('token')
@@ -53,43 +53,43 @@ const Pets = () => {
       return
     }
 
-    if (!name || !size || !breed || age === '' || isNaN(age)) {
-      toast.error('Preencha todos os campos obrigatórios.')
+    if (!name) {
+      toast.error('Nome da categoria é obrigatório.')
       return
     }
 
     try {
-      if (editingPet) {
+      if (editingCategory) {
         await api.put(
-          `/pets/${editingPet._id}/edit`,
-          { name, size, age, breed, notes },
+          `/categories/${editingCategory._id}`,
+          { name },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success('Pet atualizado com sucesso!')
+        toast.success('Categoria atualizada com sucesso!')
       } else {
         await api.post(
-          '/pets/register',
-          { name, size, age, breed, notes },
+          '/categories',
+          { name },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success('Pet cadastrado com sucesso!')
+        toast.success('Categoria cadastrada com sucesso!')
       }
 
       setShowForm(false)
-      setEditingPet(null)
-      fetchPets()
+      setEditingCategory(null)
+      fetchCategories()
     } catch (err) {
-      toast.error('Erro ao salvar pet.')
+      toast.error('Erro ao salvar categoria.')
     }
   }
 
-  const handleEdit = pet => {
-    setEditingPet(pet)
+  const handleEdit = category => {
+    setEditingCategory(category)
     setShowForm(true)
   }
 
   const handleDelete = id => {
-    setSelectedPetId(id)
+    setSelectedCategoryId(id)
     setShowModal(true)
   }
 
@@ -101,47 +101,53 @@ const Pets = () => {
     }
 
     try {
-      await api.delete(`/pets/${selectedPetId}`, {
+      await api.delete(`/categories/${selectedCategoryId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      toast.success('Pet deletado com sucesso!')
-      fetchPets()
+      toast.success('Categoria deletada com sucesso!')
+      fetchCategories()
     } catch (err) {
-      toast.error('Erro ao deletar pet.')
+      toast.error('Erro ao deletar categoria.')
     }
 
     setShowModal(false)
   }
 
   const startIndex = (currentPage - 1) * itemsPerPage
-  const paginatedPets = pets.slice(startIndex, startIndex + itemsPerPage)
-  const totalPages = Math.ceil(pets.length / itemsPerPage)
+  const paginatedCategories = categories.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  )
+  const totalPages = Math.ceil(categories.length / itemsPerPage)
 
   return (
     <div className="page-container">
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">
-          <h2>Seus Pets</h2>
+          <h2>Categorias</h2>
 
           <button onClick={toggleForm} className="side">
-            {showForm ? 'Voltar para Lista' : 'Novo Pet'}
+            {showForm ? 'Voltar para Lista' : 'Nova Categoria'}
           </button>
 
           {showForm ? (
-            <PetForm editingPet={editingPet} handleSubmit={handleSubmit} />
+            <CategoryForm
+              editingCategory={editingCategory}
+              handleSubmit={handleSubmit}
+            />
           ) : (
             <>
-              {paginatedPets.length === 0 ? (
-                <p className="message">Você ainda não tem pets.</p>
+              {paginatedCategories.length === 0 ? (
+                <p className="message">Nenhuma categoria encontrada.</p>
               ) : (
-                <div className="pet-list">
-                  {paginatedPets.map(pet => (
-                    <PetCard
-                      key={pet._id}
-                      pet={pet}
-                      onEdit={() => handleEdit(pet)}
-                      onDelete={() => handleDelete(pet._id)}
+                <div className="category-list">
+                  {paginatedCategories.map(category => (
+                    <CategoryCard
+                      key={category._id}
+                      category={category}
+                      onEdit={() => handleEdit(category)}
+                      onDelete={() => handleDelete(category._id)}
                     />
                   ))}
                 </div>
@@ -159,8 +165,8 @@ const Pets = () => {
             <Modal
               onCancel={() => setShowModal(false)}
               onConfirm={confirmDelete}
-              modalMessage="Tem certeza que deseja excluir este pet?"
-              buttonMessage="Excluir Pet"
+              modalMessage="Tem certeza que deseja excluir esta categoria?"
+              buttonMessage="Excluir Categoria"
               isDelete={true}
             />
           )}
@@ -170,4 +176,4 @@ const Pets = () => {
   )
 }
 
-export default Pets
+export default Categories

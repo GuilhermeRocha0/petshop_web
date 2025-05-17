@@ -5,6 +5,7 @@ import api from '../../services/api'
 import Sidebar from '../../components/Sidebar'
 import AppointmentForm from '../../components/AppointmentForm'
 import AppointmentCard from '../../components/AppointmentCard'
+import AppointmentStatusForm from '../../components/AppointmentStatusForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './appointments.css'
@@ -30,6 +31,9 @@ const Appointments = () => {
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null)
 
   const [userRole, setUserRole] = useState(null)
+
+  // NOVO estado para editar status
+  const [editingAppointmentId, setEditingAppointmentId] = useState(null)
 
   const fetchAppointments = async (role, token) => {
     try {
@@ -152,6 +156,17 @@ const Appointments = () => {
     }
   }
 
+  // NOVAS funções para abrir e fechar formulário de status
+  const openStatusForm = appointmentId => {
+    setEditingAppointmentId(appointmentId)
+  }
+
+  const closeStatusForm = () => {
+    setEditingAppointmentId(null)
+    const token = localStorage.getItem('token')
+    if (token) fetchAppointments(userRole, token)
+  }
+
   // Ordena os agendamentos por data decrescente
   const sortedAppointments = [...appointments].sort(
     (a, b) => new Date(b.scheduledDate) - new Date(a.scheduledDate)
@@ -176,9 +191,12 @@ const Appointments = () => {
               : 'Seus Agendamentos'}
           </h2>
 
-          <button onClick={toggleForm} className="side">
-            {showForm ? 'Voltar para Lista' : 'Novo Agendamento'}
-          </button>
+          {/* Só mostra botão Novo Agendamento se não estiver editando status */}
+          {!editingAppointmentId && (
+            <button onClick={toggleForm} className="side">
+              {showForm ? 'Voltar para Lista' : 'Novo Agendamento'}
+            </button>
+          )}
 
           {showForm ? (
             <AppointmentForm
@@ -192,6 +210,14 @@ const Appointments = () => {
               setDate={setDate}
               handleSubmit={handleSubmit}
             />
+          ) : editingAppointmentId ? (
+            <AppointmentStatusForm
+              appointmentId={editingAppointmentId}
+              onClose={closeStatusForm}
+              fetchAppointments={() =>
+                fetchAppointments(userRole, localStorage.getItem('token'))
+              }
+            />
           ) : (
             <>
               {paginatedAppointments.length === 0 ? (
@@ -204,6 +230,7 @@ const Appointments = () => {
                       ag={ag}
                       onCancel={handleCancel}
                       userRole={userRole}
+                      onEditStatus={openStatusForm} // passa função para abrir form
                     />
                   ))}
                 </div>
@@ -222,7 +249,8 @@ const Appointments = () => {
               onCancel={() => setShowModal(false)}
               onConfirm={confirmCancel}
               modalMessage="Tem certeza que deseja cancelar este agendamento?"
-              buttonMessage="Cancelar Agendamento"
+              buttonMessage="Confirmar Cancelamento"
+              isDelete={true}
             />
           )}
         </div>
