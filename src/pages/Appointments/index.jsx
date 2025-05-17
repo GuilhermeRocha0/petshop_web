@@ -5,6 +5,7 @@ import api from '../../services/api'
 import Sidebar from '../../components/Sidebar'
 import AppointmentForm from '../../components/AppointmentForm'
 import AppointmentCard from '../../components/AppointmentCard'
+import AppointmentStatusForm from '../../components/AppointmentStatusForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './appointments.css'
@@ -29,11 +30,44 @@ const Appointments = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null)
 
+  const [userRole, setUserRole] = useState(null)
+
+  // Estado para editar status do agendamento
+  const [editingAppointmentId, setEditingAppointmentId] = useState(null)
+
+  // Buscar agendamentos conforme o papel do usuário
+  const fetchAppointments = async (role, token) => {
+    try {
+      let resAppointments
+      if (role === 'ADMIN') {
+        resAppointments = await api.get('/appointments/all', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      } else {
+        resAppointments = await api.get('/appointments', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      }
+      setAppointments(resAppointments.data.appointments || [])
+    } catch (err) {
+      toast.error('Erro ao carregar agendamentos.')
+    }
+  }
+
+  // Carregar dados iniciais: usuário, pets, serviços e agendamentos
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token')
-        if (!token) throw new Error('Token não encontrado')
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        if (!token || !user) {
+          toast.error('Você precisa estar logado.')
+          navigate('/login')
+          return
+        }
+
+        setUserRole(user.role)
 
         const resPets = await api.get('/pets', {
           headers: { Authorization: `Bearer ${token}` }
@@ -43,10 +77,7 @@ const Appointments = () => {
         const resServices = await api.get('/services')
         setServices(resServices.data.services || [])
 
-        const resAppointments = await api.get('/appointments', {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        setAppointments(resAppointments.data.appointments || [])
+        await fetchAppointments(user.role, token)
       } catch (err) {
         console.error(err)
         toast.error('Erro ao carregar dados.')
@@ -54,59 +85,64 @@ const Appointments = () => {
     }
 
     fetchData()
-  }, [])
+  }, [navigate])
 
+  // Criar novo agendamento
   const handleSubmit = async e => {
     e.preventDefault()
 
     if (!selectedPet || selectedServices.length === 0 || !date) {
-      toast.error('Preencha todos os campos.')
-      return
-    }
-
-    const token = localStorage.getItem('token')
-    if (!token) {
-      toast.error('Sessão expirada, por favor realize o login novamente!')
+      toast.error('Preencha todos os campos obrigatórios!')
       return
     }
 
     try {
-      await api.post(
-        '/appointments',
-        {
-          petId: selectedPet,
-          serviceIds: selectedServices,
-          scheduledDate: date
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      )
+      const payload = {
+        petId: selectedPet,
+        serviceIds: selectedServices,
+        scheduledDate: date.toISOString()
+      }
 
-      toast.success('Agendamento criado com sucesso!')
+      const token = localStorage.getItem('token')
+
+      const res = await api.post('/appointments', payload, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+
+      toast.success(res.data.msg)
+
+      // Atualiza lista com novo agendamento
+      await fetchAppointments(userRole, token)
+
+      // Limpar formulário
       setSelectedPet('')
       setSelectedServices([])
       setDate('')
-      setShowForm(false)
 
-      const updated = await api.get('/appointments', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      setAppointments(updated.data.appointments || [])
-    } catch (err) {
-      toast.error('Erro ao criar agendamento.')
+      // Voltar para a lista
+      setShowForm(false)
+    } catch (error) {
+      console.error(error)
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.msg)
+      } else {
+        toast.error('Erro ao criar agendamento')
+      }
     }
   }
 
+  // Abrir modal para confirmar cancelamento
   const handleCancel = appointmentId => {
     setSelectedAppointmentId(appointmentId)
     setShowModal(true)
   }
 
+  // Confirmar cancelamento
   const confirmCancel = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      toast.error('Sessão expirada, por favor realize o login novamente!')
+      toast.error('Sessão expirada, por favor faça login novamente!')
+      navigate('/login')
       return
     }
 
@@ -119,10 +155,7 @@ const Appointments = () => {
         }
       )
 
-      const updated = await api.get('/appointments', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      setAppointments(updated.data.appointments || [])
+      await fetchAppointments(userRole, token)
 
       toast.success('Agendamento cancelado com sucesso!')
       setShowModal(false)
@@ -131,12 +164,24 @@ const Appointments = () => {
     }
   }
 
-  // Ordena os agendamentos por data decrescente
+  // Abrir formulário para editar status
+  const openStatusForm = appointmentId => {
+    setEditingAppointmentId(appointmentId)
+  }
+
+  // Fechar formulário de status e atualizar lista
+  const closeStatusForm = () => {
+    setEditingAppointmentId(null)
+    const token = localStorage.getItem('token')
+    if (token) fetchAppointments(userRole, token)
+  }
+
+  // Ordena agendamentos por data decrescente
   const sortedAppointments = [...appointments].sort(
     (a, b) => new Date(b.scheduledDate) - new Date(a.scheduledDate)
   )
 
-  // Paginação
+  // Paginação dos agendamentos
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedAppointments = sortedAppointments.slice(
     startIndex,
@@ -149,12 +194,20 @@ const Appointments = () => {
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">
-          <h2>Seus Agendamentos</h2>
+          <h2>
+            {userRole === 'ADMIN'
+              ? 'Todos os Agendamentos'
+              : 'Seus Agendamentos'}
+          </h2>
 
-          <button onClick={toggleForm} className="side">
-            {showForm ? 'Voltar para Lista' : 'Novo Agendamento'}
-          </button>
+          {/* Botão para abrir formulário de novo agendamento */}
+          {!editingAppointmentId && (
+            <button onClick={toggleForm} className="side">
+              {showForm ? 'Voltar para Lista' : 'Novo Agendamento'}
+            </button>
+          )}
 
+          {/* Renderiza formulário ou lista ou edição de status */}
           {showForm ? (
             <AppointmentForm
               pets={pets}
@@ -166,6 +219,15 @@ const Appointments = () => {
               setSelectedServices={setSelectedServices}
               setDate={setDate}
               handleSubmit={handleSubmit}
+              existingAppointments={appointments} // para checagem de conflito
+            />
+          ) : editingAppointmentId ? (
+            <AppointmentStatusForm
+              appointmentId={editingAppointmentId}
+              onClose={closeStatusForm}
+              fetchAppointments={() =>
+                fetchAppointments(userRole, localStorage.getItem('token'))
+              }
             />
           ) : (
             <>
@@ -178,6 +240,8 @@ const Appointments = () => {
                       key={ag._id}
                       ag={ag}
                       onCancel={handleCancel}
+                      userRole={userRole}
+                      onEditStatus={openStatusForm}
                     />
                   ))}
                 </div>
@@ -191,12 +255,14 @@ const Appointments = () => {
             </>
           )}
 
+          {/* Modal para confirmação de cancelamento */}
           {showModal && (
             <Modal
               onCancel={() => setShowModal(false)}
               onConfirm={confirmCancel}
               modalMessage="Tem certeza que deseja cancelar este agendamento?"
-              buttonMessage="Cancelar Agendamento"
+              buttonMessage="Confirmar Cancelamento"
+              isDelete={true}
             />
           )}
         </div>

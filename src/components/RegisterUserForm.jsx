@@ -13,6 +13,7 @@ const RegisterUserForm = () => {
 
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -22,6 +23,10 @@ const RegisterUserForm = () => {
     e.preventDefault()
     setMessage('')
     setError('')
+
+    if (formData.password !== formData.confirmPassword) {
+      return setError('As senhas não coincidem.')
+    }
 
     try {
       const response = await api.post('/auth/register', formData)
@@ -33,8 +38,9 @@ const RegisterUserForm = () => {
         password: '',
         confirmPassword: ''
       })
+      setTimeout(() => navigate('/login'), 2000)
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.msg) {
+      if (err.response?.data?.msg) {
         setError(err.response.data.msg)
       } else {
         setError('Erro ao cadastrar usuário.')
@@ -43,77 +49,90 @@ const RegisterUserForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Cadastro de Usuário</h2>
+    <div className="cad-box">
+      <div className="cad-login-title">Faça seu cadastro 🐶!</div>
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {message && <p className="success-msg">{message}</p>}
+      {error && <p className="error-msg">{error}</p>}
 
-      <div>
-        <label>Nome:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
+      <form onSubmit={handleSubmit}>
+        <div className="textfield">
+          <label htmlFor="name">Nome</label>
+          <input
+            className="cad-inputs"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nome:"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div>
-        <label>CPF:</label>
-        <input
-          type="text"
-          name="cpf"
-          value={formData.cpf}
-          onChange={handleChange}
-          required
-        />
-      </div>
+        <div className="textfield">
+          <label htmlFor="cpf">CPF</label>
+          <input
+            className="cad-inputs"
+            type="text"
+            id="cpf"
+            name="cpf"
+            placeholder="CPF:"
+            value={formData.cpf}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
+        <div className="textfield">
+          <label htmlFor="email">Email</label>
+          <input
+            className="cad-inputs"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email:"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div>
-        <label>Senha:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
+        <div className="textfield">
+          <label htmlFor="password">Senha</label>
+          <input
+            className="cad-inputs"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Senha:"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div>
-        <label>Confirmar Senha:</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-      </div>
+        <div className="textfield">
+          <label htmlFor="confirmPassword">Confirme sua senha</label>
+          <input
+            className="cad-inputs"
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirmar senha:"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div className="button-container">
-        <button type="submit" className="form-button">
-          Cadastrar
-        </button>
-        <p>
-          Caso já tenha cadastro:
-          <Link to="/login"> faça login aqui</Link>
+        <br />
+        <button type="submit" className="btn">Cadastre-se</button>
+        <p className='ponto'>
+          Já tem uma conta? <Link to="/login">Entre</Link>
         </p>
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 

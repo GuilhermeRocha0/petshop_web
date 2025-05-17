@@ -2,49 +2,41 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Sidebar from '../../components/Sidebar/index'
 import api from '../../services/api'
-import PetCard from '../../components/PetCard'
-import PetForm from '../../components/PetForm'
+import ServiceCard from '../../components/ServiceCard'
+import ServiceForm from '../../components/ServiceForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
-import './pets.css'
+import './services.css'
 
-const Pets = () => {
-  const [pets, setPets] = useState([])
+const Services = () => {
+  const [services, setServices] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
 
   const [showForm, setShowForm] = useState(false)
-  const [editingPet, setEditingPet] = useState(null)
+  const [editingService, setEditingService] = useState(null)
   const [showModal, setShowModal] = useState(false)
-  const [selectedPetId, setSelectedPetId] = useState(null)
+  const [selectedServiceId, setSelectedServiceId] = useState(null)
 
   const toggleForm = () => {
-    setEditingPet(null)
+    setEditingService(null)
     setShowForm(prev => !prev)
   }
 
   useEffect(() => {
-    fetchPets()
+    fetchServices()
   }, [])
 
-  const fetchPets = async () => {
-    const token = localStorage.getItem('token')
-    if (!token) {
-      toast.error('Token não encontrado')
-      return
-    }
-
+  const fetchServices = async () => {
     try {
-      const res = await api.get('/pets', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      setPets(res.data.pets || [])
+      const res = await api.get('/services')
+      setServices(res.data.services || [])
     } catch (err) {
-      toast.error('Erro ao carregar pets.')
+      toast.error('Erro ao carregar serviços.')
     }
   }
 
-  const handleSubmit = async (e, name, size, age, breed, notes) => {
+  const handleSubmit = async (e, name, price, estimatedTime) => {
     e.preventDefault()
 
     const token = localStorage.getItem('token')
@@ -53,43 +45,43 @@ const Pets = () => {
       return
     }
 
-    if (!name || !size || !breed || age === '' || isNaN(age)) {
+    if (!name || !price || !estimatedTime) {
       toast.error('Preencha todos os campos obrigatórios.')
       return
     }
 
     try {
-      if (editingPet) {
+      if (editingService) {
         await api.put(
-          `/pets/${editingPet._id}/edit`,
-          { name, size, age, breed, notes },
+          `/services/${editingService._id}`,
+          { name, price, estimatedTime },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success('Pet atualizado com sucesso!')
+        toast.success('Serviço atualizado com sucesso!')
       } else {
         await api.post(
-          '/pets/register',
-          { name, size, age, breed, notes },
+          '/services/register',
+          { name, price, estimatedTime },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success('Pet cadastrado com sucesso!')
+        toast.success('Serviço cadastrado com sucesso!')
       }
 
       setShowForm(false)
-      setEditingPet(null)
-      fetchPets()
+      setEditingService(null)
+      fetchServices()
     } catch (err) {
-      toast.error('Erro ao salvar pet.')
+      toast.error('Erro ao salvar serviço.')
     }
   }
 
-  const handleEdit = pet => {
-    setEditingPet(pet)
+  const handleEdit = service => {
+    setEditingService(service)
     setShowForm(true)
   }
 
   const handleDelete = id => {
-    setSelectedPetId(id)
+    setSelectedServiceId(id)
     setShowModal(true)
   }
 
@@ -101,47 +93,52 @@ const Pets = () => {
     }
 
     try {
-      await api.delete(`/pets/${selectedPetId}`, {
+      await api.delete(`/services/${selectedServiceId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      toast.success('Pet deletado com sucesso!')
-      fetchPets()
+      toast.success('Serviço deletado com sucesso!')
+      fetchServices()
     } catch (err) {
-      toast.error('Erro ao deletar pet.')
+      toast.error('Erro ao deletar serviço.')
     }
-
     setShowModal(false)
   }
 
   const startIndex = (currentPage - 1) * itemsPerPage
-  const paginatedPets = pets.slice(startIndex, startIndex + itemsPerPage)
-  const totalPages = Math.ceil(pets.length / itemsPerPage)
+  const paginatedServices = services.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  )
+  const totalPages = Math.ceil(services.length / itemsPerPage)
 
   return (
     <div className="page-container">
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">
-          <h2>Seus Pets</h2>
+          <h2>Serviços</h2>
 
           <button onClick={toggleForm} className="side">
-            {showForm ? 'Voltar para Lista' : 'Novo Pet'}
+            {showForm ? 'Voltar para Lista' : 'Novo Serviço'}
           </button>
 
           {showForm ? (
-            <PetForm editingPet={editingPet} handleSubmit={handleSubmit} />
+            <ServiceForm
+              editingService={editingService}
+              handleSubmit={handleSubmit}
+            />
           ) : (
             <>
-              {paginatedPets.length === 0 ? (
-                <p className="message">Você ainda não tem pets.</p>
+              {paginatedServices.length === 0 ? (
+                <p className="message">Nenhum serviço encontrado.</p>
               ) : (
-                <div className="pet-list">
-                  {paginatedPets.map(pet => (
-                    <PetCard
-                      key={pet._id}
-                      pet={pet}
-                      onEdit={() => handleEdit(pet)}
-                      onDelete={() => handleDelete(pet._id)}
+                <div className="service-list">
+                  {paginatedServices.map(service => (
+                    <ServiceCard
+                      key={service._id}
+                      service={service}
+                      onEdit={() => handleEdit(service)}
+                      onDelete={() => handleDelete(service._id)}
                     />
                   ))}
                 </div>
@@ -159,8 +156,8 @@ const Pets = () => {
             <Modal
               onCancel={() => setShowModal(false)}
               onConfirm={confirmDelete}
-              modalMessage="Tem certeza que deseja excluir este pet?"
-              buttonMessage="Excluir Pet"
+              modalMessage="Tem certeza que deseja excluir este serviço?"
+              buttonMessage="Excluir Serviço"
               isDelete={true}
             />
           )}
@@ -170,4 +167,4 @@ const Pets = () => {
   )
 }
 
-export default Pets
+export default Services

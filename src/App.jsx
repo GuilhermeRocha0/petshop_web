@@ -14,6 +14,10 @@ import Pets from './pages/Pets'
 import EcommerceApp from './ecommerce/EcommerceApp'
 import Appointments from './pages/Appointments'
 import ResetPassword from './pages/ResetPassword'
+import Home from './pages/Home'
+import Products from './pages/Products'
+import Services from './pages/Services'
+import Categories from './pages/Categories'
 
 function App() {
   return (
@@ -23,6 +27,7 @@ function App() {
         <Route path="/cadastrar" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
         <Route path="/redefinir-senha" element={<ResetPassword />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/perfil"
           element={
@@ -60,6 +65,30 @@ function App() {
           element={
             <PrivateRoute>
               <Appointments />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/categorias"
+          element={
+            <PrivateRoute>
+              <Categories />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/produtos"
+          element={
+            <PrivateRoute>
+              <Products />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/servicos"
+          element={
+            <PrivateRoute>
+              <Services />
             </PrivateRoute>
           }
         />
