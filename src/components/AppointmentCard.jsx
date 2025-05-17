@@ -1,6 +1,16 @@
 import React from 'react'
 
+const statusColors = {
+  cancelado: '#ef4444',
+  pendente: '#fde047',
+  'em andamento': '#fde047',
+  'a pagar': '#fde047',
+  concluído: '#22c55e'
+}
+
 const AppointmentCard = ({ ag, onCancel, userRole, onEditStatus }) => {
+  const canEditOrCancel = ag.status !== 'cancelado' && ag.status !== 'concluído'
+
   return (
     <div className="appointment-card">
       <div className="appointment-info">
@@ -17,7 +27,12 @@ const AppointmentCard = ({ ag, onCancel, userRole, onEditStatus }) => {
           <strong>Preço: R$</strong> {ag.totalPrice}
         </p>
         <p>
-          <strong>Status:</strong> {ag.status}
+          <strong>
+            Status:{' '}
+            <span style={{ color: statusColors[ag.status] || 'black' }}>
+              {ag.status}
+            </span>
+          </strong>
         </p>
 
         {userRole === 'ADMIN' && ag.userId && (
@@ -32,14 +47,14 @@ const AppointmentCard = ({ ag, onCancel, userRole, onEditStatus }) => {
         )}
       </div>
 
-      {ag.status !== 'cancelado' && (
+      {canEditOrCancel && (
         <div className="card-buttons">
           {userRole === 'ADMIN' && (
             <button
               onClick={() => onEditStatus(ag._id)}
               className="edit-button"
             >
-              Editar Status
+              Alterar Status
             </button>
           )}
 
