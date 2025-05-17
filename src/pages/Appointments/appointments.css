@@ -60,6 +60,10 @@
   background-color: #b91c1c;
 }
 
+.error-message {
+  color: #ef4444;
+}
+
 .appointment-form-label {
   display: block;
   color: #000;
@@ -152,4 +156,62 @@
   font-weight: 600;
   color: #000;
   margin: 0 1.5rem rem rem rem;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important; /* Faz o container ocupar 100% da largura disponível */
+}
+
+/* Aumenta o tamanho do calendário */
+.react-datepicker {
+  width: auto !important;
+  padding: 1.2rem !important;
+}
+
+/* Aumenta o tamanho dos dias no calendário */
+.react-datepicker__day {
+  width: 4.4rem !important;
+  height: 4.4rem !important;
+  line-height: 4.4rem !important;
+  font-size: 2.4rem !important;
+}
+
+/* Ajusta o contêiner das siglas dos dias da semana */
+.react-datepicker__day-names {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.6rem !important;
+  margin-bottom: 0.8rem !important;
+  font-size: 1.8rem !important; /* aumenta o tamanho das siglas */
+}
+
+/* Ajusta cada sigla individual para não sobrepor */
+.react-datepicker__day-name {
+  width: 4.4rem !important; /* mesma largura dos dias */
+  text-align: center;
+  font-weight: 600;
+  user-select: none;
+}
+
+/* Aumenta o tamanho dos números de hora no seletor */
+.react-datepicker__time-list-item {
+  font-size: 2.4em !important;
+  padding: 1rem 1.2rem !important;
+  height: auto !important;
+}
+
+/* Ajusta tamanho do header e botões */
+.react-datepicker__header {
+  font-size: 1.6rem !important;
+  padding: 1.6rem !important;
+}
+
+.react-datepicker__current-month {
+  font-weight: 700;
+}
+
+.react-datepicker__navigation {
+  top: 1.6rem !important;
+  height: 3rem !important;
+  width: 3rem !important;
 }

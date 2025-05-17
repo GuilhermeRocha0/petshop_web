@@ -32,9 +32,10 @@ const Appointments = () => {
 
   const [userRole, setUserRole] = useState(null)
 
-  // NOVO estado para editar status
+  // Estado para editar status do agendamento
   const [editingAppointmentId, setEditingAppointmentId] = useState(null)
 
+  // Buscar agendamentos conforme o papel do usuário
   const fetchAppointments = async (role, token) => {
     try {
       let resAppointments
@@ -53,6 +54,7 @@ const Appointments = () => {
     }
   }
 
+  // Carregar dados iniciais: usuário, pets, serviços e agendamentos
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -85,51 +87,57 @@ const Appointments = () => {
     fetchData()
   }, [navigate])
 
+  // Criar novo agendamento
   const handleSubmit = async e => {
     e.preventDefault()
 
     if (!selectedPet || selectedServices.length === 0 || !date) {
-      toast.error('Preencha todos os campos.')
-      return
-    }
-
-    const token = localStorage.getItem('token')
-    if (!token) {
-      toast.error('Sessão expirada, por favor faça login novamente!')
-      navigate('/login')
+      toast.error('Preencha todos os campos obrigatórios!')
       return
     }
 
     try {
-      await api.post(
-        '/appointments',
-        {
-          petId: selectedPet,
-          serviceIds: selectedServices,
-          scheduledDate: date
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      )
+      const payload = {
+        petId: selectedPet,
+        serviceIds: selectedServices,
+        scheduledDate: date.toISOString()
+      }
 
-      toast.success('Agendamento criado com sucesso!')
+      const token = localStorage.getItem('token')
+
+      const res = await api.post('/appointments', payload, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+
+      toast.success(res.data.msg)
+
+      // Atualiza lista com novo agendamento
+      await fetchAppointments(userRole, token)
+
+      // Limpar formulário
       setSelectedPet('')
       setSelectedServices([])
       setDate('')
-      setShowForm(false)
 
-      await fetchAppointments(userRole, token)
-    } catch (err) {
-      toast.error('Erro ao criar agendamento.')
+      // Voltar para a lista
+      setShowForm(false)
+    } catch (error) {
+      console.error(error)
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.msg)
+      } else {
+        toast.error('Erro ao criar agendamento')
+      }
     }
   }
 
+  // Abrir modal para confirmar cancelamento
   const handleCancel = appointmentId => {
     setSelectedAppointmentId(appointmentId)
     setShowModal(true)
   }
 
+  // Confirmar cancelamento
   const confirmCancel = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -156,23 +164,24 @@ const Appointments = () => {
     }
   }
 
-  // NOVAS funções para abrir e fechar formulário de status
+  // Abrir formulário para editar status
   const openStatusForm = appointmentId => {
     setEditingAppointmentId(appointmentId)
   }
 
+  // Fechar formulário de status e atualizar lista
   const closeStatusForm = () => {
     setEditingAppointmentId(null)
     const token = localStorage.getItem('token')
     if (token) fetchAppointments(userRole, token)
   }
 
-  // Ordena os agendamentos por data decrescente
+  // Ordena agendamentos por data decrescente
   const sortedAppointments = [...appointments].sort(
     (a, b) => new Date(b.scheduledDate) - new Date(a.scheduledDate)
   )
 
-  // Paginação
+  // Paginação dos agendamentos
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedAppointments = sortedAppointments.slice(
     startIndex,
@@ -191,13 +200,14 @@ const Appointments = () => {
               : 'Seus Agendamentos'}
           </h2>
 
-          {/* Só mostra botão Novo Agendamento se não estiver editando status */}
+          {/* Botão para abrir formulário de novo agendamento */}
           {!editingAppointmentId && (
             <button onClick={toggleForm} className="side">
               {showForm ? 'Voltar para Lista' : 'Novo Agendamento'}
             </button>
           )}
 
+          {/* Renderiza formulário ou lista ou edição de status */}
           {showForm ? (
             <AppointmentForm
               pets={pets}
@@ -209,6 +219,7 @@ const Appointments = () => {
               setSelectedServices={setSelectedServices}
               setDate={setDate}
               handleSubmit={handleSubmit}
+              existingAppointments={appointments} // para checagem de conflito
             />
           ) : editingAppointmentId ? (
             <AppointmentStatusForm
@@ -230,7 +241,7 @@ const Appointments = () => {
                       ag={ag}
                       onCancel={handleCancel}
                       userRole={userRole}
-                      onEditStatus={openStatusForm} // passa função para abrir form
+                      onEditStatus={openStatusForm}
                     />
                   ))}
                 </div>
@@ -244,6 +255,7 @@ const Appointments = () => {
             </>
           )}
 
+          {/* Modal para confirmação de cancelamento */}
           {showModal && (
             <Modal
               onCancel={() => setShowModal(false)}
