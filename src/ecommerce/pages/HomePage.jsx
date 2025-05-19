@@ -11,12 +11,14 @@ export default function HomePage({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
-  addToCartTotal
+  addToCartTotal,
+  darkMode
 }) {
   return (
     <>
       <Header />
       <SidebarCart
+        darkMode={darkMode}
         addToCartTotal={addToCartTotal}
         removeProductFromCart={removeProductFromCart}
         cartTotal={cartTotal}
@@ -34,6 +36,7 @@ export default function HomePage({
           <ProductList
             addProductToCart={addProductToCart}
             products={products}
+            addToCartTotal={addToCartTotal}
           ></ProductList>
         </div>
       </div>

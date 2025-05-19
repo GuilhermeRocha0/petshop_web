@@ -13,13 +13,14 @@ function EcommerceApp() {
   const [showSidebarCart, setShowSidebarCart] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
   const [cartTotal, setCartTotal] = useState(0)
+  const [darkMode, setDarkMode] = useState(false);
 
   const addToCartTotal = value => setCartTotal(cartTotal + value)
 
   useEffect(() => {
     fetch('/db.json')
       .then(res => res.json())
-      .then(data => setProducts(data.products))
+      .then(data => setProducts(data.products));
   }, [])
 
   const addProductToCart = id => {
@@ -37,10 +38,12 @@ function EcommerceApp() {
   }
 
   return (
-    <div className="App">
+    <div  className={`App ${darkMode ? "dark" : ""}`}>
       <NavBar
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
       />
       <main>
         <Routes>
@@ -48,6 +51,7 @@ function EcommerceApp() {
             path="/"
             element={
               <HomePage
+              darkMode={darkMode}
                 addToCartTotal={addToCartTotal}
                 removeProductFromCart={removeProductFromCart}
                 selectedProducts={selectedProducts}
@@ -64,6 +68,7 @@ function EcommerceApp() {
             element={
               <ProductsPage
                 addToCartTotal={addToCartTotal}
+                darkMode={darkMode}
                 removeProductFromCart={removeProductFromCart}
                 selectedProducts={selectedProducts}
                 addProductToCart={addProductToCart}
@@ -75,7 +80,10 @@ function EcommerceApp() {
             }
           />
 
-          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} />} />
+          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} darkMode={darkMode} />} 
+          />
+
+
         </Routes>
       </main>
     </div>
