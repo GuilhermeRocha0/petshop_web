@@ -530,3 +530,82 @@ section {
     text-align: center;
   }
 }
+
+body.tema-escuro {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+body.tema-escuro .btn-default,
+body.tema-escuro .btn-default-fi {
+  background-color: #1f1f1f;
+  color: #f5f5f5 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+body.tema-escuro .btn-default:hover,
+body.tema-escuro .btn-default-fi:hover {
+  background-color: #2979ff;
+  color: white !important;
+}
+
+body.tema-escuro .dish,
+body.tema-escuro #feedback {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
+  box-shadow: 0 0 1.2rem 0.4rem rgba(255, 255, 255, 0.05);
+}
+
+body.tema-escuro .dish-description,
+body.tema-escuro .section-title,
+body.tema-escuro .section-subtitle {
+  color: #f5f5f5;
+}
+
+body.tema-escuro #menu,
+body.tema-escuro #testimonials {
+  background-color: #181818;
+}
+
+body.tema-escuro .footer {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  border-top-color: #ffca28;
+}
+
+body.tema-escuro .footer-container a {
+  color: #90caf9;
+}
+
+body.tema-escuro .footer-container a:hover {
+  color: #64b5f6;
+}
+
+body.tema-escuro .social-media-buttons a {
+  background-color: #333;
+  color: #f5f5f5;
+  box-shadow: 0 0 1.2rem 0.4rem rgba(255, 255, 255, 0.05);
+}
+
+body.tema-escuro .social-media-buttons a:hover {
+  background-color: #2979ff;
+}
+
+body.tema-escuro .dish-heart {
+  background-color: #ffca28;
+  color: #1f1f1f;
+}
+
+body.tema-escuro .feedback-content p span {
+  color: #ffd54f;
+}
+body.tema-escuro #home {
+  background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  
+}
+body.tema-escuro .ho-title {
+  color: #fff !important;
+}
+body.tema-escuro .ho-title span {
+  color: #f39c12 !important; 
+}

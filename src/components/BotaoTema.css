@@ -1,0 +1,32 @@
+.tema-toggle {
+    text-align: right;
+  }
+  
+  .tema-toggle button {
+    padding: 8px 12px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #ad5106;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tema-toggle button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+  
+  .app-container.dark .tema-toggle button {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .app-container.dark .tema-toggle button:hover {
+    background-color: #666;
+  }
+

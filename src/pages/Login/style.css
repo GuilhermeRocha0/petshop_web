@@ -318,3 +318,63 @@ body {
     text-align: center;
   }
 }
+.tema-escuro .login-page {
+  background-color: #1e1e1e;
+}
+
+.tema-escuro .login-page h1,
+.tema-escuro .lo-login-title,
+.tema-escuro .lo-p,
+.tema-escuro .return-msg {
+  color: #fff;
+}
+
+.tema-escuro .cad-login-box,
+.tema-escuro .lo-box {
+  background-color: #2c2c2c;
+  border-color: #444;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.tema-escuro .login-box label,
+.tema-escuro .lo-textfield > label {
+  color: #ddd;
+}
+
+.tema-escuro .login-box input,
+.tema-escuro .login-box select,
+.tema-escuro .login-box textarea,
+.tema-escuro .lo-inputs {
+  background-color: #333;
+  color: #fff;
+}
+
+.tema-escuro .form-button {
+  background-color: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+.tema-escuro .form-button:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+.tema-escuro .lo-btn {
+  background-color: #fff;
+  color: #111;
+}
+
+.tema-escuro .lo-btn:hover {
+  background-color: #3171e0;
+  color: #fff;
+}
+
+.tema-escuro a {
+  color: #ffc107;
+}
+.tema-escuro .lo-main-login {
+  background: linear-gradient(135deg, #000000, #2c2c2c);
+  
+}

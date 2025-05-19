@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './home.css'
 import { Link } from "react-router-dom";
+import BotaoTema from "../../components/BotaoTema";
 
 const Home = () => {
 
@@ -9,6 +10,23 @@ const Home = () => {
   const handleMobileMenu = () => {
     setMenuActive(!menuActive);
   };
+
+  const [temaEscuro, setTemaEscuro] = useState(false);
+
+useEffect(() => {
+  const body = document.body;
+  if (temaEscuro) {
+    body.classList.add('tema-escuro');
+    body.classList.remove('tema-claro');
+  } else {
+    body.classList.add('tema-claro');
+    body.classList.remove('tema-escuro');
+  }
+}, [temaEscuro]);
+
+const alternarTema = () => {
+  setTemaEscuro(!temaEscuro);
+};
 
   return (
     <div>
@@ -37,21 +55,7 @@ const Home = () => {
           </button>
         </nav>
 
-        <div id="mobile_menu" className={menuActive ? 'active' : ''}>
-          <ul id="mobile_nav_list">
-            <li className="nav-item">
-              <Link to="/loja">Ecomerce</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/agendamentos">Agendamentos</Link>
-            </li>
-            <li className="nav-item">
-              <Link>Sobre nós</Link>
-            </li>
-          </ul>
-
-          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
-        </div>
+        
       </header>
 
       <main id="content">
@@ -61,6 +65,8 @@ const Home = () => {
             <h1 className="ho-title">
               🐾O cuidado que seu pet merece, com carinho de
               <span> Verdade!</span>
+              <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
+
             </h1>
 
             <p className="description">
@@ -68,9 +74,10 @@ const Home = () => {
             </p>
 
             <div id="cta_buttons" style={{ display: "flex", gap: "20px" }}>
-              <a href="#" className="btn-default">
+            <Link to="/agendamentos"><a href="#" className="btn-default">
                 Agendar já
-              </a>
+                
+              </a></Link>
 
               <a href="tel:+55555555555555" id="phone_button">
                 <button className="btn-default">
