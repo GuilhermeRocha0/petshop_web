@@ -80,8 +80,8 @@ function EcommerceApp() {
             }
           />
 
-          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} />} 
-          darkMode={darkMode}/>
+          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} darkMode={darkMode} />} 
+          />
 
 
         </Routes>
