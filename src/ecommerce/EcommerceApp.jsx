@@ -19,7 +19,7 @@ function EcommerceApp() {
   useEffect(() => {
     fetch('/db.json')
       .then(res => res.json())
-      .then(data => setProducts(data.products))
+      .then(data => setProducts(data.products));
   }, [])
 
   const addProductToCart = id => {
@@ -75,7 +75,9 @@ function EcommerceApp() {
             }
           />
 
-          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} />} />
+          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} />} />
+
+
         </Routes>
       </main>
     </div>

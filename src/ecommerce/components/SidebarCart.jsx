@@ -40,7 +40,7 @@ export default function SidebarCart({
         <b>Total: </b> {cartTotal}
       </div>
 
-       <button className="pay-button" onClick={() => navigate("/checkout")}>
+       <button className="pay-button" onClick={() => navigate("/loja/checkout")}>
                 Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
             </button>
 

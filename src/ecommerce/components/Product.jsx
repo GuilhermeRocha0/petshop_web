@@ -26,7 +26,7 @@ export default function Product({
       </div>
 
       <div className="buttons">
-        <button className="btn-icon" onClick={() => navigate("/checkout")}>
+        <button className="btn-icon" onClick={() => navigate("/loja/checkout")}>
           Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
         </button>
         <button
