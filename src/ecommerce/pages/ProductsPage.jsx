@@ -30,6 +30,7 @@ export default function ProductsPage({
         <ProductList
           addProductToCart={addProductToCart}
           products={products}
+          addToCartTotal={addToCartTotal}
         ></ProductList>
       </div>
     </div>

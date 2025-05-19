@@ -25,6 +25,10 @@ textarea {
   font-size: 1.6rem;
 }
 
+textarea {
+  resize: none;
+}
+
 body {
   color: var(--dark-color);
   background-color: #fff;
@@ -35,14 +39,21 @@ a {
   color: unset;
 }
 
-textarea {
-  resize: none;
-}
 
 button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.App {
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+.App.dark {
+  background-color: #1f2937;
+  color: #f9fafb;
 }
 
 /*Nav*/
@@ -55,6 +66,21 @@ button {
   left: 0;
   box-shadow: 10px 0px 10px #ebebeb;
   z-index: 1;
+}
+
+.App.dark .nav {
+  background-color: #2d3748;
+  color: white;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  padding: 0.5rem 0.5rem;
+  background-color: #4b5563;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .nav .inner-content {
@@ -89,6 +115,7 @@ nav ul {
 .navs-icon-container svg {
   height: 2rem;
 }
+
 .navs-icon-container .shopping-cart {
   position: relative;
 }
@@ -136,12 +163,23 @@ nav ul li:hover {
 
 .menu-button {
   display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: inherit;
 }
+
+.App.dark .navbar button:hover {
+  background-color: #374151;
+}
+
 /*Fim Nav*/
 
 .head {
   background-color: var(--primary-color);
 }
+
 .head .inner-content {
   max-width: 1600px;
   margin-inline: auto;
@@ -202,6 +240,10 @@ header .right-side .image-header {
     font-size: 1.8rem;
   }
 
+  .App.dark nav {
+    background-color: #1f2937;
+  }
+
   nav {
     position: absolute;
     top: 55px;
@@ -219,6 +261,7 @@ header .right-side .image-header {
   nav ul {
     flex-direction: column;
   }
+
   nav ul li {
     text-align: center;
     padding: 0.8rem;
@@ -257,15 +300,15 @@ header .right-side .image-header {
 }
 
 .product {
- padding: 1rem ;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 1rem;
-    margin-bottom: 0.25rem;
-    gap: 5px;
-     display: flex;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  margin-bottom: 0.25rem;
+  gap: 5px;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -291,7 +334,7 @@ header .right-side .image-header {
 
 .product .price {
   margin-top: 0.4rem;
-  
+
 }
 
 .product .price span {
@@ -369,6 +412,16 @@ header .right-side .image-header {
   height: 100%;
   overflow-y: auto;
   display: none;
+}
+
+.sidebar-cart.dark {
+  background-color: #2d3748;
+  color: #f9fafb;
+}
+
+.sidebar-cart.dark button {
+  background-color: #4ade80;
+  color: #1f2937;
 }
 
 .sidebar-cart::-webkit-scrollbar {
@@ -452,12 +505,27 @@ header .right-side .image-header {
 
 /* checkout */
 .checkout-container {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+.checkout-form {
+  width: 100%;
   max-width: 500px;
-  margin: 2rem auto;
-  background: #fff;
+  background: #ffffff;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-container.dark .checkout-form {
+  background-color: #1e293b !important;
+  color: #f8fafc;
 }
 
 .checkout-container h1 {
@@ -518,6 +586,61 @@ header .right-side .image-header {
 .pay-button:hover {
   background-color: #16a34a;
 }
+
+.products-summary {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 500px;
+    color: #111827;
+}
+
+.products-summary h2 {
+    margin-bottom: 0.5rem;
+}
+
+.products-summary ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.products-summary li {
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+.products-summary h3 span {
+    color: #22c55e;
+}
+
+.checkout-container.dark {
+    background-color: #1f2937 !important;
+    color: #f3f4f6;
+}
+
+.checkout-container.dark input {
+    background-color: #374151;
+    color: #f9fafb;
+    border: 1px solid #4b5563;
+}
+
+.checkout-container.dark .pay-button {
+    background-color: #4ade80;
+    color: #1f2937;
+}
+
+.checkout-container.dark .error {
+    color: #f87171;
+}
+
+.checkout-container.dark .products-summary {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+/*final checkout*/
 
 .modal-background {
   position: fixed;

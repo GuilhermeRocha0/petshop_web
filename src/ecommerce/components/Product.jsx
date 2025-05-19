@@ -10,7 +10,8 @@ export default function Product({
   name,
   rate,
   price,
-  addProductToCart
+  addProductToCart,
+  addToCartTotal
 }) {
   const navigate = useNavigate();
 
@@ -26,7 +27,13 @@ export default function Product({
       </div>
 
       <div className="buttons">
-        <button className="btn-icon" onClick={() => navigate("/loja/checkout")}>
+        <button className="btn-icon"
+  onClick={() => {
+    addToCartTotal(price); 
+    addProductToCart(id)// ou algum valor que você queira atualizar
+    addToCartTotal(id)
+    navigate("/loja/checkout");
+  }}>
           Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
         </button>
         <button

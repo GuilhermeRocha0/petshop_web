@@ -11,13 +11,14 @@ export default function SidebarCart({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
-  addToCartTotal
+  addToCartTotal,
+  darkMode
 }) {
 
   const navigate = useNavigate();
 
   return (
-    <aside className={`sidebar-cart ${showSidebarCart && 'show'}`}>
+    <aside className={`sidebar-cart ${showSidebarCart ? "show" : ""} ${darkMode ? "dark" : ""}`}>
       <div className="top">
         <h3>Seu Carrinho</h3>
         <button onClick={() => setShowSidebarCart(false)}>

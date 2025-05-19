@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Checkout({ selectedProducts, cartTotal }) {
+export default function Checkout({ selectedProducts, cartTotal, darkMode }) {
   const navigate = useNavigate();
+
+  const total = selectedProducts.reduce((sum, p) => sum + p.price, 0);
 
   const [form, setForm] = useState({
     cardName: "",
@@ -66,12 +68,12 @@ export default function Checkout({ selectedProducts, cartTotal }) {
   };
 
   return (
-    <div className="checkout-container">
+    <div className={`checkout-container ${darkMode ? "dark" : ""}`}>
       <h1>Finalizar Pagamento</h1>
 
       <div className="products-summary">
         <h2>Produtos Selecionados:</h2>
-        {(selectedProducts?.length || 0) === 0 ?  (
+        {(selectedProducts?.length || 0) === 0 ? (
           <p>Seu carrinho está vazio.</p>
         ) : (
           <ul>
@@ -82,7 +84,7 @@ export default function Checkout({ selectedProducts, cartTotal }) {
             ))}
           </ul>
         )}
-        <h3>Total: <span>R$ {(cartTotal || 0).toFixed(2)}</span></h3>
+        <h3>Total: <span>R$ {total.toFixed(2)}</span></h3>
       </div>
 
       <form onSubmit={handleSubmit} className="checkout-form">
@@ -155,5 +157,4 @@ export default function Checkout({ selectedProducts, cartTotal }) {
   );
 
 }
-
 
