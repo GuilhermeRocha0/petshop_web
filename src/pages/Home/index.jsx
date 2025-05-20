@@ -37,13 +37,13 @@ const alternarTema = () => {
           </i>
 
           <ul id="nav_list">
-            <li className="nav-item active">
+            <li className="nav-item">
               <Link to="/loja">Ecomerce</Link>
             </li>
             <li className="nav-item">
               <Link to="/agendamentos">Agendamentos</Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item active">
               <Link>Sobre nós</Link>
             </li>
           </ul>
@@ -59,6 +59,7 @@ const alternarTema = () => {
       </header>
 
       <main id="content">
+        
         <section id="home">
           <div className="shape"></div>
           <div id="cta">
@@ -113,22 +114,22 @@ const alternarTema = () => {
             {/* Repetir este bloco para cada serviço */}
             {[
               {
-                img: "./images/banho2.png",
+                img: "./images/banhoo.png",
                 title: "🛁 Banho",
                 description: `Seu pet limpinho, cheiroso e feliz! 💦\ntomamos todo o cuidado que seu bichinho merece.`,
               },
               {
-                img: "./images/tosa2.png",
+                img: "./images/tosauu.png",
                 title: "✂️ Tosa",
                 description: `Estilo saúde e conforto para seu pet! ✨\nTosas higiênicas, na tesoura ou máquina, com carinho e profissionais. `,
               },
               {
-                img: "./images/ecomerce2.png",
+                img: "./images/ecomercee.png",
                 title: "🛒 Loja Online",
                 description: `Tudo para seu pet com carinho! 🐾 \nRações, brinquedos, acessórios e mais, com entrega rápida e segura.`,
               },
               {
-                img: "./images/loja2.png",
+                img: "./images/lojaa.png",
                 title: "🏪 Loja Física",
                 description: `Estamos esperando por você 🐶🎈\nAmbiente acolhedor e uma variedade de produtos esperando por você.`,
               },
@@ -152,9 +153,13 @@ const alternarTema = () => {
                 </div>
 
                 <div className="sih-price">
+                  
+                  
+                  <Link to="/agendamentos">
                   <button className="btn-default">
                     <i style={{ fontSize: "16px" }}>agende agora</i>
                   </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -162,7 +167,7 @@ const alternarTema = () => {
         </section>
 
         <section id="testimonials">
-          <img src="./images/testi.png" id="testimonials_chef" alt="Chef" />
+          <img src="./images/hero.png" id="testimonials_chef" alt="Chef" />
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>

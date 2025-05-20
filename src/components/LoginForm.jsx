@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
+import HomeButton from "./HomeButton";
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -57,6 +58,7 @@ const LoginForm = () => {
     
   return (
     <div className="lo-main-login">
+      
       <div className="lo-esq-login">
         <img src="../../public/images/dog.png" className="image" alt="Pet" />
       </div>
@@ -64,6 +66,7 @@ const LoginForm = () => {
       <div className="lo-dir-login">
         <form className="lo-box" onSubmit={handleSubmit}>
           <div className="lo-login-title">Bem-vindo de volta! 🐾</div>
+          <HomeButton/>
           <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
           {message && (
             <p style={{ color: 'green' }} className="return-msg">
