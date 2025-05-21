@@ -42,7 +42,7 @@ const LoginForm = () => {
   return (
     <div className="lo-main-login">
       <div className="lo-esq-login">
-        <img src="../../public/images/dog.png" className="image" alt="Pet" />
+        <img src="../../public/images/dog.png" className="image" alt="Cachorro Brincando com bola" />
       </div>
 
       <div className="lo-dir-login">

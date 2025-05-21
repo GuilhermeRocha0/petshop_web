@@ -92,7 +92,7 @@ const Home = () => {
           </div>
 
           <div id="banner">
-            <img src="./images/alpha.png" alt="Banner" />
+            <img src="./images/alpha.png" alt="Banner cachorro sentado" />
           </div>
         </section>
 
@@ -155,7 +155,7 @@ const Home = () => {
         </section>
 
         <section id="testimonials">
-          <div class="imagem-fundo" id="testimonials_chef" alt="Chef"></div>
+          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói"></div>
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>
