@@ -37,7 +37,6 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1.6rem;
-  background-color: #f5f5f5;
   border-radius: 1rem;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 }

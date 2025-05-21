@@ -32,7 +32,7 @@ const Pets = () => {
   const fetchPets = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      toast.error('Token não encontrado')
+      toast.error('Sessão expirada.')
       return
     }
 
@@ -42,7 +42,7 @@ const Pets = () => {
       })
       setPets(res.data.pets || [])
     } catch (err) {
-      toast.error('Erro ao carregar pets.')
+      toast.error(err.response?.data?.msg || 'Erro ao carregar pets.')
     }
   }
 
@@ -81,7 +81,7 @@ const Pets = () => {
       setEditingPet(null)
       fetchPets()
     } catch (err) {
-      toast.error('Erro ao salvar pet.')
+      toast.error(err.response?.data?.msg || 'Erro ao salvar pet.')
     }
   }
 
@@ -109,7 +109,7 @@ const Pets = () => {
       toast.success('Pet deletado com sucesso!')
       fetchPets()
     } catch (err) {
-      toast.error('Erro ao deletar pet.')
+      toast.error(err.response?.data?.msg || 'Erro ao deletar pet.')
     }
 
     setShowModal(false)
@@ -118,23 +118,6 @@ const Pets = () => {
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedPets = pets.slice(startIndex, startIndex + itemsPerPage)
   const totalPages = Math.ceil(pets.length / itemsPerPage)
-
-  const [temaEscuro, setTemaEscuro] = useState(false)
-
-  useEffect(() => {
-    const body = document.body
-    if (temaEscuro) {
-      body.classList.add('tema-escuro')
-      body.classList.remove('tema-claro')
-    } else {
-      body.classList.add('tema-claro')
-      body.classList.remove('tema-escuro')
-    }
-  }, [temaEscuro])
-
-  const alternarTema = () => {
-    setTemaEscuro(!temaEscuro)
-  }
 
   return (
     <div className="page-container">

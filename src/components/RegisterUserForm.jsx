@@ -50,23 +50,6 @@ const RegisterUserForm = () => {
     }
   }
 
-  const [temaEscuro, setTemaEscuro] = useState(false)
-
-  useEffect(() => {
-    const body = document.body
-    if (temaEscuro) {
-      body.classList.add('tema-escuro')
-      body.classList.remove('tema-claro')
-    } else {
-      body.classList.add('tema-claro')
-      body.classList.remove('tema-escuro')
-    }
-  }, [temaEscuro])
-
-  const alternarTema = () => {
-    setTemaEscuro(!temaEscuro)
-  }
-
   return (
     <div className="cad-box">
       <div className="cad-login-title">Faça seu cadastro 🐶!</div>

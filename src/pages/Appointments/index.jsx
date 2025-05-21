@@ -52,7 +52,7 @@ const Appointments = () => {
       }
       setAppointments(resAppointments.data.appointments || [])
     } catch (err) {
-      toast.error('Erro ao carregar agendamentos.')
+      toast.error(err.response?.data?.msg || 'Erro ao carregar agendamentos.')
     }
   }
 
@@ -81,8 +81,7 @@ const Appointments = () => {
 
         await fetchAppointments(user.role, token)
       } catch (err) {
-        console.error(err)
-        toast.error('Erro ao carregar dados.')
+        toast.error(err.response?.data?.msg || 'Erro ao carregar dados.')
       }
     }
 
@@ -124,12 +123,7 @@ const Appointments = () => {
       // Voltar para a lista
       setShowForm(false)
     } catch (error) {
-      console.error(error)
-      if (error.response && error.response.data) {
-        toast.error(error.response.data.msg)
-      } else {
-        toast.error('Erro ao criar agendamento')
-      }
+      toast.error(err.response?.data?.msg || 'Erro ao criar agendamento')
     }
   }
 
@@ -162,7 +156,7 @@ const Appointments = () => {
       toast.success('Agendamento cancelado com sucesso!')
       setShowModal(false)
     } catch (err) {
-      toast.error('Erro ao cancelar o agendamento.')
+      toast.error(err.response?.data?.msg || 'Erro ao cancelar o agendamento.')
     }
   }
 
@@ -190,23 +184,6 @@ const Appointments = () => {
     startIndex + itemsPerPage
   )
   const totalPages = Math.ceil(sortedAppointments.length / itemsPerPage)
-
-  const [temaEscuro, setTemaEscuro] = useState(false)
-
-  useEffect(() => {
-    const body = document.body
-    if (temaEscuro) {
-      body.classList.add('tema-escuro')
-      body.classList.remove('tema-claro')
-    } else {
-      body.classList.add('tema-claro')
-      body.classList.remove('tema-escuro')
-    }
-  }, [temaEscuro])
-
-  const alternarTema = () => {
-    setTemaEscuro(!temaEscuro)
-  }
 
   return (
     <div className="page-container">

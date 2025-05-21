@@ -145,7 +145,7 @@ const Products = () => {
       toast.success('Produto deletado com sucesso!')
       fetchProducts()
     } catch (err) {
-      toast.error('Erro ao deletar produto.')
+      toast.error(err.response?.data?.msg || 'Erro ao deletar produto.')
     }
 
     setShowModal(false)

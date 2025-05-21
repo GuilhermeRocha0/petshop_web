@@ -544,6 +544,10 @@ header .right-side .image-header {
   justify-content: center;
 }
 
+[data-theme='dark'] .modal {
+  background-color: #1e1e1e;
+}
+
 .modal-message {
   font-size: 2rem;
   margin-bottom: 3.2rem;

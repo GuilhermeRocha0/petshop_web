@@ -63,15 +63,15 @@
 .side {
   background-color: #27ae60;
   color: white;
-  padding: 10px 16px;
+  padding: 1rem 1.6rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   cursor: pointer;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 1.4rem;
   transition: background-color 0.3s;
-  margin-top: 16px;
-  margin-right: 10px;
+  margin-top: 1.6rem;
+  margin-right: 1rem;
   min-width: 30%;
 }
 
@@ -83,9 +83,43 @@
   background-color: #1e8449;
 }
 
-.links-acoes {
-  margin-top: 30px;
+.profile-cancel-button {
+  background-color: #999;
+  color: white;
+  padding: 1rem 1.6rem;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: background-color 0.3s;
+  margin-top: 1.6rem;
+  margin-right: 1rem;
+  min-width: 30%;
 }
+
+.profile-cancel-button:hover,
+.profile-cancel-button:focus-within {
+  filter: brightness(0.8);
+}
+
+.links-acoes {
+  margin-top: 3rem;
+}
+
+.profile-form-label {
+  display: block;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+[data-theme='dark'] .profile-form-label {
+  color: #ffffff;
+}
+
 [data-theme='dark'] .painel-container {
   background-color: #1e1e1e;
   color: #f1f1f1;
@@ -109,9 +143,9 @@
   color: #e0e0e0;
 }
 
-[data-theme='dark'] .side {
+[data-theme='dark'] button.side {
   background-color: #34d399;
-  color: #000;
+  color: #fff;
 }
 
 [data-theme='dark'] .side:hover {
