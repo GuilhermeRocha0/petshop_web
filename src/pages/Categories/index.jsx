@@ -67,14 +67,14 @@ const Categories = () => {
           { name },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success('Categoria atualizada com sucesso!')
+        toast.success(res.data?.msg || 'Categoria atualizada com sucesso!')
       } else {
         await api.post(
           '/categories',
           { name },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success('Categoria cadastrada com sucesso!')
+        toast.success(res.data?.msg || 'Categoria cadastrada com sucesso!')
       }
 
       setShowForm(false)
@@ -106,7 +106,7 @@ const Categories = () => {
       await api.delete(`/categories/${selectedCategoryId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      toast.success('Categoria deletada com sucesso!')
+      toast.success(res.data?.msg || 'Categoria deletada com sucesso!')
       fetchCategories()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao deletar categoria.')

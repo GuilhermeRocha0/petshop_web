@@ -101,7 +101,7 @@ const Products = () => {
             'Content-Type': 'multipart/form-data'
           }
         })
-        toast.success('Produto atualizado com sucesso!')
+        toast.success(res.data?.msg || 'Produto atualizado com sucesso!')
       } else {
         await api.post('/products', formData, {
           headers: {
@@ -109,7 +109,7 @@ const Products = () => {
             'Content-Type': 'multipart/form-data'
           }
         })
-        toast.success('Produto cadastrado com sucesso!')
+        toast.success(res.data?.msg || 'Produto cadastrado com sucesso!')
       }
 
       setShowForm(false)
@@ -142,7 +142,7 @@ const Products = () => {
       await api.delete(`/products/${selectedProductId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      toast.success('Produto deletado com sucesso!')
+      toast.success(res.data?.msg || 'Produto deletado com sucesso!')
       fetchProducts()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao deletar produto.')

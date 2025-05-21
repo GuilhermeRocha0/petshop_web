@@ -110,7 +110,7 @@ const Appointments = () => {
         headers: { Authorization: `Bearer ${token}` }
       })
 
-      toast.success(res.data.msg)
+      toast.success(res.data?.msg || 'Agendamento criado com sucesso!')
 
       // Atualiza lista com novo agendamento
       await fetchAppointments(userRole, token)
@@ -153,7 +153,7 @@ const Appointments = () => {
 
       await fetchAppointments(userRole, token)
 
-      toast.success('Agendamento cancelado com sucesso!')
+      toast.success(res.data?.msg || 'Agendamento cancelado com sucesso!')
       setShowModal(false)
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao cancelar o agendamento.')
