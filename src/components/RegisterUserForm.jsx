@@ -3,6 +3,8 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
 import HomeButton from './HomeButton'
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const RegisterUserForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,9 @@ const RegisterUserForm = () => {
     password: '',
     confirmPassword: ''
   })
+
+  const { theme } = useContext(ThemeContext);
+
 
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
@@ -50,34 +55,28 @@ const RegisterUserForm = () => {
     }
   }
 
-      const [temaEscuro, setTemaEscuro] = useState(false);
-      
-      useEffect(() => {
-        const body = document.body;
-        if (temaEscuro) {
-          body.classList.add('tema-escuro');
-          body.classList.remove('tema-claro');
-        } else {
-          body.classList.add('tema-claro');
-          body.classList.remove('tema-escuro');
-        }
-      }, [temaEscuro]);
-      
-      const alternarTema = () => {
-        setTemaEscuro(!temaEscuro);
-      };
+  useEffect(() => {
+    const body = document.body;
+    if (theme === 'dark') {
+      body.classList.add('tema-escuro');
+      body.classList.remove('tema-claro');
+    } else {
+      body.classList.add('tema-claro');
+      body.classList.remove('tema-escuro');
+    }
+  }, [theme]);
 
   return (
     <div className="cad-box">
-      
+
       <div className="cad-login-title">Faça seu cadastro 🐶!</div>
       {message && <p className="success-msg">{message}</p>}
       {error && <p className="error-msg">{error}</p>}
-      <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
-      <HomeButton/>
+      <BotaoTema />
+      <HomeButton />
       <form onSubmit={handleSubmit}>
         <div className="textfield">
-          
+
           <label htmlFor="name">Nome</label>
           <input
             className="cad-inputs"

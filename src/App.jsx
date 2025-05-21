@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
+import { ThemeProvider } from './context/ThemeContext';
 import RegisterUser from './pages/RegisterUser'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-import PrivateRoute from './routes/PrivateRoute'
+import PrivateRoute from './Routes/PrivateRoute'
 import EditProfile from './pages/EditProfile'
 import ChangePassword from './pages/ChangePassword'
 import Pets from './pages/Pets'
@@ -21,80 +21,82 @@ import Categories from './pages/Categories'
 
 function App() {
   return (
-    <Router>
-      <ToastContainer />
-      <Routes>
-        <Route path="/cadastrar" element={<RegisterUser />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/redefinir-senha" element={<ResetPassword />} />
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/perfil"
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/editar-perfil"
-          element={
-            <PrivateRoute>
-              <EditProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/alterar-senha"
-          element={
-            <PrivateRoute>
-              <ChangePassword />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/pets"
-          element={
-            <PrivateRoute>
-              <Pets />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/agendamentos"
-          element={
-            <PrivateRoute>
-              <Appointments />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/categorias"
-          element={
-            <PrivateRoute>
-              <Categories />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/produtos"
-          element={
-            <PrivateRoute>
-              <Products />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/servicos"
-          element={
-            <PrivateRoute>
-              <Services />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/loja/*" element={<EcommerceApp />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <ToastContainer />
+        <Routes>
+          <Route path="/cadastrar" element={<RegisterUser />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/redefinir-senha" element={<ResetPassword />} />
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/perfil"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/editar-perfil"
+            element={
+              <PrivateRoute>
+                <EditProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/alterar-senha"
+            element={
+              <PrivateRoute>
+                <ChangePassword />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/pets"
+            element={
+              <PrivateRoute>
+                <Pets />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/agendamentos"
+            element={
+              <PrivateRoute>
+                <Appointments />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/categorias"
+            element={
+              <PrivateRoute>
+                <Categories />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/produtos"
+            element={
+              <PrivateRoute>
+                <Products />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/servicos"
+            element={
+              <PrivateRoute>
+                <Services />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/loja/*" element={<EcommerceApp />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   )
 }
 

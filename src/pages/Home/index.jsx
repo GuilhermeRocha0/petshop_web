@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import './home.css'
 import { Link } from "react-router-dom";
 import BotaoTema from "../../components/BotaoTema";
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Home = () => {
+
+  const { theme } = useContext(ThemeContext);
 
   const [menuActive, setMenuActive] = useState(false);
 
@@ -11,22 +15,16 @@ const Home = () => {
     setMenuActive(!menuActive);
   };
 
-  const [temaEscuro, setTemaEscuro] = useState(false);
-
-useEffect(() => {
-  const body = document.body;
-  if (temaEscuro) {
-    body.classList.add('tema-escuro');
-    body.classList.remove('tema-claro');
-  } else {
-    body.classList.add('tema-claro');
-    body.classList.remove('tema-escuro');
-  }
-}, [temaEscuro]);
-
-const alternarTema = () => {
-  setTemaEscuro(!temaEscuro);
-};
+  useEffect(() => {
+    const body = document.body;
+    if (theme === 'dark') {
+      body.classList.add('tema-escuro');
+      body.classList.remove('tema-claro');
+    } else {
+      body.classList.add('tema-claro');
+      body.classList.remove('tema-escuro');
+    }
+  }, [theme]);
 
   return (
     <div>
@@ -55,18 +53,33 @@ const alternarTema = () => {
           </button>
         </nav>
 
-        
+        <div id="mobile_menu" className={menuActive ? 'active' : ''}>
+          <ul id="mobile_nav_list">
+            <li className="nav-item">
+              <Link to="/loja">Ecomerce</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/agendamentos">Agendamentos</Link>
+            </li>
+            <li className="nav-item">
+              <Link>Sobre nós</Link>
+            </li>
+          </ul>
+
+          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
+        </div>
+
       </header>
 
       <main id="content">
-        
+
         <section id="home">
           <div className="shape"></div>
           <div id="cta">
             <h1 className="ho-title">
               🐾O cuidado que seu pet merece, com carinho de
               <span> Verdade!</span>
-              <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
+              <BotaoTema />
 
             </h1>
 
@@ -75,10 +88,9 @@ const alternarTema = () => {
             </p>
 
             <div id="cta_buttons" style={{ display: "flex", gap: "20px" }}>
-            <Link to="/agendamentos"><a href="#" className="btn-default">
+              <Link to="/agendamentos" className="btn-default">
                 Agendar já
-                
-              </a></Link>
+              </Link>
 
               <a href="tel:+55555555555555" id="phone_button">
                 <button className="btn-default">
@@ -153,12 +165,12 @@ const alternarTema = () => {
                 </div>
 
                 <div className="sih-price">
-                  
-                  
+
+
                   <Link to="/agendamentos">
-                  <button className="btn-default">
-                    <i style={{ fontSize: "16px" }}>agende agora</i>
-                  </button>
+                    <button className="btn-default">
+                      <i style={{ fontSize: "16px" }}>agende agora</i>
+                    </button>
                   </Link>
                 </div>
               </div>

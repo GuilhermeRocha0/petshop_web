@@ -4,13 +4,29 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
 import HomeButton from "./HomeButton";
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+
 
 const LoginForm = () => {
   const navigate = useNavigate()
 
+  const { theme } = useContext(ThemeContext);
+
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    const body = document.body;
+    if (theme === 'dark') {
+      body.classList.add('tema-escuro');
+      body.classList.remove('tema-claro');
+    } else {
+      body.classList.add('tema-claro');
+      body.classList.remove('tema-escuro');
+    }
+  }, [theme]);
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -20,17 +36,20 @@ const LoginForm = () => {
     e.preventDefault()
     setMessage('')
     setError('')
-
+  
+    console.log("Tentando fazer login com:", formData)
+  
     try {
       const response = await api.post('/auth/login', formData)
-
-      // Salva o token e a role no localStorage
+      console.log("Resposta da API:", response.data)
+  
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('user', JSON.stringify(response.data.user))
-
+  
       setMessage(response.data.msg)
       navigate('/perfil')
     } catch (err) {
+      console.error("Erro ao fazer login:", err)
       if (err.response?.data?.msg) {
         setError(err.response.data.msg)
       } else {
@@ -38,27 +57,12 @@ const LoginForm = () => {
       }
     }
   }
+  
 
-    const [temaEscuro, setTemaEscuro] = useState(false);
-    
-    useEffect(() => {
-      const body = document.body;
-      if (temaEscuro) {
-        body.classList.add('tema-escuro');
-        body.classList.remove('tema-claro');
-      } else {
-        body.classList.add('tema-claro');
-        body.classList.remove('tema-escuro');
-      }
-    }, [temaEscuro]);
-    
-    const alternarTema = () => {
-      setTemaEscuro(!temaEscuro);
-    };
-    
+
   return (
     <div className="lo-main-login">
-      
+
       <div className="lo-esq-login">
         <img src="../../public/images/dog.png" className="image" alt="Pet" />
       </div>
@@ -66,8 +70,8 @@ const LoginForm = () => {
       <div className="lo-dir-login">
         <form className="lo-box" onSubmit={handleSubmit}>
           <div className="lo-login-title">Bem-vindo de volta! 🐾</div>
-          <HomeButton/>
-          <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
+          <HomeButton />
+          <BotaoTema />
           {message && (
             <p style={{ color: 'green' }} className="return-msg">
               {message}
@@ -114,9 +118,7 @@ const LoginForm = () => {
 
           <br />
 
-          <button className="btn" type="submit">
-            Login
-          </button>
+          <button className="btn" type="submit">Login</button>
 
           <p className='ponto'>
             Caso não tenha conta: <Link to="/cadastrar">Cadastre-se</Link>
