@@ -9,6 +9,8 @@ import AppointmentStatusForm from '../../components/AppointmentStatusForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './appointments.css'
+import BotaoTema from '../../components/BotaoTema'
+import HomeButton from '../../components/HomeButton'
 
 const Appointments = () => {
   const navigate = useNavigate()
@@ -189,8 +191,27 @@ const Appointments = () => {
   )
   const totalPages = Math.ceil(sortedAppointments.length / itemsPerPage)
 
+    const [temaEscuro, setTemaEscuro] = useState(false);
+  
+  useEffect(() => {
+    const body = document.body;
+    if (temaEscuro) {
+      body.classList.add('tema-escuro');
+      body.classList.remove('tema-claro');
+    } else {
+      body.classList.add('tema-claro');
+      body.classList.remove('tema-escuro');
+    }
+  }, [temaEscuro]);
+  
+  const alternarTema = () => {
+    setTemaEscuro(!temaEscuro);
+  };
+
   return (
     <div className="page-container">
+      <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
+      <HomeButton/>
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

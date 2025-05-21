@@ -7,6 +7,8 @@ import PetForm from '../../components/PetForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './pets.css'
+import BotaoTema from '../../components/BotaoTema'
+import HomeButton from '../../components/HomeButton'
 
 const Pets = () => {
   const [pets, setPets] = useState([])
@@ -117,8 +119,27 @@ const Pets = () => {
   const paginatedPets = pets.slice(startIndex, startIndex + itemsPerPage)
   const totalPages = Math.ceil(pets.length / itemsPerPage)
 
+    const [temaEscuro, setTemaEscuro] = useState(false);
+  
+  useEffect(() => {
+    const body = document.body;
+    if (temaEscuro) {
+      body.classList.add('tema-escuro');
+      body.classList.remove('tema-claro');
+    } else {
+      body.classList.add('tema-claro');
+      body.classList.remove('tema-escuro');
+    }
+  }, [temaEscuro]);
+  
+  const alternarTema = () => {
+    setTemaEscuro(!temaEscuro);
+  };
+
   return (
     <div className="page-container">
+      <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
+      <HomeButton/>
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

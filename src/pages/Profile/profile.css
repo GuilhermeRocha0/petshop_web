@@ -75,10 +75,53 @@
   min-width: 30%;
 }
 
+.sidebar .sidebar-link:hover{
+  background-color: #2dd4bf;
+  color: white;
+}
 .side:hover {
   background-color: #1e8449;
 }
 
 .links-acoes {
   margin-top: 30px;
+}
+.tema-escuro .painel-container {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.tema-escuro .painel-conteudo {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+}
+
+.tema-escuro .painel-conteudo h2 {
+  color: #f1f1f1;
+}
+
+.tema-escuro .dado-label {
+  color: #ddd;
+}
+
+.tema-escuro .dado-info {
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+.tema-escuro .side {
+  background-color: #34d399;
+  color: #000;
+}
+
+.tema-escuro .side:hover {
+  background-color: #2dd4bf;
+}
+.tema-escuro .sidebar .sidebar-link{
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+.tema-escuro .sidebar .sidebar-link:hover{
+  background-color: #2dd4bf;
+  color: white;
 }

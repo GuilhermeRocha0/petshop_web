@@ -215,3 +215,97 @@
   height: 3rem !important;
   width: 3rem !important;
 }
+.tema-escuro {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.tema-escuro .appointment-card {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+.tema-escuro .appointment-form-label,
+.tema-escuro .pagination-info {
+  color: #f1f1f1;
+}
+
+.tema-escuro .input-standard {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+.tema-escuro .service-label {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+.tema-escuro .service-label:hover,
+.tema-escuro .service-label:focus,
+.tema-escuro .service-option-container:hover .service-label,
+.tema-escuro .service-option-container:focus-within .service-label {
+  outline: 1px solid #34d399;
+}
+
+.tema-escuro .service-checkbox:checked + .service-label {
+  background-color: #34d399;
+  border: 1px solid #34d399;
+  color: #000;
+}
+
+.tema-escuro .edit-button,
+.tema-escuro .appointment-card .confirm-button,
+.tema-escuro .appointment-card .cancel-button {
+  color: #fff;
+}
+
+.tema-escuro .pagination-button {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.tema-escuro .pagination-button:hover {
+  background-color: #34d399;
+  color: #000;
+}
+
+.tema-escuro .pagination-button:disabled {
+  background-color: #3a3a3a;
+  color: #777;
+}
+
+.tema-escuro .error-message {
+  color: #f87171;
+}
+
+
+.tema-escuro .react-datepicker {
+  background-color: #1e1e1e !important;
+  color: #fff;
+  border: 1px solid #555 !important;
+}
+
+.tema-escuro .react-datepicker__day,
+.tema-escuro .react-datepicker__day-name {
+  color: #fff !important;
+}
+
+.tema-escuro .react-datepicker__day--selected {
+  background-color: #34d399 !important;
+  color: #000 !important;
+}
+
+.tema-escuro .react-datepicker__header {
+  background-color: #2c2c2c !important;
+  border-bottom: 1px solid #444 !important;
+  color: #fff !important;
+}
+
+.tema-escuro .react-datepicker__time-list-item {
+  background-color: #1e1e1e !important;
+  color: #fff !important;
+}
