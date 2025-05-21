@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
+import BotaoTema from './BotaoTema'
+import HomeButton from './HomeButton'
 
 const RegisterUserForm = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +53,6 @@ const RegisterUserForm = () => {
   return (
     <div className="cad-box">
       <div className="cad-login-title">Faça seu cadastro 🐶!</div>
-
       {message && <p className="success-msg">{message}</p>}
       {error && <p className="error-msg">{error}</p>}
 
@@ -127,11 +128,16 @@ const RegisterUserForm = () => {
         </div>
 
         <br />
-        <button type="submit" className="btn">Cadastre-se</button>
-        <p className='ponto'>
+        <button type="submit" className="btn">
+          Cadastre-se
+        </button>
+        <p className="ponto">
           Já tem uma conta? <Link to="/login">Entre</Link>
         </p>
       </form>
+
+      <HomeButton />
+      <BotaoTema />
     </div>
   )
 }

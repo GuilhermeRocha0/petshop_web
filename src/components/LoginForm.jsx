@@ -1,7 +1,9 @@
 // src/components/LoginForm.jsx
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
+import BotaoTema from './BotaoTema'
+import HomeButton from './HomeButton'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -40,13 +42,12 @@ const LoginForm = () => {
   return (
     <div className="lo-main-login">
       <div className="lo-esq-login">
-        <img src="../../public/images/dog.png" className="image" alt="Pet" />
+        <img src="../../public/images/dog.png" className="image" alt="Cachorro Brincando com bola" />
       </div>
 
       <div className="lo-dir-login">
         <form className="lo-box" onSubmit={handleSubmit}>
           <div className="lo-login-title">Bem-vindo de volta! 🐾</div>
-
           {message && (
             <p style={{ color: 'green' }} className="return-msg">
               {message}
@@ -97,11 +98,14 @@ const LoginForm = () => {
             Login
           </button>
 
-          <p className='ponto'>
+          <p className="ponto">
             Caso não tenha conta: <Link to="/cadastrar">Cadastre-se</Link>
           </p>
         </form>
       </div>
+
+      <HomeButton />
+      <BotaoTema />
     </div>
   )
 }

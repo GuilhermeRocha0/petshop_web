@@ -7,6 +7,8 @@ import ProductForm from '../../components/ProductForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './products.css'
+import HomeButton from '../../components/HomeButton'
+import BotaoTema from '../../components/BotaoTema'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -93,7 +95,7 @@ const Products = () => {
       if (image) formData.append('image', image)
 
       if (editingProduct) {
-        await api.put(`/products/${editingProduct._id}`, formData, {
+        const res = await api.put(`/products/${editingProduct._id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -101,7 +103,7 @@ const Products = () => {
         })
         toast.success('Produto atualizado com sucesso!')
       } else {
-        await api.post('/products', formData, {
+        const res = await api.post('/products', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -137,13 +139,14 @@ const Products = () => {
     }
 
     try {
-      await api.delete(`/products/${selectedProductId}`, {
+      const res = await api.delete(`/products/${selectedProductId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       toast.success('Produto deletado com sucesso!')
       fetchProducts()
     } catch (err) {
-      toast.error('Erro ao deletar produto.')
+      console.error(err)
+      toast.error(err.response?.data?.msg || 'Erro ao deletar produto.')
     }
 
     setShowModal(false)
@@ -158,6 +161,9 @@ const Products = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

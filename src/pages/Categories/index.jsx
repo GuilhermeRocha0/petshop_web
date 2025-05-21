@@ -7,6 +7,8 @@ import CategoryForm from '../../components/CategoryForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './categories.css'
+import HomeButton from '../../components/HomeButton'
+import BotaoTema from '../../components/BotaoTema'
 
 const Categories = () => {
   const [categories, setCategories] = useState([])
@@ -30,7 +32,7 @@ const Categories = () => {
   const fetchCategories = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      toast.error('Token não encontrado')
+      toast.error('Sessão expirada.')
       return
     }
 
@@ -40,7 +42,7 @@ const Categories = () => {
       })
       setCategories(res.data || [])
     } catch (err) {
-      toast.error('Erro ao carregar categorias.')
+      toast.error(err.response?.data?.msg || 'Erro ao carregar categorias.')
     }
   }
 
@@ -79,7 +81,7 @@ const Categories = () => {
       setEditingCategory(null)
       fetchCategories()
     } catch (err) {
-      toast.error('Erro ao salvar categoria.')
+      toast.error(err.response?.data?.msg || 'Erro ao salvar categoria.')
     }
   }
 
@@ -107,7 +109,7 @@ const Categories = () => {
       toast.success('Categoria deletada com sucesso!')
       fetchCategories()
     } catch (err) {
-      toast.error('Erro ao deletar categoria.')
+      toast.error(err.response?.data?.msg || 'Erro ao deletar categoria.')
     }
 
     setShowModal(false)
@@ -122,6 +124,9 @@ const Categories = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

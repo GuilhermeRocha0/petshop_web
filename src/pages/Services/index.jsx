@@ -7,6 +7,8 @@ import ServiceForm from '../../components/ServiceForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './services.css'
+import HomeButton from '../../components/HomeButton'
+import BotaoTema from '../../components/BotaoTema'
 
 const Services = () => {
   const [services, setServices] = useState([])
@@ -113,6 +115,9 @@ const Services = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

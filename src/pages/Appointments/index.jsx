@@ -9,6 +9,8 @@ import AppointmentStatusForm from '../../components/AppointmentStatusForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './appointments.css'
+import BotaoTema from '../../components/BotaoTema'
+import HomeButton from '../../components/HomeButton'
 
 const Appointments = () => {
   const navigate = useNavigate()
@@ -50,7 +52,7 @@ const Appointments = () => {
       }
       setAppointments(resAppointments.data.appointments || [])
     } catch (err) {
-      toast.error('Erro ao carregar agendamentos.')
+      toast.error(err.response?.data?.msg || 'Erro ao carregar agendamentos.')
     }
   }
 
@@ -79,8 +81,7 @@ const Appointments = () => {
 
         await fetchAppointments(user.role, token)
       } catch (err) {
-        console.error(err)
-        toast.error('Erro ao carregar dados.')
+        toast.error(err.response?.data?.msg || 'Erro ao carregar dados.')
       }
     }
 
@@ -109,7 +110,7 @@ const Appointments = () => {
         headers: { Authorization: `Bearer ${token}` }
       })
 
-      toast.success(res.data.msg)
+      toast.success('Agendamento criado com sucesso!')
 
       // Atualiza lista com novo agendamento
       await fetchAppointments(userRole, token)
@@ -122,12 +123,7 @@ const Appointments = () => {
       // Voltar para a lista
       setShowForm(false)
     } catch (error) {
-      console.error(error)
-      if (error.response && error.response.data) {
-        toast.error(error.response.data.msg)
-      } else {
-        toast.error('Erro ao criar agendamento')
-      }
+      toast.error(err.response?.data?.msg || 'Erro ao criar agendamento')
     }
   }
 
@@ -160,7 +156,7 @@ const Appointments = () => {
       toast.success('Agendamento cancelado com sucesso!')
       setShowModal(false)
     } catch (err) {
-      toast.error('Erro ao cancelar o agendamento.')
+      toast.error(err.response?.data?.msg || 'Erro ao cancelar o agendamento.')
     }
   }
 
@@ -191,6 +187,9 @@ const Appointments = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

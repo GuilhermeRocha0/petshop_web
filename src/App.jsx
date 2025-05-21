@@ -8,8 +8,6 @@ import RegisterUser from './pages/RegisterUser'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import PrivateRoute from './routes/PrivateRoute'
-import EditProfile from './pages/EditProfile'
-import ChangePassword from './pages/ChangePassword'
 import Pets from './pages/Pets'
 import EcommerceApp from './ecommerce/EcommerceApp'
 import Appointments from './pages/Appointments'
@@ -33,22 +31,6 @@ function App() {
           element={
             <PrivateRoute>
               <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/editar-perfil"
-          element={
-            <PrivateRoute>
-              <EditProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/alterar-senha"
-          element={
-            <PrivateRoute>
-              <ChangePassword />
             </PrivateRoute>
           }
         />

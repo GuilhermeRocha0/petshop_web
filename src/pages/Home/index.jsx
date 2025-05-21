@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
 import './home.css'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import BotaoTema from '../../components/BotaoTema'
 
 const Home = () => {
-
-  const [menuActive, setMenuActive] = useState(false);
+  const [menuActive, setMenuActive] = useState(false)
 
   const handleMobileMenu = () => {
-    setMenuActive(!menuActive);
-  };
+    setMenuActive(!menuActive)
+  }
 
   return (
     <div>
@@ -19,13 +19,13 @@ const Home = () => {
           </i>
 
           <ul id="nav_list">
-            <li className="nav-item active">
+            <li className="nav-item">
               <Link to="/loja">Ecomerce</Link>
             </li>
             <li className="nav-item">
               <Link to="/agendamentos">Agendamentos</Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item active">
               <Link>Sobre nós</Link>
             </li>
           </ul>
@@ -61,20 +61,28 @@ const Home = () => {
             <h1 className="ho-title">
               🐾O cuidado que seu pet merece, com carinho de
               <span> Verdade!</span>
+              <BotaoTema />
             </h1>
 
             <p className="description">
-              Entregamos alegria, conforto e produtos de qualidade direto pra você e seu melhor amigo. <br /> Aqui no Pet da Carla, cada latido importa! ❤️🐶
+              Entregamos alegria, conforto e produtos de qualidade direto pra
+              você e seu melhor amigo. <br /> Aqui no Pet da Carla, cada latido
+              importa! ❤️🐶
             </p>
 
-            <div id="cta_buttons" style={{ display: "flex", gap: "20px" }}>
-              <a href="#" className="btn-default">
-                Agendar já
-              </a>
+            <div id="cta_buttons" style={{ display: 'flex', gap: '20px' }}>
+              <Link to="/agendamentos">
+                <a href="#" className="btn-default">
+                  Agendar já
+                </a>
+              </Link>
 
               <a href="tel:+55555555555555" id="phone_button">
                 <button className="btn-default">
-                  <i className="fa-solid fa-phone" style={{ fontSize: "16px" }}></i>
+                  <i
+                    className="fa-solid fa-phone"
+                    style={{ fontSize: '16px' }}
+                  ></i>
                 </button>
                 (11)94076-4312
               </a>
@@ -84,17 +92,17 @@ const Home = () => {
               <a href="">
                 <i className="fa-brands fa-whatsapp" id="zap"></i>
               </a>
-              <a href="">
+              <a href="https://www.instagram.com/explore/locations/913624535/pet-da-carla/">
                 <i className="fa-brands fa-instagram" id="insta"></i>
               </a>
-              <a href="">
+              <a href="https://pt-br.facebook.com/petdacarla">
                 <i className="fa-brands fa-facebook" id="face"></i>
               </a>
             </div>
           </div>
 
           <div id="banner">
-            <img src="./images/alpha.png" alt="Banner" />
+            <img src="./images/alpha.png" alt="Banner cachorro sentado" />
           </div>
         </section>
 
@@ -106,25 +114,25 @@ const Home = () => {
             {/* Repetir este bloco para cada serviço */}
             {[
               {
-                img: "./images/banho2.png",
-                title: "🛁 Banho",
-                description: `Seu pet limpinho, cheiroso e feliz! 💦\ntomamos todo o cuidado que seu bichinho merece.`,
+                img: './images/banhoo.png',
+                title: '🛁 Banho',
+                description: `Seu pet limpinho, cheiroso e feliz! 💦\ntomamos todo o cuidado que seu bichinho merece.`
               },
               {
-                img: "./images/tosa2.png",
-                title: "✂️ Tosa",
-                description: `Estilo saúde e conforto para seu pet! ✨\nTosas higiênicas, na tesoura ou máquina, com carinho e profissionais. `,
+                img: './images/tosauu.png',
+                title: '✂️ Tosa',
+                description: `Estilo saúde e conforto para seu pet! ✨\nTosas higiênicas, na tesoura ou máquina, com carinho e profissionais. `
               },
               {
-                img: "./images/ecomerce2.png",
-                title: "🛒 Loja Online",
-                description: `Tudo para seu pet com carinho! 🐾 \nRações, brinquedos, acessórios e mais, com entrega rápida e segura.`,
+                img: './images/ecomercee.png',
+                title: '🛒 Loja Online',
+                description: `Tudo para seu pet com carinho! 🐾 \nRações, brinquedos, acessórios e mais, com entrega rápida e segura.`
               },
               {
-                img: "./images/loja2.png",
-                title: "🏪 Loja Física",
-                description: `Estamos esperando por você 🐶🎈\nAmbiente acolhedor e uma variedade de produtos esperando por você.`,
-              },
+                img: './images/lojaa.png',
+                title: '🏪 Loja Física',
+                description: `Estamos esperando por você 🐶🎈\nAmbiente acolhedor e uma variedade de produtos esperando por você.`
+              }
             ].map((item, index) => (
               <div className="dish" key={index}>
                 <div className="dish-heart">
@@ -145,9 +153,11 @@ const Home = () => {
                 </div>
 
                 <div className="sih-price">
-                  <button className="btn-default">
-                    <i style={{ fontSize: "16px" }}>agende agora</i>
-                  </button>
+                  <Link to="/agendamentos">
+                    <button className="btn-default">
+                      <i style={{ fontSize: '16px' }}>agende agora</i>
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -155,27 +165,33 @@ const Home = () => {
         </section>
 
         <section id="testimonials">
-          <img src="./images/testi.png" id="testimonials_chef" alt="Chef" />
+          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói"></div>
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>
-            <h3 className="section-subtitle">O que os clientes falam sobre nós</h3>
+            <h3 className="section-subtitle">
+              O que os clientes falam sobre nós
+            </h3>
 
             <div id="feedbacks">
               {[
                 {
-                  name: "Bruno Costa",
-                  img: "./images/rosto1.png",
-                  text: `“Equipe muito atenciosa, ambiente limpo e meu cachorrinho ficou super tranquilo durante a tosa. Com certeza virei cliente fiel!”`,
+                  name: 'Bruno Costa',
+                  img: './images/rosto1.png',
+                  text: `“Equipe muito atenciosa, ambiente limpo e meu cachorrinho ficou super tranquilo durante a tosa. Com certeza virei cliente fiel!”`
                 },
                 {
-                  name: "Lucas Fernandes",
-                  img: "./images/rosto2.png",
-                  text: `“Levo meu cachorro no Pet da Carla há meses e o atendimento é sempre incrível! Ele adora o banho e volta super cheiroso. Recomendo demais!”`,
-                },
+                  name: 'Lucas Fernandes',
+                  img: './images/rosto2.png',
+                  text: `“Levo meu cachorro no Pet da Carla há meses e o atendimento é sempre incrível! Ele adora o banho e volta super cheiroso. Recomendo demais!”`
+                }
               ].map((item, index) => (
                 <div id="feedback" key={index}>
-                  <img src={item.img} className="feedback-avatar" alt={item.name} />
+                  <img
+                    src={item.img}
+                    className="feedback-avatar"
+                    alt={item.name}
+                  />
                   <div className="feedback-content">
                     <p>
                       {item.name}
@@ -192,7 +208,6 @@ const Home = () => {
             </div>
 
             <button className="btn-default-fi">Ver mais avaliações</button>
-
           </div>
         </section>
       </main>
@@ -202,11 +217,13 @@ const Home = () => {
           <p>© 2025 Pet da Carla — Todos os direitos reservados.</p>
 
           <p>
-            <i className="fa-solid fa-bone"></i> Banho e Tosa • Loja Online • Loja Física
+            <i className="fa-solid fa-bone"></i> Banho e Tosa • Loja Online •
+            Loja Física
           </p>
 
           <p>
-            <i className="fa-solid fa-location-dot"></i> Rua salgato, 123 - São Paulo, SP
+            <i className="fa-solid fa-location-dot"></i> Rua salgato, 123 - São
+            Paulo, SP
           </p>
 
           <p>
@@ -214,22 +231,29 @@ const Home = () => {
           </p>
 
           <p>
-            <i className="fa-solid fa-envelope"></i>{" "}
-            <a href="mailto:contato@petdacarla.com.br">contato@petdacarla.com.br</a>
+            <i className="fa-solid fa-envelope"></i>{' '}
+            <a href="mailto:contato@petdacarla.com.br">
+              contato@petdacarla.com.br
+            </a>
           </p>
 
           <p>Siga a gente nas redes sociais:</p>
 
           <div className="social-footer">
-            <a href="#"><i className="fa-brands fa-facebook"></i> PET_CARLA_OFC</a>
-            <a href="#"><i className="fa-brands fa-instagram"></i> PET_CARLA_OFC</a>
-            <a href="#"><i className="fa-brands fa-whatsapp"></i> (11) 94076-4312</a>
+            <a href="#">
+              <i className="fa-brands fa-facebook"></i> PET_CARLA_OFC
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-instagram"></i> PET_CARLA_OFC
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-whatsapp"></i> (11) 94076-4312
+            </a>
           </div>
         </div>
       </footer>
-
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

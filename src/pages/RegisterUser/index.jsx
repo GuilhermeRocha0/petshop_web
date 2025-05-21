@@ -17,7 +17,11 @@ const RegisterUser = () => {
   return (
     <div className="main-login">
       <div className="cad-esq-login">
-        <img src="../../public/images/dog.png" className="image" alt="Ilustração Pet" />
+        <img
+          src="../../public/images/dog.png"
+          className="image"
+          alt="Ilustração Pet"
+        />
       </div>
       <div className="cad-dir-login">
         <RegisterUserForm />

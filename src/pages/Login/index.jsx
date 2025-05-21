@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import BotaoTema from '../../components/BotaoTema'
 import LoginForm from '../../components/LoginForm'
 import { isAuthenticated } from '../../utils/auth'
 import './style.css'
@@ -14,7 +14,9 @@ const Login = () => {
   }, [navigate])
 
   return (
-        <LoginForm />
+    <div>
+      <LoginForm />
+    </div>
   )
 }
 

@@ -1,0 +1,63 @@
+.tema-toggle {
+    text-align: right;
+  }
+  
+  .tema-toggle button {
+    padding: 8px 12px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #f39c12 ;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    box-shadow: #444;
+    position: fixed;
+    bottom: 3%;
+    left: 2%; 
+    z-index: 5;
+  }
+  
+  .tema-toggle button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+  
+  .app-container.dark .tema-toggle button {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .app-container.dark .tema-toggle button:hover {
+    background-color: #666;
+  }
+
+  .homeButton button {
+    padding: 8px 12px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #f39c12 ;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    box-shadow: #444;
+    position: fixed;
+    top: 3%;
+    left: 2%; 
+    z-index: 5;
+  }
+  .homeButton button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }

@@ -215,3 +215,96 @@
   height: 3rem !important;
   width: 3rem !important;
 }
+[data-theme='dark'] body {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+[data-theme='dark'] .appointment-card {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .appointment-form-label,
+[data-theme='dark'] .pagination-info {
+  color: #f1f1f1;
+}
+
+[data-theme='dark'] .input-standard {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+[data-theme='dark'] .service-label {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+[data-theme='dark'] .service-label:hover,
+[data-theme='dark'] .service-label:focus,
+[data-theme='dark'] .service-option-container:hover .service-label,
+[data-theme='dark'] .service-option-container:focus-within .service-label {
+  outline: 1px solid #34d399;
+}
+
+[data-theme='dark'] .service-checkbox:checked + .service-label {
+  background-color: #34d399;
+  border: 1px solid #34d399;
+  color: #000;
+}
+
+[data-theme='dark'] .edit-button,
+[data-theme='dark'] .appointment-card .confirm-button,
+[data-theme='dark'] .appointment-card .cancel-button {
+  color: #fff;
+}
+
+[data-theme='dark'] .pagination-button {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+[data-theme='dark'] .pagination-button:hover {
+  background-color: #34d399;
+  color: #000;
+}
+
+[data-theme='dark'] .pagination-button:disabled {
+  background-color: #3a3a3a;
+  color: #777;
+}
+
+[data-theme='dark'] .error-message {
+  color: #f87171;
+}
+
+[data-theme='dark'] .react-datepicker {
+  background-color: #1e1e1e !important;
+  color: #fff;
+  border: 1px solid #555 !important;
+}
+
+[data-theme='dark'] .react-datepicker__day,
+[data-theme='dark'] .react-datepicker__day-name {
+  color: #fff !important;
+}
+
+[data-theme='dark'] .react-datepicker__day--selected {
+  background-color: #34d399 !important;
+  color: #000 !important;
+}
+
+[data-theme='dark'] .react-datepicker__header {
+  background-color: #2c2c2c !important;
+  border-bottom: 1px solid #444 !important;
+  color: #fff !important;
+}
+
+[data-theme='dark'] .react-datepicker__time-list-item {
+  background-color: #1e1e1e !important;
+  color: #fff !important;
+}

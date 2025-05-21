@@ -7,6 +7,8 @@ import PetForm from '../../components/PetForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './pets.css'
+import BotaoTema from '../../components/BotaoTema'
+import HomeButton from '../../components/HomeButton'
 
 const Pets = () => {
   const [pets, setPets] = useState([])
@@ -30,7 +32,7 @@ const Pets = () => {
   const fetchPets = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      toast.error('Token não encontrado')
+      toast.error('Sessão expirada.')
       return
     }
 
@@ -40,7 +42,7 @@ const Pets = () => {
       })
       setPets(res.data.pets || [])
     } catch (err) {
-      toast.error('Erro ao carregar pets.')
+      toast.error(err.response?.data?.msg || 'Erro ao carregar pets.')
     }
   }
 
@@ -79,7 +81,7 @@ const Pets = () => {
       setEditingPet(null)
       fetchPets()
     } catch (err) {
-      toast.error('Erro ao salvar pet.')
+      toast.error(err.response?.data?.msg || 'Erro ao salvar pet.')
     }
   }
 
@@ -107,7 +109,7 @@ const Pets = () => {
       toast.success('Pet deletado com sucesso!')
       fetchPets()
     } catch (err) {
-      toast.error('Erro ao deletar pet.')
+      toast.error(err.response?.data?.msg || 'Erro ao deletar pet.')
     }
 
     setShowModal(false)
@@ -119,6 +121,9 @@ const Pets = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">
