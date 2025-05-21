@@ -229,3 +229,43 @@ html, body {
     text-align: center;
   }
 }
+.tema-escuro .main-login {
+  background: linear-gradient(135deg, #000000, #2c2c2c);
+}
+
+.tema-escuro .cad-box {
+  background-color: #2c2c2c;
+  border-color: #444;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.tema-escuro .cad-login-title,
+.tema-escuro .paragraph,
+.tema-escuro .success-msg,
+.tema-escuro .error-msg {
+  color: #fff;
+}
+
+.tema-escuro .textfield > label {
+  color: #ddd;
+}
+
+.tema-escuro .cad-inputs {
+  background-color: #333;
+  color: #fff;
+}
+
+.tema-escuro .btn {
+  background-color: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+.tema-escuro .btn:hover {
+  background-color: #3171e0;
+  color: #fff;
+}
+
+.tema-escuro a {
+  color: #ffc107;
+}

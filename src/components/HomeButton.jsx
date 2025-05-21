@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 const HomeButton = () => {
   return (
     <div  className="homeButton">
-      <button  title="Alternar Tema">
+      <Link to="/">
+      <button title="Alternar Tema">
         {< FaHome/>}
       </button>
+      </Link>
+
     </div>
   );
 };

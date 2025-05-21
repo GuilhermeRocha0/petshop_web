@@ -564,7 +564,7 @@ body.tema-escuro .section-subtitle {
 
 body.tema-escuro #menu,
 body.tema-escuro #testimonials {
-  background: linear-gradient(to bottom, #1e1e1e);
+  background: linear-gradient(to bottom, #1e1e1e, #1e1e1e) !important;
 }
 
 body.tema-escuro .footer {
