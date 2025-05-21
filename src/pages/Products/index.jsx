@@ -7,6 +7,8 @@ import ProductForm from '../../components/ProductForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './products.css'
+import HomeButton from '../../components/HomeButton'
+import BotaoTema from '../../components/BotaoTema'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -158,6 +160,9 @@ const Products = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

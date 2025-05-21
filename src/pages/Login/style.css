@@ -111,7 +111,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #F80, #FFF8DC);
+  background: linear-gradient(to bottom, #f80, #fff8dc);
 }
 
 .image {
@@ -167,7 +167,7 @@ body {
   width: 100%;
 }
 
-.lo-textfield>label {
+.lo-textfield > label {
   color: rgb(0, 0, 0);
   font-style: italic;
   font-weight: bold;
@@ -237,28 +237,26 @@ body {
   }
   .lo-dir-login {
     padding: 0;
-}
-.lo-login-title{
-  font-size: 4.2rem;
-}
+  }
+  .lo-login-title {
+    font-size: 4.2rem;
+  }
 }
 
 @media screen and (max-width: 1100px) {
-  .lo-login-title{
+  .lo-login-title {
     font-size: 3.8rem;
   }
 }
 
 @media screen and (max-width: 1007px) {
-  .lo-login-title{
+  .lo-login-title {
     font-size: 2.8rem;
   }
 }
 
 @media screen and (max-width: 783px) {
-  */
-
-  body {
+  */ body {
     width: 100%;
     height: 100vh;
     padding: 0;
@@ -278,7 +276,7 @@ body {
 
   .lo-dir-login {
     padding: 0;
-}
+  }
 
   .lo-box {
     width: 100%;
@@ -294,7 +292,7 @@ body {
     text-align: center;
   }
 
-  .lo-textfield>label {
+  .lo-textfield > label {
     font-size: 1.8rem;
   }
 
@@ -318,63 +316,62 @@ body {
     text-align: center;
   }
 }
-.tema-escuro .login-page {
+[data-theme='dark'] .login-page {
   background-color: #1e1e1e;
 }
 
-.tema-escuro .login-page h1,
-.tema-escuro .lo-login-title,
-.tema-escuro .lo-p,
-.tema-escuro .return-msg {
+[data-theme='dark'] .login-page h1,
+[data-theme='dark'] .lo-login-title,
+[data-theme='dark'] .lo-p,
+[data-theme='dark'] .return-msg {
   color: #fff;
 }
 
-.tema-escuro .cad-login-box,
-.tema-escuro .lo-box {
+[data-theme='dark'] .cad-login-box,
+[data-theme='dark'] .lo-box {
   background-color: #2c2c2c;
   border-color: #444;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
 }
 
-.tema-escuro .login-box label,
-.tema-escuro .lo-textfield > label {
+[data-theme='dark'] .login-box label,
+[data-theme='dark'] .lo-textfield > label {
   color: #ddd;
 }
 
-.tema-escuro .login-box input,
-.tema-escuro .login-box select,
-.tema-escuro .login-box textarea,
-.tema-escuro .lo-inputs {
+[data-theme='dark'] .login-box input,
+[data-theme='dark'] .login-box select,
+[data-theme='dark'] .login-box textarea,
+[data-theme='dark'] .lo-inputs {
   background-color: #333;
   color: #fff;
 }
 
-.tema-escuro .form-button {
+[data-theme='dark'] .form-button {
   background-color: #fff;
   color: #111;
   border-color: #fff;
 }
 
-.tema-escuro .form-button:hover {
+[data-theme='dark'] .form-button:hover {
   background-color: transparent;
   color: #fff;
   border-color: #fff;
 }
 
-.tema-escuro .lo-btn {
+[data-theme='dark'] .lo-btn {
   background-color: #fff;
   color: #111;
 }
 
-.tema-escuro .lo-btn:hover {
+[data-theme='dark'] .lo-btn:hover {
   background-color: #3171e0;
   color: #fff;
 }
 
-.tema-escuro a {
+[data-theme='dark'] a {
   color: #ffc107;
 }
-.tema-escuro .lo-main-login {
+[data-theme='dark'] .lo-main-login {
   background: linear-gradient(135deg, #000000, #2c2c2c);
-  
 }

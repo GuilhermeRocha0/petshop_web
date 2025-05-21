@@ -50,34 +50,31 @@ const RegisterUserForm = () => {
     }
   }
 
-      const [temaEscuro, setTemaEscuro] = useState(false);
-      
-      useEffect(() => {
-        const body = document.body;
-        if (temaEscuro) {
-          body.classList.add('tema-escuro');
-          body.classList.remove('tema-claro');
-        } else {
-          body.classList.add('tema-claro');
-          body.classList.remove('tema-escuro');
-        }
-      }, [temaEscuro]);
-      
-      const alternarTema = () => {
-        setTemaEscuro(!temaEscuro);
-      };
+  const [temaEscuro, setTemaEscuro] = useState(false)
+
+  useEffect(() => {
+    const body = document.body
+    if (temaEscuro) {
+      body.classList.add('tema-escuro')
+      body.classList.remove('tema-claro')
+    } else {
+      body.classList.add('tema-claro')
+      body.classList.remove('tema-escuro')
+    }
+  }, [temaEscuro])
+
+  const alternarTema = () => {
+    setTemaEscuro(!temaEscuro)
+  }
 
   return (
     <div className="cad-box">
-      
       <div className="cad-login-title">Faça seu cadastro 🐶!</div>
       {message && <p className="success-msg">{message}</p>}
       {error && <p className="error-msg">{error}</p>}
-      <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
-      <HomeButton/>
+
       <form onSubmit={handleSubmit}>
         <div className="textfield">
-          
           <label htmlFor="name">Nome</label>
           <input
             className="cad-inputs"
@@ -148,11 +145,16 @@ const RegisterUserForm = () => {
         </div>
 
         <br />
-        <button type="submit" className="btn">Cadastre-se</button>
-        <p className='ponto'>
+        <button type="submit" className="btn">
+          Cadastre-se
+        </button>
+        <p className="ponto">
           Já tem uma conta? <Link to="/login">Entre</Link>
         </p>
       </form>
+
+      <HomeButton />
+      <BotaoTema />
     </div>
   )
 }

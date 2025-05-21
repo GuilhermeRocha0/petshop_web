@@ -7,6 +7,8 @@ import CategoryForm from '../../components/CategoryForm'
 import Pagination from '../../components/Pagination'
 import Modal from '../../components/Modal'
 import './categories.css'
+import HomeButton from '../../components/HomeButton'
+import BotaoTema from '../../components/BotaoTema'
 
 const Categories = () => {
   const [categories, setCategories] = useState([])
@@ -122,6 +124,9 @@ const Categories = () => {
 
   return (
     <div className="page-container">
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">

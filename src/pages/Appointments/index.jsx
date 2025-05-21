@@ -191,27 +191,28 @@ const Appointments = () => {
   )
   const totalPages = Math.ceil(sortedAppointments.length / itemsPerPage)
 
-    const [temaEscuro, setTemaEscuro] = useState(false);
-  
+  const [temaEscuro, setTemaEscuro] = useState(false)
+
   useEffect(() => {
-    const body = document.body;
+    const body = document.body
     if (temaEscuro) {
-      body.classList.add('tema-escuro');
-      body.classList.remove('tema-claro');
+      body.classList.add('tema-escuro')
+      body.classList.remove('tema-claro')
     } else {
-      body.classList.add('tema-claro');
-      body.classList.remove('tema-escuro');
+      body.classList.add('tema-claro')
+      body.classList.remove('tema-escuro')
     }
-  }, [temaEscuro]);
-  
+  }, [temaEscuro])
+
   const alternarTema = () => {
-    setTemaEscuro(!temaEscuro);
-  };
+    setTemaEscuro(!temaEscuro)
+  }
 
   return (
     <div className="page-container">
-      <BotaoTema alternarTema={alternarTema} temaEscuro={temaEscuro} />
-      <HomeButton/>
+      <HomeButton />
+      <BotaoTema />
+
       <div className="painel-container">
         <Sidebar />
         <div className="painel-conteudo">
