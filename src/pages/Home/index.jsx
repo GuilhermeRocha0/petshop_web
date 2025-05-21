@@ -30,7 +30,7 @@ const Home = () => {
             </li>
           </ul>
 
-          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
+          <Link to="/login" className="btn-default">Entrar</Link>
 
           <button id="mobile_btn" onClick={handleMobileMenu}>
             <i className={menuActive ? 'fa fa-x' : 'fa fa-bars'}></i>
@@ -50,7 +50,7 @@ const Home = () => {
             </li>
           </ul>
 
-          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
+          <Link to="/login" className="btn-default">Entrar</Link>
         </div>
       </header>
 
@@ -141,7 +141,7 @@ const Home = () => {
                   {[...Array(5)].map((_, i) => (
                     <i className="fa-solid fa-star" key={i}></i>
                   ))}
-                  <span>(500+)</span>
+                  <span>(100+)</span>
                 </div>
 
                 <div className="sih-price">
