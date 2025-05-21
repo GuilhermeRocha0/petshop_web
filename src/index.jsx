@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { ThemeProvider } from './contexts/ThemeContext.jsx'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
@@ -11,3 +12,6 @@ createRoot(document.getElementById('root')).render(
     </ThemeProvider>
   </StrictMode>
 )
+
+
+

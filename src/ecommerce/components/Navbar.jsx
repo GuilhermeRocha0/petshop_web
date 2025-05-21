@@ -8,7 +8,7 @@ import {
   faShoppingCart
 } from '@fortawesome/free-solid-svg-icons'
 
-export default function NavBar({ setShowSidebarCart, selectedProducts }) {
+export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode, setDarkMode, ...props }) {
   const [show, setShow] = useState(false)
 
   return (
@@ -35,6 +35,12 @@ export default function NavBar({ setShowSidebarCart, selectedProducts }) {
             <li>
               <Link to="/#">Conta</Link>
             </li>
+            <li><button
+            className="theme-toggle"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? "☀️" : "🌙"}
+          </button></li>
           </ul>
         </nav>
 

@@ -11,13 +11,14 @@ export default function SidebarCart({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
-  addToCartTotal
+  addToCartTotal,
+  darkMode
 }) {
 
   const navigate = useNavigate();
 
   return (
-    <aside className={`sidebar-cart ${showSidebarCart && 'show'}`}>
+    <aside className={`sidebar-cart ${showSidebarCart ? "show" : ""} ${darkMode ? "dark" : ""}`}>
       <div className="top">
         <h3>Seu Carrinho</h3>
         <button onClick={() => setShowSidebarCart(false)}>
@@ -40,7 +41,7 @@ export default function SidebarCart({
         <b>Total: </b> {cartTotal}
       </div>
 
-       <button className="pay-button" onClick={() => navigate("/checkout")}>
+       <button className="pay-button" onClick={() => navigate("/loja/checkout")}>
                 Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
             </button>
 
