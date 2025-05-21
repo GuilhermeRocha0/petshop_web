@@ -95,21 +95,21 @@ const Products = () => {
       if (image) formData.append('image', image)
 
       if (editingProduct) {
-        await api.put(`/products/${editingProduct._id}`, formData, {
+        const res = await api.put(`/products/${editingProduct._id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
           }
         })
-        toast.success(res.data?.msg || 'Produto atualizado com sucesso!')
+        toast.success('Produto atualizado com sucesso!')
       } else {
-        await api.post('/products', formData, {
+        const res = await api.post('/products', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
           }
         })
-        toast.success(res.data?.msg || 'Produto cadastrado com sucesso!')
+        toast.success('Produto cadastrado com sucesso!')
       }
 
       setShowForm(false)
@@ -139,12 +139,13 @@ const Products = () => {
     }
 
     try {
-      await api.delete(`/products/${selectedProductId}`, {
+      const res = await api.delete(`/products/${selectedProductId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      toast.success(res.data?.msg || 'Produto deletado com sucesso!')
+      toast.success('Produto deletado com sucesso!')
       fetchProducts()
     } catch (err) {
+      console.error(err)
       toast.error(err.response?.data?.msg || 'Erro ao deletar produto.')
     }
 

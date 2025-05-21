@@ -67,14 +67,14 @@ const Pets = () => {
           { name, size, age, breed, notes },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success(res.data?.msg || 'Pet atualizado com sucesso!')
+        toast.success('Pet atualizado com sucesso!')
       } else {
         await api.post(
           '/pets/register',
           { name, size, age, breed, notes },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        toast.success(res.data?.msg || 'Pet cadastrado com sucesso!')
+        toast.success('Pet cadastrado com sucesso!')
       }
 
       setShowForm(false)
@@ -106,7 +106,7 @@ const Pets = () => {
       await api.delete(`/pets/${selectedPetId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      toast.success(res.data?.msg || 'Pet deletado com sucesso!')
+      toast.success('Pet deletado com sucesso!')
       fetchPets()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao deletar pet.')
