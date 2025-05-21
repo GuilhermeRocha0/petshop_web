@@ -384,6 +384,17 @@ section {
 #mobile_menu {
   display: none;
 }
+.imagem-fundo{
+  width: 500px !important;
+  height: 500px !important;
+  background-image: url('/public/images/hero.white.png');
+}
+
+body.tema-escuro .imagem-fundo{
+  width: 500px !important;
+  height: 500px !important;
+  background-image: url('/public/images/hero.black.png');
+}
 
 @media screen and (max-width: 1170px) {
   #nav_list,

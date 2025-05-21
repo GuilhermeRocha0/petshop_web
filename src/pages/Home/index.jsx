@@ -48,7 +48,7 @@ const alternarTema = () => {
             </li>
           </ul>
 
-          <Link to="/cadastrar" className="btn-default">Cadastre-se</Link>
+          <Link to="/cadastrar" aria-label="Cadastre-se" className="btn-default">Cadastre-se</Link>
 
           <button id="mobile_btn" onClick={handleMobileMenu}>
             <i className={menuActive ? 'fa fa-x' : 'fa fa-bars'}></i>
@@ -92,11 +92,11 @@ const alternarTema = () => {
               <a href="">
                 <i className="fa-brands fa-whatsapp" id="zap"></i>
               </a>
-              <a href="">
+              <a href="https://www.instagram.com/explore/locations/913624535/pet-da-carla/">
                 <i className="fa-brands fa-instagram" id="insta"></i>
               </a>
-              <a href="">
-                <i className="fa-brands fa-facebook" id="face"></i>
+              <a href="https://pt-br.facebook.com/petdacarla">
+                <i className="fa-brands fa-facebook" id="face" ></i>
               </a>
             </div>
           </div>
@@ -167,7 +167,7 @@ const alternarTema = () => {
         </section>
 
         <section id="testimonials">
-          <img src="./images/hero.png" id="testimonials_chef" alt="Chef" />
+        <div class="imagem-fundo" id="testimonials_chef" alt="Chef" ></div>
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>
