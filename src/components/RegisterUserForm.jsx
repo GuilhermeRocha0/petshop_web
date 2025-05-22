@@ -128,11 +128,11 @@ const RegisterUserForm = () => {
         </div>
 
         <br />
-        <button type="submit" className="btn" title='Cadastre-se'>
+        <button type="submit" className="btn" alt='Cadastre-se'>
           Cadastre-se
         </button>
         <p className="ponto">
-          Já tem uma conta? <Link to="/login" title='Já tem uma conta?'>Entre</Link>
+          Já tem uma conta? <Link to="/login" alt='Já tem uma conta?'>Entre</Link>
         </p>
       </form>
 

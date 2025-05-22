@@ -42,7 +42,7 @@ const LoginForm = () => {
   return (
     <div className="lo-main-login">
       <div className="lo-esq-login">
-        <img src="../../public/images/dog.png" className="image" alt="Cachorro Brincando com bola" title="Cachorro Brincando com bola"/>
+        <img src="../../public/images/dog.png" className="image" alt="Cachorro Brincando com bola" />
       </div>
 
       <div className="lo-dir-login">
@@ -88,18 +88,18 @@ const LoginForm = () => {
           <div className="lo-p">
             <p>
               Esqueceu sua senha?{' '}
-              <Link to="/redefinir-senha" title='redefina sua senha'>Redefina aqui</Link>
+              <Link to="/redefinir-senha" alt='redefina sua senha'>Redefina aqui</Link>
             </p>
           </div>
 
           <br />
 
-          <button className="btn" type="submit" title='Clique para logar'>
+          <button className="btn" type="submit" alt='Clique para logar'>
             Login
           </button>
 
           <p className="ponto">
-            Caso não tenha conta: <Link to="/cadastrar" title='Caso nao tenha Conta'>Cadastre-se</Link>
+            Caso não tenha conta: <Link to="/cadastrar" alt='Caso nao tenha Conta'>Cadastre-se</Link>
           </p>
         </form>
       </div>

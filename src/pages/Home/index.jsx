@@ -19,18 +19,18 @@ const Home = () => {
           </i>
 
           <ul id="nav_list">
-            <li className="nav-item" title='Ecomerce'>
+            <li className="nav-item" alt='Ecomerce'>
               <Link to="/loja">Ecomerce</Link>
             </li>
-            <li className="nav-item" title='Seus agendamentos'>
+            <li className="nav-item" alt='Seus agendamentos'>
               <Link to="/agendamentos">Agendamentos</Link>
             </li>
-            <li className="nav-item active" title='Sobre Nós'>
+            <li className="nav-item active" alt='Sobre Nós'>
               <Link>Sobre nós</Link>
             </li>
           </ul>
 
-          <Link to="/login" className="btn-default" title='Entre ou Cadastre-se'>Entrar</Link>
+          <Link to="/login" className="btn-default" alt='Entre ou Cadastre-se'>Entrar</Link>
 
           <button id="mobile_btn" onClick={handleMobileMenu}>
             <i className={menuActive ? 'fa fa-x' : 'fa fa-bars'}></i>
@@ -50,7 +50,7 @@ const Home = () => {
             </li>
           </ul>
 
-          <Link to="/login" className="btn-default" title='Entre ou cadastre-se'>Entrar</Link>
+          <Link to="/login" className="btn-default" alt='Entre ou cadastre-se'>Entrar</Link>
         </div>
       </header>
 
@@ -72,13 +72,13 @@ const Home = () => {
 
             <div id="cta_buttons" style={{ display: 'flex', gap: '20px' }}>
               <Link to="/agendamentos">
-                <a href="#" className="btn-default" title='Agende seu serviço'>
+                <a href="#" className="btn-default" alt='Agende seu serviço'>
                   Agendar já
                 </a>
               </Link>
 
               <a href="tel:(11)2747-2107" id="phone_button">
-                <button className="btn-default" title='Ligue'>
+                <button className="btn-default" alt='Ligar'>
                   <i
                     className="fa-solid fa-phone"
                     style={{ fontSize: '16px' }}
@@ -102,7 +102,7 @@ const Home = () => {
           </div>
 
           <div id="banner">
-            <img src="./images/alpha.png" alt="Banner cachorro sentado" title='cachorro sentado' />
+            <img src="./images/alpha.png" alt="Banner cachorro sentado"  />
           </div>
         </section>
 
@@ -154,7 +154,7 @@ const Home = () => {
 
                 <div className="sih-price">
                   <Link to="/agendamentos">
-                    <button className="btn-default" title='Agende agora'>
+                    <button className="btn-default" alt="Agende agora um serviço">
                       <i style={{ fontSize: '16px' }}>Agende agora</i>
                     </button>
                   </Link>
@@ -165,7 +165,7 @@ const Home = () => {
         </section>
 
         <section id="testimonials">
-          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói" title='Cachorro herói'></div>
+          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói" ></div>
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>
@@ -206,8 +206,7 @@ const Home = () => {
                 </div>
               ))}
             </div>
-
-            <button href='https://www.google.com/search?client=opera-gx&hs=Rmg&sca_esv=edb63bcffe9bdd76&sxsrf=AHTn8zpq_4hCgQxR4oK9D78Sw3h_FnU1MA:1747884819538&si=APYL9bvoDGWmsM6h2lfKzIb8LfQg_oNQyUOQgna9TyfQHAoqUuedQ8T0HxmqEjKZHICZ01NiCiL-k3cU8hwvJjz04TujuquPjxamnPSSFJ2zMWUIVKS6p7KryuuwWfXqdvVzseBcm08gyFpC88qG1IVPgEYkoYSYmQ%3D%3D&q=PET+DA+CARLA+Coment%C3%A1rios&sa=X&ved=2ahUKEwjPm5uukraNAxU1npUCHaq2HJcQ0bkNegQIOxAE&biw=1912&bih=962' className="btn-default-fi" title='ver mais avaliações'>Ver mais avaliações</button>
+              <a className="btn-default-fi" target='_blank' href="https://www.google.com/search?sca_esv=edb63bcffe9bdd76&si=APYL9bvoDGWmsM6h2lfKzIb8LfQg_oNQyUOQgna9TyfQHAoqUuedQ8T0HxmqEjKZHICZ01NiCiL-k3cU8hwvJjz04TujuquPjxamnPSSFJ2zMWUIVKS6p7KryuuwWfXqdvVzseBcm08gyFpC88qG1IVPgEYkoYSYmQ%3D%3D&q=PET+DA+CARLA+Coment%C3%A1rios&sa=X&ved=2ahUKEwjQ5pPribeNAxVmJrkGHbk9L8UQ0bkNegQIMhAE&biw=1920&bih=919&dpr=1">Ver mais avaliações</a>
           </div>
         </section>
       </main>
