@@ -19,18 +19,18 @@ const Home = () => {
           </i>
 
           <ul id="nav_list">
-            <li className="nav-item">
+            <li className="nav-item" title='Ecomerce'>
               <Link to="/loja">Ecomerce</Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" title='Seus agendamentos'>
               <Link to="/agendamentos">Agendamentos</Link>
             </li>
-            <li className="nav-item active">
+            <li className="nav-item active" title='Sobre Nós'>
               <Link>Sobre nós</Link>
             </li>
           </ul>
 
-          <Link to="/login" className="btn-default">Entrar</Link>
+          <Link to="/login" className="btn-default" title='Entre ou Cadastre-se'>Entrar</Link>
 
           <button id="mobile_btn" onClick={handleMobileMenu}>
             <i className={menuActive ? 'fa fa-x' : 'fa fa-bars'}></i>
@@ -50,7 +50,7 @@ const Home = () => {
             </li>
           </ul>
 
-          <Link to="/login" className="btn-default">Entrar</Link>
+          <Link to="/login" className="btn-default" title='Entre ou cadastre-se'>Entrar</Link>
         </div>
       </header>
 
@@ -72,37 +72,37 @@ const Home = () => {
 
             <div id="cta_buttons" style={{ display: 'flex', gap: '20px' }}>
               <Link to="/agendamentos">
-                <a href="#" className="btn-default">
+                <a href="#" className="btn-default" title='Agende seu serviço'>
                   Agendar já
                 </a>
               </Link>
 
-              <a href="tel:+55555555555555" id="phone_button">
-                <button className="btn-default">
+              <a href="tel:(11)2747-2107" id="phone_button">
+                <button className="btn-default" title='Ligue'>
                   <i
                     className="fa-solid fa-phone"
                     style={{ fontSize: '16px' }}
                   ></i>
                 </button>
-                (11)94076-4312
+                (11) 2747-2107
               </a>
             </div>
 
             <div className="social-media-buttons">
-              <a href="">
-                <i className="fa-brands fa-whatsapp" id="zap"></i>
+              <a href="https://api.whatsapp.com/send?phone=5511946474250&text&context=AfdDXsugVIq8cDkTkEi1IOiTaYuB2wtzUD675fm8MJRXp-3KUXAq0sZQxJCMgKgWd_nkyX8fNlhVgjq3SstCZvYXdmAkjZ7-C9hJHhCbH-GW7kKqRu9eaBageKnsf5UCf0r-Ga5xHeelThC_4Q&source&app=facebook">
+                <i className="fa-brands fa-whatsapp" id="zap" title='WhatsApp'></i>
               </a>
               <a href="https://www.instagram.com/explore/locations/913624535/pet-da-carla/">
-                <i className="fa-brands fa-instagram" id="insta"></i>
+                <i className="fa-brands fa-instagram" id="insta" title='Instragram'></i>
               </a>
               <a href="https://pt-br.facebook.com/petdacarla">
-                <i className="fa-brands fa-facebook" id="face"></i>
+                <i className="fa-brands fa-facebook" id="face" title='Facebook'></i>
               </a>
             </div>
           </div>
 
           <div id="banner">
-            <img src="./images/alpha.png" alt="Banner cachorro sentado" />
+            <img src="./images/alpha.png" alt="Banner cachorro sentado" title='cachorro sentado' />
           </div>
         </section>
 
@@ -116,7 +116,7 @@ const Home = () => {
               {
                 img: './images/banhoo.png',
                 title: '🛁 Banho',
-                description: `Seu pet limpinho, cheiroso e feliz! 💦\ntomamos todo o cuidado que seu bichinho merece.`
+                description: `Seu pet limpinho, cheiroso e feliz! 💦\ntomamos todo o cuidado e delicadeza que seu bichinho merece.`
               },
               {
                 img: './images/tosauu.png',
@@ -154,8 +154,8 @@ const Home = () => {
 
                 <div className="sih-price">
                   <Link to="/agendamentos">
-                    <button className="btn-default">
-                      <i style={{ fontSize: '16px' }}>agende agora</i>
+                    <button className="btn-default" title='Agende agora'>
+                      <i style={{ fontSize: '16px' }}>Agende agora</i>
                     </button>
                   </Link>
                 </div>
@@ -165,7 +165,7 @@ const Home = () => {
         </section>
 
         <section id="testimonials">
-          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói"></div>
+          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói" title='Cachorro herói'></div>
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>
@@ -207,7 +207,7 @@ const Home = () => {
               ))}
             </div>
 
-            <button className="btn-default-fi">Ver mais avaliações</button>
+            <button href='https://www.google.com/search?client=opera-gx&hs=Rmg&sca_esv=edb63bcffe9bdd76&sxsrf=AHTn8zpq_4hCgQxR4oK9D78Sw3h_FnU1MA:1747884819538&si=APYL9bvoDGWmsM6h2lfKzIb8LfQg_oNQyUOQgna9TyfQHAoqUuedQ8T0HxmqEjKZHICZ01NiCiL-k3cU8hwvJjz04TujuquPjxamnPSSFJ2zMWUIVKS6p7KryuuwWfXqdvVzseBcm08gyFpC88qG1IVPgEYkoYSYmQ%3D%3D&q=PET+DA+CARLA+Coment%C3%A1rios&sa=X&ved=2ahUKEwjPm5uukraNAxU1npUCHaq2HJcQ0bkNegQIOxAE&biw=1912&bih=962' className="btn-default-fi" title='ver mais avaliações'>Ver mais avaliações</button>
           </div>
         </section>
       </main>
@@ -222,12 +222,11 @@ const Home = () => {
           </p>
 
           <p>
-            <i className="fa-solid fa-location-dot"></i> Rua salgato, 123 - São
-            Paulo, SP
+            <i className="fa-solid fa-location-dot"></i>  Av. Líder, 2828 - Cidade Líder, São Paulo
           </p>
 
           <p>
-            <i className="fa-solid fa-phone"></i> (11) 94076-4312
+            <i className="fa-solid fa-phone"></i> (11) 2747-2107
           </p>
 
           <p>
@@ -240,14 +239,14 @@ const Home = () => {
           <p>Siga a gente nas redes sociais:</p>
 
           <div className="social-footer">
-            <a href="#">
-              <i className="fa-brands fa-facebook"></i> PET_CARLA_OFC
+            <a href="https://pt-br.facebook.com/petdacarla">
+              <i className="fa-brands fa-facebook"></i> PET Da Carla
             </a>
-            <a href="#">
-              <i className="fa-brands fa-instagram"></i> PET_CARLA_OFC
+            <a href="https://www.instagram.com/explore/locations/913624535/pet-da-carla/">
+              <i className="fa-brands fa-instagram"></i> PET Da Carla
             </a>
-            <a href="#">
-              <i className="fa-brands fa-whatsapp"></i> (11) 94076-4312
+            <a href="https://api.whatsapp.com/send?phone=5511946474250&text&context=AfdDXsugVIq8cDkTkEi1IOiTaYuB2wtzUD675fm8MJRXp-3KUXAq0sZQxJCMgKgWd_nkyX8fNlhVgjq3SstCZvYXdmAkjZ7-C9hJHhCbH-GW7kKqRu9eaBageKnsf5UCf0r-Ga5xHeelThC_4Q&source&app=facebook">
+              <i className="fa-brands fa-whatsapp"></i> +55 (11) 94647-4250
             </a>
           </div>
         </div>
