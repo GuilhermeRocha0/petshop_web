@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import BotaoTema from '../../components/BotaoTema'
+import HomeButton from '../../components/HomeButton'
 import api from '../../services/api'
 import './reset-password.css'
 
@@ -84,11 +86,11 @@ const ResetPassword = () => {
   return (
     <div className="reset-password-page">
       <div className="reset-password-container">
-        <h2>Redefinir Senha</h2>
+        <h2>Redefinir Senha </h2>
 
         {step === 1 && (
           <form className="reset-password-form" onSubmit={handleSendCode}>
-            <label>Email</label>
+            <label className='re-label' >Email</label>
             <input
               type="email"
               className="reset-password-input"
@@ -97,9 +99,12 @@ const ResetPassword = () => {
               placeholder="seu@email.com"
               required
             />
+            <br />
+            <br />
             <button type="submit" className="reset-password-button">
               Enviar Código
             </button>
+            <br />
             <button
               type="button"
               className="reset-password-cancel"
@@ -129,9 +134,11 @@ const ResetPassword = () => {
                 />
               ))}
             </div>
+            <br />
             <button type="submit" className="reset-password-button">
               Verificar Código
             </button>
+            <br />
             <button
               type="button"
               className="reset-password-cancel"
@@ -175,6 +182,8 @@ const ResetPassword = () => {
           </form>
         )}
       </div>
+      <BotaoTema />
+      <HomeButton />
     </div>
   )
 }
