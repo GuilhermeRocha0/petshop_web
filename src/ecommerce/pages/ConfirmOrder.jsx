@@ -11,6 +11,7 @@ export default function ConfirmOrder({
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [orderConfirmed, setOrderConfirmed] = useState(false) // ✅ novo estado
 
   const handleReserveProducts = async () => {
     setIsLoading(true)
@@ -37,9 +38,7 @@ export default function ConfirmOrder({
       )
 
       setMessage(res.data.msg)
-      setTimeout(() => {
-        navigate('/')
-      }, 2000)
+      setOrderConfirmed(true) // ✅ ativa exibição das informações
     } catch (error) {
       console.error('Erro ao reservar produtos:', error)
       setMessage(
@@ -55,10 +54,11 @@ export default function ConfirmOrder({
     <div className={`checkout-container ${darkMode ? 'dark' : ''}`}>
       <h1>Confirmar Reserva</h1>
 
-      <div className="products-summary">
-        {selectedProducts.length === 0 ? (
-          <p>Nenhum produto selecionado.</p>
-        ) : (
+      {orderConfirmed ? (
+        <div className="order-confirmation">
+          <p>{message}</p>
+
+          <h2>Resumo do Pedido:</h2>
           <ul>
             {selectedProducts.map(product => (
               <li key={product._id}>
@@ -66,29 +66,56 @@ export default function ConfirmOrder({
               </li>
             ))}
           </ul>
-        )}
 
-        <p className="total">
-          <strong>Total: </strong>R$ {cartTotal.toFixed(2)}
-        </p>
+          <p className="total">
+            <strong>Total: </strong>R$ {cartTotal.toFixed(2)}
+          </p>
 
-        <button
-          className="pay-button"
-          onClick={handleReserveProducts}
-          disabled={isLoading || selectedProducts.length === 0}
-        >
-          {isLoading ? 'Reservando...' : 'Reservar Produtos'}
-        </button>
+          <div className="confirmation-buttons">
+            <button onClick={() => navigate('/loja')}>
+              Continuar Navegando
+            </button>
+            <button onClick={() => navigate('/meus-pedidos')}>
+              Meus Pedidos
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="products-summary">
+          {selectedProducts.length === 0 ? (
+            <p>Nenhum produto selecionado.</p>
+          ) : (
+            <ul>
+              {selectedProducts.map(product => (
+                <li key={product._id}>
+                  {product.name} - R$ {product.price} x {product.quantity}
+                </li>
+              ))}
+            </ul>
+          )}
 
-        <p>
-          Após reservar, lembre-se que você tem até 7 dias para finalizar e
-          retirar o pedido na loja.
-        </p>
+          <p className="total">
+            <strong>Total: </strong>R$ {cartTotal.toFixed(2)}
+          </p>
 
-        {message && <p className="message">{message}</p>}
+          <button
+            className="pay-button"
+            onClick={handleReserveProducts}
+            disabled={isLoading || selectedProducts.length === 0}
+          >
+            {isLoading ? 'Reservando...' : 'Reservar Produtos'}
+          </button>
 
-        <LoadingModal isOpen={isLoading} />
-      </div>
+          <p>
+            Após reservar, lembre-se que você tem até 7 dias para finalizar e
+            retirar o pedido na loja.
+          </p>
+
+          {message && <p className="message">{message}</p>}
+
+          <LoadingModal isOpen={isLoading} />
+        </div>
+      )}
     </div>
   )
 }
