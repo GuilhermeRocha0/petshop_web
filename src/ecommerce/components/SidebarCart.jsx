@@ -10,7 +10,8 @@ export default function SidebarCart({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
-  addToCartTotal,
+  addProductToCart,
+  removeAllFromCart,
   darkMode
 }) {
   const navigate = useNavigate()
@@ -30,12 +31,12 @@ export default function SidebarCart({
 
       <div className="sidebar-products-list">
         {selectedProducts?.map(product => (
-          // Use _id como key para evitar problemas de renderização
           <SidebarProduct
             key={product._id}
             {...product}
+            addProductToCart={addProductToCart}
             removeProductFromCart={removeProductFromCart}
-            addToCartTotal={addToCartTotal}
+            removeAllFromCart={removeAllFromCart}
           />
         ))}
       </div>
@@ -44,7 +45,10 @@ export default function SidebarCart({
         <b>Total: </b> R$ {cartTotal.toFixed(2)}
       </div>
 
-      <button className="pay-button" onClick={() => navigate('/loja/checkout')}>
+      <button
+        className="pay-button"
+        onClick={() => navigate('/loja/confirmar-pedido')}
+      >
         Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />
       </button>
     </aside>

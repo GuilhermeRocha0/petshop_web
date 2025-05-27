@@ -11,6 +11,7 @@ export default function HomePage({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
+  removeAllFromCart,
   addToCartTotal,
   darkMode,
   searchTerm,
@@ -27,13 +28,15 @@ export default function HomePage({
       <Header />
       <SidebarCart
         darkMode={darkMode}
-        addToCartTotal={addToCartTotal}
+        addProductToCart={addProductToCart}
+        removeAllFromCart={removeAllFromCart}
         removeProductFromCart={removeProductFromCart}
         cartTotal={cartTotal}
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
         showSidebarCart={showSidebarCart}
       />
+
       <div className="page-inner-content">
         <div className="section-title">
           <h3>Produtos Selecionados</h3>

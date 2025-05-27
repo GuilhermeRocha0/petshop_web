@@ -39,7 +39,6 @@ a {
   color: unset;
 }
 
-
 button {
   background-color: transparent;
   border: none;
@@ -316,7 +315,7 @@ header .right-side .image-header {
 .product-info {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .product .buttons {
@@ -334,7 +333,6 @@ header .right-side .image-header {
 
 .product .price {
   margin-top: 0.4rem;
-
 }
 
 .product .price span {
@@ -453,8 +451,13 @@ header .right-side .image-header {
 }
 
 .sidebar-cart .sidebar-product button {
-  width: 1rem;
-  height: 1rem;
+  width: 2rem; /* Aumentado */
+  height: 2rem; /* Aumentado */
+  font-size: 1rem; /* Opcional, aumenta o ícone */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-cart .sidebar-product img {
@@ -505,19 +508,20 @@ header .right-side .image-header {
 
 /* checkout */
 .checkout-container {
-    min-height: 100vh;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f9fafb;
-    color: #1f2937;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9fafb;
+  color: #1f2937;
 }
 
 .checkout-container h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #374151;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #374151;
+  margin-top: 8rem;
 }
 
 .checkout-form {
@@ -535,105 +539,105 @@ header .right-side .image-header {
 }
 
 .checkout-form .form-group {
-    margin-bottom: 1.2rem;
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .checkout-form label {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .checkout-form input {
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .error {
-    color: #dc2626;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
 .flex-group {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .total-to-pay {
-    margin: 2rem 0;
-    text-align: center;
+  margin: 2rem 0;
+  text-align: center;
 }
 
 .total-to-pay span {
-    color: #22c55e;
+  color: #22c55e;
 }
 
 .pay-button {
-    width: 100%;
-    padding: 1rem;
-    background-color: #22c55e;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  width: 100%;
+  padding: 1rem;
+  background-color: #22c55e;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .pay-button:hover {
-    background-color: #16a34a;
+  background-color: #16a34a;
 }
 
 .products-summary {
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 500px;
-    color: #111827;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 500px;
+  color: #111827;
 }
 
 .products-summary h2 {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .products-summary ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
 .products-summary li {
-    margin: 0.5rem 0;
-    font-weight: 500;
+  margin: 0.5rem 0;
+  font-weight: 500;
 }
 
 .products-summary h3 span {
-    color: #22c55e;
+  color: #22c55e;
 }
 
 .checkout-container.dark {
-    background-color: #1f2937;
-    color: #f3f4f6;
+  background-color: #1f2937;
+  color: #f3f4f6;
 }
 
 .checkout-container.dark input {
-    background-color: #374151;
-    color: #f9fafb;
-    border: 1px solid #4b5563;
+  background-color: #374151;
+  color: #f9fafb;
+  border: 1px solid #4b5563;
 }
 
 .checkout-container.dark .pay-button {
-    background-color: #4ade80;
-    color: #1f2937;
+  background-color: #4ade80;
+  color: #1f2937;
 }
 
 .checkout-container.dark .error {
-    color: #f87171;
+  color: #f87171;
 }
 
 .checkout-container.dark .products-summary {

@@ -30,7 +30,7 @@ export default function Product({
           onClick={() => {
             addToCartTotal(price)
             addProductToCart(_id)
-            navigate('/loja/checkout')
+            navigate('/loja/confirmar-pedido')
           }}
         >
           Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />

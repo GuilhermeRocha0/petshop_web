@@ -10,6 +10,7 @@ export default function ProductsPage({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
+  removeAllFromCart,
   addToCartTotal,
   searchTerm,
   setSearchTerm
@@ -25,13 +26,16 @@ export default function ProductsPage({
         <div className="underline"></div>
       </div>
       <SidebarCart
-        addToCartTotal={addToCartTotal}
+        darkMode={darkMode}
+        addProductToCart={addProductToCart}
+        removeAllFromCart={removeAllFromCart}
         removeProductFromCart={removeProductFromCart}
         cartTotal={cartTotal}
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
         showSidebarCart={showSidebarCart}
       />
+
       <div className="main-content">
         <ProductList
           addProductToCart={addProductToCart}

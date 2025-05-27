@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 import NavBar from './components/Navbar'
 import { useEffect, useState } from 'react'
-import api from '../services/api' // Importando o axios configurado
+import api from '../services/api'
 
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
-import Checkout from './pages/Checkout'
+import ConfirmOrder from './pages/ConfirmOrder'
 
 function EcommerceApp() {
   const [products, setProducts] = useState([])
@@ -15,7 +15,9 @@ function EcommerceApp() {
   const [darkMode, setDarkMode] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
 
-  const addToCartTotal = value => setCartTotal(cartTotal + value)
+  const addToCartTotal = amount => {
+    setCartTotal(prev => prev + amount)
+  }
 
   useEffect(() => {
     async function fetchProducts() {
@@ -34,18 +36,56 @@ function EcommerceApp() {
     const productToAdd = products.find(product => product._id === id)
     if (!productToAdd) return
 
-    // Checa se já existe no carrinho pelo _id
-    if (selectedProducts.some(product => product._id === id)) return
+    const existing = selectedProducts.find(item => item._id === id)
 
-    setSelectedProducts([...selectedProducts, productToAdd])
+    if (existing) {
+      if (existing.quantity >= 5) {
+        alert('Limite máximo de 5 unidades por produto.')
+        return
+      }
+      if (existing.quantity + 1 > productToAdd.quantity) {
+        alert(`Estoque insuficiente. Disponível: ${productToAdd.quantity}`)
+        return
+      }
+
+      setSelectedProducts(
+        selectedProducts.map(item =>
+          item._id === id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      )
+    } else {
+      setSelectedProducts([
+        ...selectedProducts,
+        { ...productToAdd, quantity: 1 }
+      ])
+    }
+
     setCartTotal(cartTotal + productToAdd.price)
   }
 
   const removeProductFromCart = id => {
-    const newSelectedProducts = selectedProducts.filter(
-      product => product._id !== id
-    )
-    setSelectedProducts(newSelectedProducts)
+    const existing = selectedProducts.find(item => item._id === id)
+    if (!existing) return
+
+    if (existing.quantity > 1) {
+      setSelectedProducts(
+        selectedProducts.map(item =>
+          item._id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      )
+      setCartTotal(cartTotal - existing.price)
+    } else {
+      setSelectedProducts(selectedProducts.filter(item => item._id !== id))
+      setCartTotal(cartTotal - existing.price)
+    }
+  }
+
+  const removeAllFromCart = id => {
+    const existing = selectedProducts.find(item => item._id === id)
+    if (!existing) return
+
+    setSelectedProducts(selectedProducts.filter(item => item._id !== id))
+    setCartTotal(cartTotal - existing.price * existing.quantity)
   }
 
   return (
@@ -65,10 +105,11 @@ function EcommerceApp() {
             element={
               <HomePage
                 darkMode={darkMode}
-                addToCartTotal={addToCartTotal}
                 removeProductFromCart={removeProductFromCart}
+                removeAllFromCart={removeAllFromCart} // ✅ ADICIONAR ESTA LINHA
                 selectedProducts={selectedProducts}
                 addProductToCart={addProductToCart}
+                addToCartTotal={addToCartTotal}
                 products={products}
                 setShowSidebarCart={setShowSidebarCart}
                 showSidebarCart={showSidebarCart}
@@ -78,15 +119,17 @@ function EcommerceApp() {
               />
             }
           />
+
           <Route
             path="/produtos"
             element={
               <ProductsPage
-                addToCartTotal={addToCartTotal}
                 darkMode={darkMode}
                 removeProductFromCart={removeProductFromCart}
+                removeAllFromCart={removeAllFromCart} // ✅ ADICIONAR ESTA LINHA
                 selectedProducts={selectedProducts}
                 addProductToCart={addProductToCart}
+                addToCartTotal={addToCartTotal}
                 products={products}
                 setShowSidebarCart={setShowSidebarCart}
                 showSidebarCart={showSidebarCart}
@@ -96,10 +139,11 @@ function EcommerceApp() {
               />
             }
           />
+
           <Route
-            path="/checkout"
+            path="/confirmar-pedido"
             element={
-              <Checkout
+              <ConfirmOrder
                 cartTotal={cartTotal}
                 selectedProducts={selectedProducts}
                 darkMode={darkMode}
