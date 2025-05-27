@@ -12,12 +12,15 @@ export default function HomePage({
   cartTotal,
   removeProductFromCart,
   addToCartTotal,
-  darkMode
+  darkMode,
+  searchTerm,
+  setSearchTerm
 }) {
+  const safeProducts = Array.isArray(products) ? products : []
 
-  const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const filteredProducts = safeProducts.filter(product =>
+    product.name?.toLowerCase().includes(searchTerm?.toLowerCase() || '')
+  )
 
   return (
     <>
@@ -30,19 +33,18 @@ export default function HomePage({
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
         showSidebarCart={showSidebarCart}
-      ></SidebarCart>
+      />
       <div className="page-inner-content">
         <div className="section-title">
           <h3>Produtos Selecionados</h3>
           <div className="underline"></div>
         </div>
-
         <div className="main-content">
           <ProductList
             addProductToCart={addProductToCart}
             products={filteredProducts}
             addToCartTotal={addToCartTotal}
-          ></ProductList>
+          />
         </div>
       </div>
     </>

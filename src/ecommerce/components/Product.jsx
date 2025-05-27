@@ -1,43 +1,42 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { faCartShopping, faMoneyBill } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 export default function Product({
-  id,
-  image,
+  _id,
+  imageUrl,
   name,
-  rate,
   price,
   addProductToCart,
   addToCartTotal
 }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const apiUrl = import.meta.env.VITE_API_URL
 
   return (
     <div className="product">
       <div className="product-info">
-        <img src={image} alt={name}></img>
+        <img src={`${apiUrl}${imageUrl}`} alt={name} /> {/* ✅ Aqui! */}
         <p className="name">{name}</p>
         <p className="rate"> &#9733;&#9733;&#9733;&#9733;&#9733;</p>
         <p className="price">
           <span>R$</span> {price}
         </p>
       </div>
-
       <div className="buttons">
-        <button className="btn-icon"
-  onClick={() => {
-    addToCartTotal(price); 
-    addProductToCart(id)// ou algum valor que você queira atualizar
-    addToCartTotal(id)
-    navigate("/loja/checkout");
-  }}>
-          Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
+        <button
+          className="btn-icon"
+          onClick={() => {
+            addToCartTotal(price)
+            addProductToCart(_id)
+            navigate('/loja/checkout')
+          }}
+        >
+          Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />
         </button>
         <button
-          onClick={() => addProductToCart(id)}
+          onClick={() => addProductToCart(_id)}
           className="btn-icon add-to-cart-btn"
         >
           <span>Adicionar ao Carrinho </span>

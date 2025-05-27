@@ -2,8 +2,7 @@ import { faXmark, faMoneyBill } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import SidebarProduct from './SidebarProduct'
-import { Link } from 'react-router-dom'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 export default function SidebarCart({
   setShowSidebarCart,
@@ -14,11 +13,14 @@ export default function SidebarCart({
   addToCartTotal,
   darkMode
 }) {
-
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
-    <aside className={`sidebar-cart ${showSidebarCart ? "show" : ""} ${darkMode ? "dark" : ""}`}>
+    <aside
+      className={`sidebar-cart ${showSidebarCart ? 'show' : ''} ${
+        darkMode ? 'dark' : ''
+      }`}
+    >
       <div className="top">
         <h3>Seu Carrinho</h3>
         <button onClick={() => setShowSidebarCart(false)}>
@@ -28,24 +30,23 @@ export default function SidebarCart({
 
       <div className="sidebar-products-list">
         {selectedProducts?.map(product => (
+          // Use _id como key para evitar problemas de renderização
           <SidebarProduct
-            key={product.id}
+            key={product._id}
             {...product}
             removeProductFromCart={removeProductFromCart}
             addToCartTotal={addToCartTotal}
-          ></SidebarProduct>
+          />
         ))}
       </div>
 
       <div className="total-container">
-        <b>Total: </b> {cartTotal}
+        <b>Total: </b> R$ {cartTotal.toFixed(2)}
       </div>
 
-       <button className="pay-button" onClick={() => navigate("/loja/checkout")}>
-                Pagar Agora <FontAwesomeIcon icon={faMoneyBill}></FontAwesomeIcon>
-            </button>
-
-      {/* <i>Seu carrinho está vazio</i> */}
+      <button className="pay-button" onClick={() => navigate('/loja/checkout')}>
+        Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />
+      </button>
     </aside>
   )
 }

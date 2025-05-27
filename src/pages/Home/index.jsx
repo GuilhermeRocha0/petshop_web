@@ -30,7 +30,9 @@ const Home = () => {
             </li>
           </ul>
 
-          <Link to="/login" className="btn-default">Entrar</Link>
+          <Link to="/login" className="btn-default">
+            Entrar
+          </Link>
 
           <button id="mobile_btn" onClick={handleMobileMenu}>
             <i className={menuActive ? 'fa fa-x' : 'fa fa-bars'}></i>
@@ -50,7 +52,9 @@ const Home = () => {
             </li>
           </ul>
 
-          <Link to="/login" className="btn-default">Entrar</Link>
+          <Link to="/login" className="btn-default">
+            Entrar
+          </Link>
         </div>
       </header>
 
@@ -165,7 +169,11 @@ const Home = () => {
         </section>
 
         <section id="testimonials">
-          <div class="imagem-fundo" id="testimonials_chef" alt="Cachorro herói"></div>
+          <div
+            className="imagem-fundo"
+            id="testimonials_chef"
+            alt="Cachorro herói"
+          ></div>
 
           <div id="testimonials_content">
             <h2 className="section-title">Depoimentos</h2>

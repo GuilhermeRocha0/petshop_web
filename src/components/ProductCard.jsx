@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BASE_URL = 'http://localhost:3000'
+const apiUrl = import.meta.env.VITE_API_URL
 
 const ProductCard = ({ product, onEdit, onDelete }) => {
   return (
@@ -9,7 +9,7 @@ const ProductCard = ({ product, onEdit, onDelete }) => {
         {product.imageUrl && (
           <div className="admin-product-image-name">
             <img
-              src={`${BASE_URL}${product.imageUrl}`}
+              src={`${apiUrl}${product.imageUrl}`}
               alt={product.name}
               className="admin-product-image-small"
             />

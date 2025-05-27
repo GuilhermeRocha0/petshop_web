@@ -1,45 +1,55 @@
-import { Link } from 'react-router-dom'
 import { Routes, Route } from 'react-router-dom'
-
 import NavBar from './components/Navbar'
 import { useEffect, useState } from 'react'
+import api from '../services/api' // Importando o axios configurado
 
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
-import Checkout from "./pages/Checkout";
+import Checkout from './pages/Checkout'
 
 function EcommerceApp() {
   const [products, setProducts] = useState([])
   const [showSidebarCart, setShowSidebarCart] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
   const [cartTotal, setCartTotal] = useState(0)
-  const [darkMode, setDarkMode] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [darkMode, setDarkMode] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   const addToCartTotal = value => setCartTotal(cartTotal + value)
 
   useEffect(() => {
-    fetch('/db.json')
-      .then(res => res.json())
-      .then(data => setProducts(data.products));
+    async function fetchProducts() {
+      try {
+        const res = await api.get('/products')
+        setProducts(res.data || [])
+      } catch (error) {
+        setProducts([])
+        console.error('Erro ao carregar produtos:', error)
+      }
+    }
+    fetchProducts()
   }, [])
 
   const addProductToCart = id => {
-    const productToAdd = products.filter(product => product.id === id)[0]
-    if (selectedProducts.includes(productToAdd)) return
-    setSelectedProducts(selectedProducts.concat(productToAdd))
+    const productToAdd = products.find(product => product._id === id)
+    if (!productToAdd) return
+
+    // Checa se já existe no carrinho pelo _id
+    if (selectedProducts.some(product => product._id === id)) return
+
+    setSelectedProducts([...selectedProducts, productToAdd])
     setCartTotal(cartTotal + productToAdd.price)
   }
 
   const removeProductFromCart = id => {
-    const newSelecterProducts = selectedProducts.filter(
-      product => product.id !== id
+    const newSelectedProducts = selectedProducts.filter(
+      product => product._id !== id
     )
-    setSelectedProducts(newSelecterProducts)
+    setSelectedProducts(newSelectedProducts)
   }
 
   return (
-    <div className={`App ${darkMode ? "dark" : ""}`}>
+    <div className={`App ${darkMode ? 'dark' : ''}`}>
       <NavBar
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
@@ -86,11 +96,16 @@ function EcommerceApp() {
               />
             }
           />
-
-          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} darkMode={darkMode} />}
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                cartTotal={cartTotal}
+                selectedProducts={selectedProducts}
+                darkMode={darkMode}
+              />
+            }
           />
-
-
         </Routes>
       </main>
     </div>
