@@ -14,6 +14,7 @@ function EcommerceApp() {
   const [selectedProducts, setSelectedProducts] = useState([])
   const [cartTotal, setCartTotal] = useState(0)
   const [darkMode, setDarkMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const addToCartTotal = value => setCartTotal(cartTotal + value)
 
@@ -38,12 +39,14 @@ function EcommerceApp() {
   }
 
   return (
-    <div  className={`App ${darkMode ? "dark" : ""}`}>
+    <div className={`App ${darkMode ? "dark" : ""}`}>
       <NavBar
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
       <main>
         <Routes>
@@ -51,7 +54,7 @@ function EcommerceApp() {
             path="/"
             element={
               <HomePage
-              darkMode={darkMode}
+                darkMode={darkMode}
                 addToCartTotal={addToCartTotal}
                 removeProductFromCart={removeProductFromCart}
                 selectedProducts={selectedProducts}
@@ -60,6 +63,8 @@ function EcommerceApp() {
                 setShowSidebarCart={setShowSidebarCart}
                 showSidebarCart={showSidebarCart}
                 cartTotal={cartTotal}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
               />
             }
           />
@@ -76,11 +81,13 @@ function EcommerceApp() {
                 setShowSidebarCart={setShowSidebarCart}
                 showSidebarCart={showSidebarCart}
                 cartTotal={cartTotal}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
               />
             }
           />
 
-          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} darkMode={darkMode} />} 
+          <Route path="/checkout" element={<Checkout cartTotal={cartTotal} selectedProducts={selectedProducts} darkMode={darkMode} />}
           />
 
 

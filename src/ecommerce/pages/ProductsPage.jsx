@@ -12,6 +12,11 @@ export default function ProductsPage({
   removeProductFromCart,
   addToCartTotal
 }) {
+
+  const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
   return (
     <div className="page-inner-content">
       <div className="section-title">
@@ -29,7 +34,7 @@ export default function ProductsPage({
       <div className="main-content">
         <ProductList
           addProductToCart={addProductToCart}
-          products={products}
+          products={filteredProducts}
           addToCartTotal={addToCartTotal}
         ></ProductList>
       </div>

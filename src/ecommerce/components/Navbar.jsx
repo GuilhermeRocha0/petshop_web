@@ -8,7 +8,7 @@ import {
   faShoppingCart
 } from '@fortawesome/free-solid-svg-icons'
 
-export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode, setDarkMode, ...props }) {
+export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode, setDarkMode,searchTerm, setSearchTerm, ...props }) {
   const [show, setShow] = useState(false)
 
   return (
@@ -46,9 +46,14 @@ export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode,
 
         <div className="navs-icon-container">
           <div className="search-input-container">
-            <input type="search" placeholder="Procurar"></input>
-            <FontAwesomeIcon icon={faSearch} />
-          </div>
+          <input
+            type="search"
+            placeholder="Procurar"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
           <button
             className="shopping-cart"
             onClick={() => setShowSidebarCart(true)}

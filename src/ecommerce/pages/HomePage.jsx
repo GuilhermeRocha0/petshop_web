@@ -14,6 +14,11 @@ export default function HomePage({
   addToCartTotal,
   darkMode
 }) {
+
+  const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
   return (
     <>
       <Header />
@@ -35,7 +40,7 @@ export default function HomePage({
         <div className="main-content">
           <ProductList
             addProductToCart={addProductToCart}
-            products={products}
+            products={filteredProducts}
             addToCartTotal={addToCartTotal}
           ></ProductList>
         </div>
