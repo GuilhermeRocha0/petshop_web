@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import api from '../../services/api'
 import { isAuthenticated, logout } from '../../utils/auth'
 import Sidebar from '../../components/Sidebar'
+import Modal from '../../components/Modal'
 import OrderCard from '../../components/OrderCard'
 import Pagination from '../../components/Pagination'
 import BotaoTema from '../../components/BotaoTema'
@@ -50,6 +51,7 @@ const Orders = () => {
           : '/order-reservation',
         { headers: { Authorization: `Bearer ${token}` } }
       )
+      console.log(res.data.reservations || [])
       setOrders(res.data.reservations || [])
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao carregar pedidos.')
@@ -86,6 +88,37 @@ const Orders = () => {
   const closeStatusForm = async () => {
     setEditingOrderId(null)
     await fetchOrders()
+  }
+
+  const handleCancel = orderId => {
+    setSelectedOrderId(orderId)
+    setShowModal(true)
+  }
+
+  const confirmCancel = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      toast.error('Sessão expirada, faça login novamente.')
+      logout()
+      navigate('/login')
+      return
+    }
+
+    try {
+      await api.put(
+        `/order-reservation/cancel/${selectedOrderId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      )
+
+      await fetchOrders()
+      toast.success('Pedido cancelado com sucesso!')
+      setShowModal(false)
+    } catch (err) {
+      toast.error(err.response?.data?.msg || 'Erro ao cancelar o pedido.')
+    }
   }
 
   return (
@@ -126,8 +159,10 @@ const Orders = () => {
                 <OrderCard
                   key={order._id}
                   order={order}
+                  onCancel={handleCancel}
                   userRole={userRole}
-                  onEditStatus={openStatusForm}
+                  currentUserId={JSON.parse(localStorage.getItem('user'))._id}
+                  onEditStatus={setEditingOrderId}
                 />
               ))}
             </div>
@@ -140,6 +175,16 @@ const Orders = () => {
           />
         </div>
       </div>
+
+      {showModal && (
+        <Modal
+          onCancel={() => setShowModal(false)}
+          onConfirm={confirmCancel}
+          modalMessage="Tem certeza que deseja cancelar este pedido?"
+          buttonMessage="Confirmar Cancelamento"
+          isDelete={true}
+        />
+      )}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import api from '../services/api'
 
-const validStatus = ['pendente', 'concluído']
+const validStatus = ['cancelado', 'pendente', 'concluído']
 
 const OrderStatusForm = ({ orderId, onClose, fetchOrders }) => {
   const [status, setStatus] = useState('')
