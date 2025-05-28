@@ -8,16 +8,18 @@ export default function Product({
   imageUrl,
   name,
   price,
+  quantity,
   addProductToCart,
   addToCartTotal
 }) {
   const navigate = useNavigate()
   const apiUrl = import.meta.env.VITE_API_URL
+  console.log(name + " " + quantity)
 
   return (
     <div className="product">
       <div className="product-info">
-        <img src={`${apiUrl}${imageUrl}`} alt={name} /> {/* ✅ Aqui! */}
+        <img src={`${apiUrl}${imageUrl}`} alt={name} />
         <p className="name">{name}</p>
         <p className="rate"> &#9733;&#9733;&#9733;&#9733;&#9733;</p>
         <p className="price">
@@ -25,23 +27,29 @@ export default function Product({
         </p>
       </div>
       <div className="buttons">
-        <button
-          className="btn-icon"
-          onClick={() => {
-            addToCartTotal(price)
-            addProductToCart(_id)
-            navigate('/loja/confirmar-pedido')
-          }}
-        >
-          Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />
-        </button>
-        <button
-          onClick={() => addProductToCart(_id)}
-          className="btn-icon add-to-cart-btn"
-        >
-          <span>Adicionar ao Carrinho </span>
-          <FontAwesomeIcon icon={faCartShopping} />
-        </button>
+        {quantity > 0 ? (
+          <>
+            <button
+              className="btn-icon"
+              onClick={() => {
+                addToCartTotal(price)
+                addProductToCart(_id)
+                navigate('/loja/confirmar-pedido')
+              }}
+            >
+              Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />
+            </button>
+            <button
+              onClick={() => addProductToCart(_id)}
+              className="btn-icon add-to-cart-btn"
+            >
+              <span>Adicionar ao Carrinho </span>
+              <FontAwesomeIcon icon={faCartShopping} />
+            </button>
+          </>
+        ) : (
+          <p className="out-of-stock">Fora de Estoque</p>
+        )}
       </div>
     </div>
   )

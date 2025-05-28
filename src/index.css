@@ -318,6 +318,10 @@ header .right-side .image-header {
   gap: 0.5rem;
 }
 
+.product-info img {
+  height: 25.8rem;
+}
+
 .product .buttons {
   display: flex;
   flex-direction: column;
@@ -618,6 +622,12 @@ header .right-side .image-header {
 
 .products-summary h3 span {
   color: #22c55e;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+  text-align: center;
 }
 
 .checkout-container.dark {
