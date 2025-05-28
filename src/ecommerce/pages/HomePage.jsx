@@ -11,33 +11,43 @@ export default function HomePage({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
+  removeAllFromCart,
   addToCartTotal,
-  darkMode
+  darkMode,
+  searchTerm,
+  setSearchTerm
 }) {
+  const safeProducts = Array.isArray(products) ? products : []
+
+  const filteredProducts = safeProducts.filter(product =>
+    product.name?.toLowerCase().includes(searchTerm?.toLowerCase() || '')
+  )
+
   return (
     <>
       <Header />
       <SidebarCart
         darkMode={darkMode}
-        addToCartTotal={addToCartTotal}
+        addProductToCart={addProductToCart}
+        removeAllFromCart={removeAllFromCart}
         removeProductFromCart={removeProductFromCart}
         cartTotal={cartTotal}
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
         showSidebarCart={showSidebarCart}
-      ></SidebarCart>
+      />
+
       <div className="page-inner-content">
         <div className="section-title">
           <h3>Produtos Selecionados</h3>
           <div className="underline"></div>
         </div>
-
         <div className="main-content">
           <ProductList
             addProductToCart={addProductToCart}
-            products={products}
+            products={filteredProducts}
             addToCartTotal={addToCartTotal}
-          ></ProductList>
+          />
         </div>
       </div>
     </>

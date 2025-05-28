@@ -8,7 +8,7 @@ import {
   faShoppingCart
 } from '@fortawesome/free-solid-svg-icons'
 
-export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode, setDarkMode, ...props }) {
+export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode, setDarkMode, searchTerm, setSearchTerm, ...props }) {
   const [show, setShow] = useState(false)
 
   return (
@@ -27,26 +27,32 @@ export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode,
               <Link to="/loja/produtos">Produtos</Link>
             </li>
             <li>
-              <Link to="/#">Brinquedos</Link>
+              <Link to="/loja/brinquedos">Brinquedos</Link>
             </li>
             <li>
-              <Link to="/#">Alimentos</Link>
+              <Link to="/loja/alimentos">Alimentos</Link>
             </li>
             <li>
-              <Link to="/#">Conta</Link>
+              <Link to="/login">Conta</Link>
             </li>
             <li><button
-            className="theme-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? "☀️" : "🌙"}
-          </button></li>
+              className="theme-toggle"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? "☀️" : "🌙"}
+            </button></li>
           </ul>
         </nav>
 
         <div className="navs-icon-container">
           <div className="search-input-container">
-            <input type="search" placeholder="Procurar"></input>
+            <input
+              className={`search-input ${darkMode ? 'dark' : ''}`}
+              type="search"
+              placeholder="Procurar"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <FontAwesomeIcon icon={faSearch} />
           </div>
           <button

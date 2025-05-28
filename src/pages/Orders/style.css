@@ -1,0 +1,27 @@
+.order-list {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 10px;
+    scrollbar-gutter: stable;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-block: 8px;
+    margin-top: 4px;
+}
+
+.search-bar {
+    margin-bottom: 2rem;
+  }
+  
+  .search-bar input {
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    font-size: 1.4rem;
+  }

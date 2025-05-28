@@ -49,6 +49,10 @@ export default function Sidebar() {
         </>
       )}
 
+      <Link to="/pedidos" className="sidebar-link">
+        Pedidos
+      </Link>
+
       <button
         onClick={handleLogout}
         className="sidebar-button"

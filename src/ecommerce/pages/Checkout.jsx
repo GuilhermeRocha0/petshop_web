@@ -1,74 +1,77 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Checkout({ selectedProducts, cartTotal, darkMode }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const total = selectedProducts.reduce((sum, p) => sum + p.price, 0);
+  const total = selectedProducts.reduce((sum, p) => sum + p.price, 0)
 
   const [form, setForm] = useState({
-    cardName: "",
-    cardNumber: "",
-    expiry: "",
-    cvv: "",
-    address: "",
-  });
+    cardName: '',
+    cardNumber: '',
+    expiry: '',
+    cvv: '',
+    address: ''
+  })
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({})
 
-  const newErrors = {};
+  const newErrors = {}
 
   const validate = () => {
+    if (!form.cardName) newErrors.cardName = 'Nome no cartão é obrigatório'
+    if (!form.cardNumber)
+      newErrors.cardNumber = 'Número do cartão é obrigatório'
+    if (!form.expiry) newErrors.expiry = 'Validade é obrigatória'
+    if (!form.cvv) newErrors.cvv = 'CVV é obrigatório'
+    if (!form.address) newErrors.address = 'Endereço é obrigatório'
+    return newErrors
+  }
 
-    if (!form.cardName) newErrors.cardName = "Nome no cartão é obrigatório";
-    if (!form.cardNumber) newErrors.cardNumber = "Número do cartão é obrigatório";
-    if (!form.expiry) newErrors.expiry = "Validade é obrigatória";
-    if (!form.cvv) newErrors.cvv = "CVV é obrigatório";
-    if (!form.address) newErrors.address = "Endereço é obrigatório";
-    return newErrors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
+  const handleSubmit = e => {
+    e.preventDefault()
+    const validationErrors = validate()
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+      setErrors(validationErrors)
     } else {
-      alert("✅ Pagamento efetuado com sucesso!");
-      navigate("/");
+      alert('✅ Pagamento efetuado com sucesso!')
+      navigate('/')
     }
-  };
+  }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = e => {
+    const { name, value } = e.target
 
-    let newValue = value;
+    let newValue = value
 
     // Máscaras manuais
-    if (name === "cardNumber") {
-      const digits = value.replace(/\D/g, "").slice(0, 16);
-      newValue = digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+    if (name === 'cardNumber') {
+      const digits = value.replace(/\D/g, '').slice(0, 16)
+      newValue = digits.replace(/(\d{4})(?=\d)/g, '$1 ').trim()
     }
 
-    if (form.cardNumber.replace(/\s/g, "").length < 16) {
-      newErrors.cardNumber = "O número do cartão deve ter 16 dígitos";
+    if (form.cardNumber.replace(/\s/g, '').length < 16) {
+      newErrors.cardNumber = 'O número do cartão deve ter 16 dígitos'
     }
 
-    if (name === "expiry") {
-      const digits = value.replace(/\D/g, "").slice(0, 4);
-      newValue = digits.length >= 3 ? digits.replace(/(\d{2})(\d{1,2})/, "$1/$2") : digits;
+    if (name === 'expiry') {
+      const digits = value.replace(/\D/g, '').slice(0, 4)
+      newValue =
+        digits.length >= 3
+          ? digits.replace(/(\d{2})(\d{1,2})/, '$1/$2')
+          : digits
     }
 
-    if (name === "cvv") {
-      newValue = value.replace(/\D/g, "").slice(0, 3);
+    if (name === 'cvv') {
+      newValue = value.replace(/\D/g, '').slice(0, 3)
     }
 
-    setForm({ ...form, [name]: newValue });
-    setErrors({ ...errors, [name]: "" });
-  };
+    setForm({ ...form, [name]: newValue })
+    setErrors({ ...errors, [name]: '' })
+  }
 
   return (
-    <div className={`checkout-container ${darkMode ? "dark" : ""}`}>
+    <div className={`checkout-container ${darkMode ? 'dark' : ''}`}>
       <h1>Finalizar Pagamento</h1>
 
       <div className="products-summary">
@@ -77,14 +80,16 @@ export default function Checkout({ selectedProducts, cartTotal, darkMode }) {
           <p>Seu carrinho está vazio.</p>
         ) : (
           <ul>
-            {selectedProducts.map((product) => (
+            {selectedProducts.map(product => (
               <li key={product.id}>
                 {product.name} - R$ {product.price.toFixed(2)}
               </li>
             ))}
           </ul>
         )}
-        <h3>Total: <span>R$ {total.toFixed(2)}</span></h3>
+        <h3>
+          Total: <span>R$ {total.toFixed(2)}</span>
+        </h3>
       </div>
 
       <form onSubmit={handleSubmit} className="checkout-form">
@@ -103,7 +108,6 @@ export default function Checkout({ selectedProducts, cartTotal, darkMode }) {
         <div className="form-group">
           <label>Número do Cartão</label>
           <input
-
             type="text"
             name="cardNumber"
             value={form.cardNumber}
@@ -151,10 +155,10 @@ export default function Checkout({ selectedProducts, cartTotal, darkMode }) {
           {errors.address && <p className="error">{errors.address}</p>}
         </div>
 
-        <button type="submit" className="pay-button">Confirmar Pagamento</button>
+        <button type="submit" className="pay-button">
+          Confirmar Pagamento
+        </button>
       </form>
     </div>
-  );
-
+  )
 }
-

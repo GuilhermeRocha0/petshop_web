@@ -16,6 +16,7 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import Services from './pages/Services'
 import Categories from './pages/Categories'
+import Orders from './pages/Orders'
 
 function App() {
   return (
@@ -39,6 +40,15 @@ function App() {
           element={
             <PrivateRoute>
               <Pets />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/pedidos"
+          element={
+            <PrivateRoute>
+              <Orders />
             </PrivateRoute>
           }
         />
