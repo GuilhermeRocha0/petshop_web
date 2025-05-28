@@ -83,7 +83,7 @@ export default function ConfirmOrder({
             <button onClick={() => navigate('/loja')}>
               Continuar Navegando
             </button>
-            <button onClick={() => navigate('/meus-pedidos')}>
+            <button onClick={() => navigate('/pedidos')}>
               Meus Pedidos
             </button>
           </div>

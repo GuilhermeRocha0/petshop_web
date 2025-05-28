@@ -35,6 +35,10 @@ export default function Sidebar() {
         Agendamentos
       </Link>
 
+      <Link to="/pedidos" className="sidebar-link">
+        Pedidos
+      </Link>
+
       {role === 'ADMIN' && (
         <>
           <Link to="/admin/servicos" className="sidebar-link">
