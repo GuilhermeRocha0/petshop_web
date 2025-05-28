@@ -33,6 +33,10 @@
   gap: 4px;
 }
 
+.appointment-info ul {
+  list-style: none;
+}
+
 .edit-button,
 .appointment-card .confirm-button,
 .appointment-card .cancel-button {
