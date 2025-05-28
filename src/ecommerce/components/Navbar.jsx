@@ -27,13 +27,13 @@ export default function NavBar({ setShowSidebarCart, selectedProducts, darkMode,
               <Link to="/loja/produtos">Produtos</Link>
             </li>
             <li>
-              <Link to="/#">Brinquedos</Link>
+              <Link to="/loja/brinquedos">Brinquedos</Link>
             </li>
             <li>
-              <Link to="/#">Alimentos</Link>
+              <Link to="/loja/alimentos">Alimentos</Link>
             </li>
             <li>
-              <Link to="/#">Conta</Link>
+              <Link to="/login">Conta</Link>
             </li>
             <li><button
             className="theme-toggle"

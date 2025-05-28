@@ -13,7 +13,8 @@ export default function ProductsPage({
   removeAllFromCart,
   addToCartTotal,
   searchTerm,
-  setSearchTerm
+  setSearchTerm,
+  darkMode
 }) {
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())

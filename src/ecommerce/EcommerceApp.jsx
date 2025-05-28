@@ -6,6 +6,8 @@ import api from '../services/api'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import ConfirmOrder from './pages/ConfirmOrder'
+import ToysPage from './pages/ToysPage'
+import FoodPage from './pages/FoodPage'
 
 function EcommerceApp() {
   const [products, setProducts] = useState([])
@@ -139,6 +141,49 @@ function EcommerceApp() {
               />
             }
           />
+
+          <Route
+          path='/brinquedos'
+          element={
+            <ToysPage
+            darkMode={darkMode}
+                removeProductFromCart={removeProductFromCart}
+                removeAllFromCart={removeAllFromCart} // ✅ ADICIONAR ESTA LINHA
+                selectedProducts={selectedProducts}
+                addProductToCart={addProductToCart}
+                addToCartTotal={addToCartTotal}
+                products={products}
+                setShowSidebarCart={setShowSidebarCart}
+                showSidebarCart={showSidebarCart}
+                cartTotal={cartTotal}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+            ></ToysPage>
+          }
+          />
+
+          
+<Route
+          path='/alimentos'
+          element={
+            <FoodPage
+            darkMode={darkMode}
+                removeProductFromCart={removeProductFromCart}
+                removeAllFromCart={removeAllFromCart} // ✅ ADICIONAR ESTA LINHA
+                selectedProducts={selectedProducts}
+                addProductToCart={addProductToCart}
+                addToCartTotal={addToCartTotal}
+                products={products}
+                setShowSidebarCart={setShowSidebarCart}
+                showSidebarCart={showSidebarCart}
+                cartTotal={cartTotal}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+            ></FoodPage>
+          }
+          />
+
+          
 
           <Route
             path="/confirmar-pedido"
