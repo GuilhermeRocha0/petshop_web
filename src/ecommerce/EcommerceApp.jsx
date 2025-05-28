@@ -22,17 +22,18 @@ function EcommerceApp() {
   }
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const res = await api.get('/products')
-        setProducts(res.data || [])
-      } catch (error) {
-        setProducts([])
-        console.error('Erro ao carregar produtos:', error)
-      }
-    }
     fetchProducts()
   }, [])
+
+  const fetchProducts = async () => {
+    try {
+      const res = await api.get('/products')
+      setProducts(res.data || [])
+    } catch (error) {
+      setProducts([])
+      console.error('Erro ao carregar produtos:', error)
+    }
+  }
 
   const addProductToCart = id => {
     const productToAdd = products.find(product => product._id === id)
@@ -90,6 +91,12 @@ function EcommerceApp() {
     setCartTotal(cartTotal - existing.price * existing.quantity)
   }
 
+  const clearCartAndRefreshProducts = async () => {
+    setSelectedProducts([])
+    setCartTotal(0)
+    await fetchProducts()
+  }
+
   return (
     <div className={`App ${darkMode ? 'dark' : ''}`}>
       <NavBar
@@ -143,10 +150,10 @@ function EcommerceApp() {
           />
 
           <Route
-          path='/brinquedos'
-          element={
-            <ToysPage
-            darkMode={darkMode}
+            path='/brinquedos'
+            element={
+              <ToysPage
+                darkMode={darkMode}
                 removeProductFromCart={removeProductFromCart}
                 removeAllFromCart={removeAllFromCart} // ✅ ADICIONAR ESTA LINHA
                 selectedProducts={selectedProducts}
@@ -158,16 +165,16 @@ function EcommerceApp() {
                 cartTotal={cartTotal}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
-            ></ToysPage>
-          }
+              ></ToysPage>
+            }
           />
 
-          
-<Route
-          path='/alimentos'
-          element={
-            <FoodPage
-            darkMode={darkMode}
+
+          <Route
+            path='/alimentos'
+            element={
+              <FoodPage
+                darkMode={darkMode}
                 removeProductFromCart={removeProductFromCart}
                 removeAllFromCart={removeAllFromCart} // ✅ ADICIONAR ESTA LINHA
                 selectedProducts={selectedProducts}
@@ -179,11 +186,11 @@ function EcommerceApp() {
                 cartTotal={cartTotal}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
-            ></FoodPage>
-          }
+              ></FoodPage>
+            }
           />
 
-          
+
 
           <Route
             path="/confirmar-pedido"
@@ -192,6 +199,7 @@ function EcommerceApp() {
                 cartTotal={cartTotal}
                 selectedProducts={selectedProducts}
                 darkMode={darkMode}
+                clearCartAndRefreshProducts={clearCartAndRefreshProducts} // ✅ aqui
               />
             }
           />

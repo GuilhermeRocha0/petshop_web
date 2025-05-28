@@ -49,7 +49,7 @@ export default function SidebarCart({
         className="pay-button"
         onClick={() => navigate('/loja/confirmar-pedido')}
       >
-        Pagar Agora <FontAwesomeIcon icon={faMoneyBill} />
+        Reservar Agora <FontAwesomeIcon icon={faMoneyBill} />
       </button>
     </aside>
   )

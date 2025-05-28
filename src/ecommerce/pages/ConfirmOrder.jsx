@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import LoadingModal from '../../components/LoadingModal'
 
 export default function ConfirmOrder({
+  clearCartAndRefreshProducts,
   selectedProducts,
   cartTotal,
   darkMode
@@ -11,7 +12,9 @@ export default function ConfirmOrder({
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const [orderConfirmed, setOrderConfirmed] = useState(false) // ✅ novo estado
+  const [orderConfirmed, setOrderConfirmed] = useState(false)
+  const [confirmedProducts, setConfirmedProducts] = useState([])
+  const [confirmedTotal, setConfirmedTotal] = useState(0)
 
   const handleReserveProducts = async () => {
     setIsLoading(true)
@@ -37,13 +40,18 @@ export default function ConfirmOrder({
         { headers: { Authorization: `Bearer ${token}` } }
       )
 
+      setConfirmedProducts([...selectedProducts])
+      setConfirmedTotal(cartTotal)
+
       setMessage(res.data.msg)
-      setOrderConfirmed(true) // ✅ ativa exibição das informações
+      setOrderConfirmed(true)
+
+      await clearCartAndRefreshProducts()
     } catch (error) {
       console.error('Erro ao reservar produtos:', error)
       setMessage(
         error.response?.data?.msg ||
-          'Erro ao reservar produtos. Tente novamente.'
+        'Erro ao reservar produtos. Tente novamente.'
       )
     } finally {
       setIsLoading(false)
@@ -60,7 +68,7 @@ export default function ConfirmOrder({
 
           <h2>Resumo do Pedido:</h2>
           <ul>
-            {selectedProducts.map(product => (
+            {confirmedProducts.map(product => (
               <li key={product._id}>
                 {product.name} - R$ {product.price} x {product.quantity}
               </li>
@@ -68,7 +76,7 @@ export default function ConfirmOrder({
           </ul>
 
           <p className="total">
-            <strong>Total: </strong>R$ {cartTotal.toFixed(2)}
+            <strong>Total: </strong>R$ {confirmedTotal.toFixed(2)}
           </p>
 
           <div className="confirmation-buttons">
