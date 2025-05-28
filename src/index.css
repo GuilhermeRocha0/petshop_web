@@ -145,6 +145,11 @@ nav ul {
   margin-right: 1rem;
 }
 
+.search-input.dark{
+  background-color: #2d3748;
+  color: white;
+}
+
 .search-input-container input {
   border: none;
   outline: none;
