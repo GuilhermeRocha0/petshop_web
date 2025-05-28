@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000' // ajuste para o endereço da sua API
+  baseURL: 'https://petshopapi-production-e4d6.up.railway.app' // ajuste para o endereço da sua API
 })
 
 export default api
