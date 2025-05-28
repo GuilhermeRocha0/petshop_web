@@ -14,7 +14,6 @@ export default function Product({
 }) {
   const navigate = useNavigate()
   const apiUrl = import.meta.env.VITE_API_URL
-  console.log(name + " " + quantity)
 
   return (
     <div className="product">
