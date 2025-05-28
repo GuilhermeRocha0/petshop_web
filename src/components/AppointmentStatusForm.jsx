@@ -17,23 +17,25 @@ const AppointmentStatusForm = ({
     const fetchAppointment = async () => {
       try {
         const token = localStorage.getItem('token')
-        if (!token) {
-          toast.error('Sessão expirada, faça login novamente.')
-          onClose()
-          return
-        }
+        const user = JSON.parse(localStorage.getItem('user'))
 
-        const res = await api.get(`/appointments/${appointmentId}`, {
+        const endpoint =
+          user.role === 'ADMIN'
+            ? `/appointments/admin/${appointmentId}`
+            : `/appointments/${appointmentId}`
+
+        const res = await api.get(endpoint, {
           headers: { Authorization: `Bearer ${token}` }
         })
 
+        console.log(res)
+        console.log(res.data.appointment)
         setAppointment(res.data.appointment)
-        setStatus(res.data.appointment.status || '')
         setLoading(false)
-      } catch (error) {
-        console.error(error)
-        toast.error('Erro ao carregar dados do agendamento.')
-        onClose()
+      } catch (err) {
+        console.error(err)
+        toast.error(err.response?.data?.msg || 'Erro ao carregar agendamento.')
+        setLoading(false)
       }
     }
 
