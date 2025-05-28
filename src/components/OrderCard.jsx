@@ -3,11 +3,13 @@ import React from 'react'
 const statusColors = {
   cancelado: '#ef4444',
   pendente: '#fde047',
+  'em andamento': '#fde047', // pode adicionar se quiser
+  'a pagar': '#fde047', // pode adicionar se quiser
   concluído: '#22c55e'
 }
 
-const OrderCard = ({ order, onCancel, userRole }) => {
-  const canCancel = order.status !== 'cancelado' && order.status !== 'concluído'
+const OrderCard = ({ order, onCancel, userRole, onEditStatus }) => {
+  const canEdit = order.status !== 'cancelado' && order.status !== 'concluído'
 
   return (
     <div className="appointment-card">
@@ -61,11 +63,16 @@ const OrderCard = ({ order, onCancel, userRole }) => {
         )}
       </div>
 
-      {canCancel && userRole !== 'ADMIN' && (
+      {canEdit && (
         <div className="card-buttons">
-          <button onClick={() => onCancel(order._id)} className="cancel-button">
-            Cancelar Pedido
-          </button>
+          {userRole === 'ADMIN' && (
+            <button
+              onClick={() => onEditStatus(order._id)}
+              className="edit-button"
+            >
+              Alterar Status
+            </button>
+          )}
         </div>
       )}
     </div>
