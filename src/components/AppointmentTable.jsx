@@ -1,80 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { useReportData } from '../hooks/useReportData';
-import { useSort } from '../hooks/useSort';
+import React from 'react'
 
-const AppointmentTable = () => {
-  const [filters, setFilters] = useState({ date: '', status: '', cpf: '', email: '' });
-  const [debouncedFilters, setDebouncedFilters] = useState(filters);
-
-  useEffect(() => {
-    const handler = setTimeout(() => setDebouncedFilters(filters), 500);
-    return () => clearTimeout(handler);
-  }, [filters]);
-
-  const { data: appointments, loading, error } = useReportData('/appointments/all', debouncedFilters);
-  const { sortedData, handleSort } = useSort(appointments, 'scheduledDate');
-
+const AppointmentTable = ({ appointments }) => {
   return (
-    <div>
-      <h2>Agendamentos</h2>
-
-      <input
-        type="date"
-        value={filters.date}
-        onChange={e => setFilters({ ...filters, date: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Status"
-        value={filters.status}
-        onChange={e => setFilters({ ...filters, status: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="CPF"
-        value={filters.cpf}
-        onChange={e => setFilters({ ...filters, cpf: e.target.value })}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={filters.email}
-        onChange={e => setFilters({ ...filters, email: e.target.value })}
-      />
-
-      {loading && <p>Carregando agendamentos...</p>}
-      {error && <p style={{ color: 'red' }}>Erro ao carregar dados: {error}</p>}
-
-      {!loading && !error && (
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('scheduledDate')}>Data</th>
-              <th onClick={() => handleSort('status')}>Status</th>
-              <th onClick={() => handleSort('userId.cpf')}>CPF</th>
-              <th onClick={() => handleSort('userId.email')}>Email</th>
+    <div className="table-container">
+      <h2 className="table-title">Agendamentos</h2>
+      <div className="table-responsive">
+        <table className="custom-table">
+          <thead className="custom-thead">
+            <tr className="custom-tr">
+              <th className="custom-th">Usuário</th>
+              <th className="custom-th">Email</th>
+              <th className="custom-th">Pet</th>
+              <th className="custom-th">Raça</th>
+              <th className="custom-th">Serviços</th>
+              <th className="custom-th">Data Agendada</th>
+              <th className="custom-th">Status</th>
+              <th className="custom-th">Preço Total</th>
             </tr>
           </thead>
-          <tbody>
-            {sortedData.length === 0 ? (
-              <tr>
-                <td colSpan={4}>Nenhum agendamento encontrado.</td>
+          <tbody className="custom-tbody">
+            {appointments.map(appointment => (
+              <tr className="custom-tr" key={appointment._id}>
+                <td className="custom-td">{appointment.userId.name}</td>
+                <td className="custom-td">{appointment.userId.email}</td>
+                <td className="custom-td">{appointment.pet.name}</td>
+                <td className="custom-td">{appointment.pet.breed}</td>
+                <td className="custom-td">
+                  {appointment.services.map(s => s.name).join(', ')}
+                </td>
+                <td className="custom-td">
+                  {new Date(appointment.scheduledDate).toLocaleString()}
+                </td>
+                <td className="custom-td">{appointment.status}</td>
+                <td className="custom-td">
+                  R$ {appointment.totalPrice.toFixed(2)}
+                </td>
               </tr>
-            ) : (
-              sortedData.map(appointment => (
-                <tr key={appointment._id}>
-                  <td>{new Date(appointment.scheduledDate).toLocaleDateString()}</td>
-                  <td>{appointment.status}</td>
-                  <td>{appointment.userId?.cpf || '-'}</td>
-                  <td>{appointment.userId?.email || '-'}</td>
-                </tr>
-              ))
-            )}
+            ))}
           </tbody>
         </table>
-      )}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default AppointmentTable;
+export default AppointmentTable

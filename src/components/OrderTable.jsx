@@ -1,74 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useReportData } from '../hooks/useReportData';
-import { useSort } from '../hooks/useSort';
+import React from 'react'
 
-const OrderTable = () => {
-  const [filters, setFilters] = useState({ date: '', cpf: '', email: '' });
-  const [debouncedFilters, setDebouncedFilters] = useState(filters);
-
-  useEffect(() => {
-    const handler = setTimeout(() => setDebouncedFilters(filters), 500);
-    return () => clearTimeout(handler);
-  }, [filters]);
-
-  const { data: orders, loading, error } = useReportData('/admin/order-reservations', debouncedFilters);
-  const { sortedData, handleSort } = useSort(orders, 'createdAt');
-
+const OrderTable = ({ orders }) => {
   return (
-    <div>
-      <h2>Pedidos</h2>
-
-      <input
-        type="date"
-        value={filters.date}
-        onChange={e => setFilters({ ...filters, date: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="CPF"
-        value={filters.cpf}
-        onChange={e => setFilters({ ...filters, cpf: e.target.value })}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={filters.email}
-        onChange={e => setFilters({ ...filters, email: e.target.value })}
-      />
-
-      {loading && <p>Carregando pedidos...</p>}
-      {error && <p style={{ color: 'red' }}>Erro ao carregar dados: {error}</p>}
-
-      {!loading && !error && (
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('createdAt')}>Data do Pedido</th>
-              <th onClick={() => handleSort('user.name')}>Nome</th>
-              <th onClick={() => handleSort('user.email')}>Email</th>
-              <th onClick={() => handleSort('user.cpf')}>CPF</th>
+    <div className="table-container">
+      <h2 className="table-title">Pedidos</h2>
+      <div className="table-responsive">
+        <table className="custom-table">
+          <thead className="custom-thead">
+            <tr className="custom-tr">
+              <th className="custom-th">Usuário</th>
+              <th className="custom-th">Email</th>
+              <th className="custom-th">Data Pedido</th>
+              <th className="custom-th">Data Valido</th>
+              <th className="custom-th">Status</th>
+              <th className="custom-th">Qtd. Itens</th>
+              <th className="custom-th">Total (R$)</th>
             </tr>
           </thead>
-          <tbody>
-            {sortedData.length === 0 ? (
-              <tr>
-                <td colSpan={4}>Nenhum pedido encontrado.</td>
+          <tbody className="custom-tbody">
+            {orders.map(order => (
+              <tr className="custom-tr" key={order._id}>
+                <td className="custom-td">{order.user.name}</td>
+                <td className="custom-td">{order.user.email}</td>
+                <td className="custom-td">
+                  {new Date(order.createdAt).toLocaleDateString()}
+                </td>
+                <td className="custom-td">
+                  {new Date(order.validUntil).toLocaleDateString()}
+                </td>
+                <td className="custom-td">{order.status}</td>
+                <td className="custom-td">{order.items.length}</td>
+                <td className="custom-td">{order.totalAmount.toFixed(2)}</td>
               </tr>
-            ) : (
-              sortedData.map(order => (
-                <tr key={order._id}>
-                  <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                  <td>{order.user?.name || '-'}</td>
-                  <td>{order.user?.email || '-'}</td>
-                  <td>{order.user?.cpf || '-'}</td>
-                </tr>
-              ))
-            )}
+            ))}
           </tbody>
         </table>
-      )}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default OrderTable;
+export default OrderTable
