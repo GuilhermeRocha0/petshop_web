@@ -18,8 +18,16 @@ export default function Product({
   return (
     <div className="product">
       <div className="product-info">
-        <img src={`${apiUrl}${imageUrl}`} alt={name} />
-        <p className="name">{name}</p>
+        <img
+          src={`${apiUrl}${imageUrl}`}
+          alt={name}
+          onClick={() => navigate(`/loja/produto/${_id}`)}
+          style={{ cursor: 'pointer' }}
+        />
+
+        <p className="name" onClick={() => navigate(`/produto/${_id}`)} style={{ cursor: 'pointer' }}>
+          {name}
+        </p>
         <p className="rate"> &#9733;&#9733;&#9733;&#9733;&#9733;</p>
         <p className="price">
           <span>R$</span> {price}
