@@ -1,11 +1,6 @@
 import React from 'react'
 
-const ProductTable = ({ products, categories }) => {
-  const getCategoryName = categoryId => {
-    const category = categories.find(cat => cat._id === categoryId)
-    return category ? category.name : 'Categoria não encontrada'
-  }
-
+const ProductTable = ({ products }) => {
   return (
     <div className="table-container">
       <h2 className="table-title">Produtos</h2>
@@ -28,9 +23,7 @@ const ProductTable = ({ products, categories }) => {
                 <td className="custom-td">{product.description}</td>
                 <td className="custom-td">R$ {product.price.toFixed(2)}</td>
                 <td className="custom-td">{product.quantity}</td>
-                <td className="custom-td">
-                  {getCategoryName(product.category)}
-                </td>
+                <td className="custom-td">{product.category.name}</td>
                 <td className="custom-td">
                   {product.image && (
                     <img src={product.image} alt={product.name} width="50" />

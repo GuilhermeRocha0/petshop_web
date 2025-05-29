@@ -12,7 +12,6 @@ const Reports = () => {
   const [selectedTable, setSelectedTable] = useState('')
   const [userRole, setUserRole] = useState('')
   const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
   const [orders, setOrders] = useState([])
   const [appointments, setAppointments] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -42,12 +41,6 @@ const Reports = () => {
           })
           setProducts(resProducts.data || [])
         }
-
-        // Categorias
-        const resCategories = await api.get('/categories', {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        setCategories(resCategories.data || [])
 
         // Pedidos
         const resOrders = await api.get(
@@ -85,9 +78,7 @@ const Reports = () => {
         <option value="orders">Pedidos</option>
       </select>
 
-      {selectedTable === 'products' && (
-        <ProductTable products={products} categories={categories} />
-      )}
+      {selectedTable === 'products' && <ProductTable products={products} />}
       {selectedTable === 'appointments' && (
         <AppointmentTable appointments={appointments} />
       )}
