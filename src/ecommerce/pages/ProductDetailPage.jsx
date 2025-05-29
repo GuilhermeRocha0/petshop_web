@@ -4,6 +4,7 @@ import api from '../../services/api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faMoneyBill } from '@fortawesome/free-solid-svg-icons'
 import SidebarCart from '../components/SidebarCart' // ✅ Importa o SidebarCart
+import ProductList from '../components/ProductList'
 
 export default function ProductDetailPage({
   addProductToCart,
@@ -14,7 +15,8 @@ export default function ProductDetailPage({
   removeProductFromCart,
   removeAllFromCart,
   cartTotal,
-  darkMode
+  darkMode,
+  products
 }) {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -69,14 +71,14 @@ export default function ProductDetailPage({
           <img src={`${apiUrl}${product.imageUrl}`} alt={product.name} />
           <div className="product-detail-info">
             <p><strong>Descrição:</strong> {product.description}</p>
-            <p><strong>Preço:</strong> R$ {product.price}</p>
+            <p className='price'><strong>Preço:</strong> R$ {product.price}</p>
             <p><strong>Categoria:</strong> {product.category?.name}</p>
             <p><strong>Estoque:</strong> {product.quantity}</p>
 
             {product.quantity > 0 ? (
               <>
                 <button
-                  className="btn-icon"
+                  className="btn-icon-expanded"
                   onClick={handleReserveNow}
                 >
                   Reservar Agora <FontAwesomeIcon icon={faMoneyBill} />
@@ -84,7 +86,7 @@ export default function ProductDetailPage({
 
                 <button
                   onClick={() => addProductToCart(product._id)}
-                  className="btn-icon add-to-cart-btn"
+                  className="btn-icon-expanded add-to-cart-btn"
                 >
                   Adicionar ao Carrinho <FontAwesomeIcon icon={faCartShopping} />
                 </button>
@@ -94,7 +96,21 @@ export default function ProductDetailPage({
             )}
           </div>
         </div>
+        {product && (
+          <div className="suggestions-section">
+            <h3>Produtos Relacionados</h3>
+            <div className="underline"></div>
+            <ProductList
+              products={products.filter(
+                (p) => p._id !== product._id && p.category?.name === product.category?.name
+              ).slice(0, 4)} // Limita a 4 sugestões
+              addProductToCart={addProductToCart}
+              addToCartTotal={addToCartTotal}
+            />
+          </div>
+        )}
       </div>
+
     </>
   )
 }
