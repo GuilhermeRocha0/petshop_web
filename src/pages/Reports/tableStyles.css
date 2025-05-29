@@ -62,8 +62,10 @@
 .filter-input,
 .filter-select {
   padding: 0.8rem;
+  font-size: 1.6rem;
   width: 100%;
-  max-width: 25rem;
+  max-width: 32rem;
+  min-height: 4.8rem;
   border: 0.1rem solid #ccc;
   border-radius: 0.4rem;
   background-color: #fff;

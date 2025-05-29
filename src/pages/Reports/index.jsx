@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ProductTable from '../../components/ProductTable'
 import AppointmentTable from '../../components/AppointmentTable'
 import OrderTable from '../../components/OrderTable'
+import './reportPage.css'
 import './tableStyles.css'
 import './tableNavigator.css'
 import LoadingModal from '../../components/LoadingModal'
@@ -69,7 +70,7 @@ const Reports = () => {
   }, [navigate])
 
   return (
-    <div>
+    <div className="page-wrapper">
       <LoadingModal isOpen={isLoading} />
       <h1>Relatórios</h1>
       <select
