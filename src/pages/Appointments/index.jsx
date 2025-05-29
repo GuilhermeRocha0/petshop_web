@@ -11,6 +11,7 @@ import Modal from '../../components/Modal'
 import './appointments.css'
 import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
+import EcommerceButton from '../../components/EcommerceButton'
 
 const Appointments = () => {
   const navigate = useNavigate()
@@ -189,6 +190,7 @@ const Appointments = () => {
     <div className="page-container">
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
 
       <div className="painel-container">
         <Sidebar />

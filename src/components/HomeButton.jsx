@@ -7,7 +7,7 @@ const HomeButton = () => {
   return (
     <div  className="homeButton">
       <Link to="/">
-      <button title="Alternar Tema">
+      <button title="Ir para a Home">
         {< FaHome/>}
       </button>
       </Link>

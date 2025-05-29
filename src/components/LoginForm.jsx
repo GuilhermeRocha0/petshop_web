@@ -4,6 +4,7 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
 import HomeButton from './HomeButton'
+import EcommerceButton from './EcommerceButton'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -106,6 +107,7 @@ const LoginForm = () => {
 
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
     </div>
   )
 }

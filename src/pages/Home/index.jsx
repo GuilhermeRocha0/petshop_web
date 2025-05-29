@@ -20,7 +20,7 @@ const Home = () => {
 
           <ul id="nav_list">
             <li className="nav-item" alt='Ecomerce'>
-              <Link to="/loja">Ecomerce</Link>
+              <Link to="/loja">Ecommerce</Link>
             </li>
             <li className="nav-item" alt='Seus agendamentos'>
               <Link to="/agendamentos">Agendamentos</Link>

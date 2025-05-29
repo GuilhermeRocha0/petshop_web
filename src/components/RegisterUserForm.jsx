@@ -3,6 +3,7 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
 import HomeButton from './HomeButton'
+import EcommerceButton from './EcommerceButton'
 
 const RegisterUserForm = () => {
   const [formData, setFormData] = useState({
@@ -138,6 +139,7 @@ const RegisterUserForm = () => {
 
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
     </div>
   )
 }

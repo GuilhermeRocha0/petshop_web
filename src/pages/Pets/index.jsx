@@ -9,6 +9,7 @@ import Modal from '../../components/Modal'
 import './pets.css'
 import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
+import EcommerceButton from '../../components/EcommerceButton'
 
 const Pets = () => {
   const [pets, setPets] = useState([])
@@ -123,6 +124,7 @@ const Pets = () => {
     <div className="page-container">
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
 
       <div className="painel-container">
         <Sidebar />

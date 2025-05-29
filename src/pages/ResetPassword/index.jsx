@@ -5,6 +5,7 @@ import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
 import api from '../../services/api'
 import './reset-password.css'
+import EcommerceButton from '../../components/EcommerceButton'
 
 const ResetPassword = () => {
   const [step, setStep] = useState(1)
@@ -184,6 +185,7 @@ const ResetPassword = () => {
       </div>
       <BotaoTema />
       <HomeButton />
+      <EcommerceButton/>
     </div>
   )
 }
