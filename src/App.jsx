@@ -17,6 +17,7 @@ import Products from './pages/Products'
 import Services from './pages/Services'
 import Categories from './pages/Categories'
 import Orders from './pages/Orders'
+import Reports from './pages/Reports'
 
 function App() {
   return (
@@ -81,6 +82,15 @@ function App() {
           element={
             <PrivateRoute>
               <Services />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/admin/relatorios"
+          element={
+            <PrivateRoute>
+              <Reports />
             </PrivateRoute>
           }
         />
