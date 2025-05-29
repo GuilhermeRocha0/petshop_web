@@ -71,7 +71,10 @@ const Reports = () => {
     <div>
       <LoadingModal isOpen={isLoading} />
       <h1>Relatórios</h1>
-      <select onChange={e => setSelectedTable(e.target.value)}>
+      <select
+        onChange={e => setSelectedTable(e.target.value)}
+        className="filter-select"
+      >
         <option value="">Selecione uma tabela</option>
         <option value="products">Produtos</option>
         <option value="appointments">Agendamentos</option>

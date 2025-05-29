@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const ProductTable = ({ products }) => {
+  const [nameFilter, setNameFilter] = useState('')
+  const [categoryFilter, setCategoryFilter] = useState('')
+
+  const filteredProducts = products.filter(
+    product =>
+      product.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
+      product.category.name.toLowerCase().includes(categoryFilter.toLowerCase())
+  )
+
   return (
     <div className="table-container">
       <h2 className="table-title">Produtos</h2>
+      <div className="filter-group">
+        <input
+          type="text"
+          placeholder="Filtrar por nome..."
+          value={nameFilter}
+          onChange={e => setNameFilter(e.target.value)}
+          className="filter-input"
+        />
+        <input
+          type="text"
+          placeholder="Filtrar por categoria..."
+          value={categoryFilter}
+          onChange={e => setCategoryFilter(e.target.value)}
+          className="filter-input"
+        />
+      </div>
       <div className="table-responsive">
         <table className="custom-table">
           <thead className="custom-thead">
@@ -17,7 +42,7 @@ const ProductTable = ({ products }) => {
             </tr>
           </thead>
           <tbody className="custom-tbody">
-            {products.map(product => (
+            {filteredProducts.map(product => (
               <tr className="custom-tr" key={product._id}>
                 <td className="custom-td">{product.name}</td>
                 <td className="custom-td">{product.description}</td>
