@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import TableNavigator from './TableNavigator'
 
 const AppointmentTable = ({ appointments }) => {
   const [emailFilter, setEmailFilter] = useState('')
@@ -66,47 +67,42 @@ const AppointmentTable = ({ appointments }) => {
           <option value="">Todos os Status</option>
           <option value="cancelado">Cancelado</option>
           <option value="pendente">Pendente</option>
-          <option value="em andamento">Em Andamento</option>
-          <option value="a pagar">A Pagar</option>
           <option value="concluído">Concluído</option>
         </select>
       </div>
-      <div className="table-responsive">
-        <table className="custom-table">
-          <thead className="custom-thead">
-            <tr className="custom-tr">
-              <th className="custom-th">Usuário</th>
-              <th className="custom-th">Email</th>
-              <th className="custom-th">Pet</th>
-              <th className="custom-th">Raça</th>
-              <th className="custom-th">Serviços</th>
-              <th className="custom-th">Data Agendada</th>
-              <th className="custom-th">Status</th>
-              <th className="custom-th">Preço Total</th>
-            </tr>
-          </thead>
-          <tbody className="custom-tbody">
-            {filteredAppointments.map(appointment => (
-              <tr className="custom-tr" key={appointment._id}>
-                <td className="custom-td">{appointment.userId.name}</td>
-                <td className="custom-td">{appointment.userId.email}</td>
-                <td className="custom-td">{appointment.pet.name}</td>
-                <td className="custom-td">{appointment.pet.breed}</td>
-                <td className="custom-td">
-                  {appointment.services.map(s => s.name).join(', ')}
-                </td>
-                <td className="custom-td">
-                  {new Date(appointment.scheduledDate).toLocaleString()}
-                </td>
-                <td className="custom-td">{appointment.status}</td>
-                <td className="custom-td">
-                  R$ {appointment.totalPrice.toFixed(2)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+      <TableNavigator data={filteredAppointments}>
+        {currentItems => (
+          <div className="table-responsive">
+            <table className="custom-table">
+              <thead className="custom-thead">
+                <tr className="custom-tr">
+                  <th className="custom-th">Usuário</th>
+                  <th className="custom-th">Email</th>
+                  <th className="custom-th">Pet</th>
+                  <th className="custom-th">Raça</th>
+                  <th className="custom-th">Data Agendada</th>
+                  <th className="custom-th">Status</th>
+                </tr>
+              </thead>
+              <tbody className="custom-tbody">
+                {currentItems.map(appointment => (
+                  <tr className="custom-tr" key={appointment._id}>
+                    <td className="custom-td">{appointment.userId.name}</td>
+                    <td className="custom-td">{appointment.userId.email}</td>
+                    <td className="custom-td">{appointment.pet.name}</td>
+                    <td className="custom-td">{appointment.pet.breed}</td>
+                    <td className="custom-td">
+                      {new Date(appointment.scheduledDate).toLocaleDateString()}
+                    </td>
+                    <td className="custom-td">{appointment.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </TableNavigator>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import TableNavigator from './TableNavigator'
 
 const ProductTable = ({ products }) => {
   const [nameFilter, setNameFilter] = useState('')
@@ -29,36 +30,45 @@ const ProductTable = ({ products }) => {
           className="filter-input"
         />
       </div>
-      <div className="table-responsive">
-        <table className="custom-table">
-          <thead className="custom-thead">
-            <tr className="custom-tr">
-              <th className="custom-th">Nome</th>
-              <th className="custom-th">Descrição</th>
-              <th className="custom-th">Preço</th>
-              <th className="custom-th">Quantidade</th>
-              <th className="custom-th">Categoria</th>
-              <th className="custom-th">Imagem</th>
-            </tr>
-          </thead>
-          <tbody className="custom-tbody">
-            {filteredProducts.map(product => (
-              <tr className="custom-tr" key={product._id}>
-                <td className="custom-td">{product.name}</td>
-                <td className="custom-td">{product.description}</td>
-                <td className="custom-td">R$ {product.price.toFixed(2)}</td>
-                <td className="custom-td">{product.quantity}</td>
-                <td className="custom-td">{product.category.name}</td>
-                <td className="custom-td">
-                  {product.image && (
-                    <img src={product.image} alt={product.name} width="50" />
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+      <TableNavigator data={filteredProducts}>
+        {currentItems => (
+          <div className="table-responsive">
+            <table className="custom-table">
+              <thead className="custom-thead">
+                <tr className="custom-tr">
+                  <th className="custom-th">Nome</th>
+                  <th className="custom-th">Descrição</th>
+                  <th className="custom-th">Preço</th>
+                  <th className="custom-th">Quantidade</th>
+                  <th className="custom-th">Categoria</th>
+                  <th className="custom-th">Imagem</th>
+                </tr>
+              </thead>
+              <tbody className="custom-tbody">
+                {currentItems.map(product => (
+                  <tr className="custom-tr" key={product._id}>
+                    <td className="custom-td">{product.name}</td>
+                    <td className="custom-td">{product.description}</td>
+                    <td className="custom-td">R$ {product.price.toFixed(2)}</td>
+                    <td className="custom-td">{product.quantity}</td>
+                    <td className="custom-td">{product.category.name}</td>
+                    <td className="custom-td">
+                      {product.image && (
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          width="50"
+                        />
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </TableNavigator>
     </div>
   )
 }
