@@ -747,3 +747,19 @@ header .right-side .image-header {
   font-weight: 500;
   line-height: 1.2;
 }
+
+.product-detail-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.product-detail-container img {
+  width: 300px;
+  object-fit: contain;
+}
+
+.product-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -8,6 +8,7 @@ import ProductsPage from './pages/ProductsPage'
 import ConfirmOrder from './pages/ConfirmOrder'
 import ToysPage from './pages/ToysPage'
 import FoodPage from './pages/FoodPage'
+import ProductDetailPage from './pages/ProductDetailPage'
 
 function EcommerceApp() {
   const [products, setProducts] = useState([])
@@ -200,6 +201,24 @@ function EcommerceApp() {
                 selectedProducts={selectedProducts}
                 darkMode={darkMode}
                 clearCartAndRefreshProducts={clearCartAndRefreshProducts} // ✅ aqui
+              />
+            }
+          />
+
+
+          <Route
+            path="/produto/:id"
+            element={
+              <ProductDetailPage
+                addProductToCart={addProductToCart}
+                addToCartTotal={addToCartTotal}
+                selectedProducts={selectedProducts}
+                showSidebarCart={showSidebarCart}
+                setShowSidebarCart={setShowSidebarCart}
+                removeProductFromCart={removeProductFromCart}
+                removeAllFromCart={removeAllFromCart}
+                cartTotal={cartTotal}
+                darkMode={darkMode}
               />
             }
           />
