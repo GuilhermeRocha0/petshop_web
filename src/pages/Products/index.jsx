@@ -44,11 +44,12 @@ const Products = () => {
       })
 
       // Ordenar os produtos em ordem alfabética pelo nome
-      const sortedProducts = res.data.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      )
-
-      setProducts(sortedProducts || [])
+      const availableProducts = res.data
+      .filter(product => product.quantity > 0)
+      .sort((a, b) => a.name.localeCompare(b.name))
+    
+    setProducts(availableProducts || [])
+    
     } catch (err) {
       toast.error('Erro ao carregar produtos.')
     }
@@ -161,6 +162,7 @@ const Products = () => {
 
   return (
     <div className="page-container">
+      
       <HomeButton />
       <BotaoTema />
 
@@ -168,11 +170,11 @@ const Products = () => {
         <Sidebar />
         <div className="painel-conteudo">
           <h2>Produtos</h2>
-
+          
           <button onClick={toggleForm} className="side">
             {showForm ? 'Voltar para Lista' : 'Novo Produto'}
           </button>
-
+          
           {showForm ? (
             <ProductForm
               editingProduct={editingProduct}
@@ -215,6 +217,7 @@ const Products = () => {
           )}
         </div>
       </div>
+      
     </div>
   )
 }

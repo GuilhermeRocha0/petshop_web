@@ -8,6 +8,7 @@ import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
 import EditProfileForm from '../../components/EditProfileForm'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
+import ItemChart from '../../components/ItemChart'
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -94,6 +95,7 @@ const Profile = () => {
 
   return (
     <div className="page-container">
+      <ItemChart/>
       <HomeButton />
       <BotaoTema />
 

@@ -27,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/redefinir-senha" element={<ResetPassword />} />
         <Route path="/" element={<Home />} />
+        
         <Route
           path="/perfil"
           element={

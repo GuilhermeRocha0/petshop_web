@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import api from '../../services/api'
 import './reset-password.css'
-
+import ItemChart from '../../components/ItemChart'
 const ResetPassword = () => {
   const [step, setStep] = useState(1)
   const [email, setEmail] = useState('')

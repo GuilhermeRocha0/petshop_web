@@ -11,7 +11,7 @@ import Modal from '../../components/Modal'
 import './appointments.css'
 import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
-
+import ItemChart from '../../components/ItemChart'
 const Appointments = () => {
   const navigate = useNavigate()
 
@@ -187,6 +187,7 @@ const Appointments = () => {
 
   return (
     <div className="page-container">
+      
       <HomeButton />
       <BotaoTema />
 
