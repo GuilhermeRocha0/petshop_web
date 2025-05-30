@@ -219,6 +219,7 @@ function EcommerceApp() {
                 removeAllFromCart={removeAllFromCart}
                 cartTotal={cartTotal}
                 darkMode={darkMode}
+                products={products}
               />
             }
           />
