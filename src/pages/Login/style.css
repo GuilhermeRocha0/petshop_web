@@ -337,7 +337,7 @@ body {
 [data-theme='dark'] .login-box label,
 [data-theme='dark'] .lo-textfield > label {
   color: #ddd;
-}
+} 
 
 [data-theme='dark'] .login-box input,
 [data-theme='dark'] .login-box select,

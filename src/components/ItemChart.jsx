@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import api from '../services/api'
-import './BotaoTema.css';
+import './ItemChart.css';
 
 export default function ItemChart() {
   const [data, setData] = useState([])
