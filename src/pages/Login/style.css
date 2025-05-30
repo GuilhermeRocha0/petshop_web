@@ -152,7 +152,7 @@ body {
   flex-direction: column;
   padding: 3rem 3.5rem;
   background-color: rgb(248, 164, 67);
-  border: 0.6rem solid rgb(255, 255, 255) !important;
+  border: 0.6rem solid #444 !important;
   border-radius: 2rem;
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.466);
   z-index: 1;
@@ -281,7 +281,7 @@ body {
   .lo-box {
     width: 100%;
     border-width: 0.3rem;
-    border: none;
+    border: none !important;
     background-color: transparent;
     border-radius: 0;
     box-shadow: none;
