@@ -1,0 +1,98 @@
+.table-container {
+  margin-bottom: 2rem;
+}
+
+.table-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-th,
+.custom-td {
+  padding: 1.2rem 1.6rem;
+  text-align: left;
+}
+
+.custom-thead {
+  background-color: #f0f0f0;
+}
+
+.custom-tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.custom-tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+[data-theme='dark'] .custom-thead {
+  background-color: #333;
+  color: #fff;
+}
+
+[data-theme='dark'] .custom-tr:nth-child(even) {
+  background-color: #444;
+}
+
+[data-theme='dark'] .custom-tr:nth-child(odd) {
+  background-color: #555;
+}
+
+[data-theme='dark'] .custom-td,
+[data-theme='dark'] .custom-th {
+  color: #ddd;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-input,
+.filter-select {
+  padding: 0.8rem;
+  font-size: 1.6rem;
+  width: 100%;
+  max-width: 32rem;
+  min-height: 4.8rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Estilo específico para filter-select */
+.filter-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23333'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.8rem 1rem;
+  cursor: pointer;
+}
+
+/* Dark mode */
+[data-theme='dark'] .filter-input,
+[data-theme='dark'] .filter-select {
+  background-color: #222;
+  color: #eee;
+  border-color: #555;
+}
+
+[data-theme='dark'] .filter-select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23eee'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
+}

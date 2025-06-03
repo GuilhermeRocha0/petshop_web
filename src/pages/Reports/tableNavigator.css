@@ -1,0 +1,78 @@
+.table-navigator {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 1.6rem;
+  border-radius: 0.8rem;
+}
+
+.navigator-top {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.navigator-top select {
+  padding: 0.4rem 0.8rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #333;
+}
+
+/* Responsividade para info + botões */
+.navigator-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.navigator-text {
+  font-size: 1.6rem;
+}
+
+/* Botões */
+.navigator-buttons button {
+  padding: 0.4rem 1.2rem;
+  margin-right: 0.3rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  background: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.navigator-buttons button:hover:not(:disabled) {
+  background: #ddd;
+}
+
+.navigator-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dark mode */
+[data-theme='dark'] .table-navigator {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
+}
+
+[data-theme='dark'] .navigator-top select {
+  background: #2a2a2a;
+  color: #f5f5f5;
+  border-color: #555;
+}
+
+[data-theme='dark'] .navigator-buttons button {
+  background: #333;
+  color: #f5f5f5;
+  border-color: #555;
+}
+
+[data-theme='dark'] .navigator-buttons button:hover:not(:disabled) {
+  background: #444;
+}

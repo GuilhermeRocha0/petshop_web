@@ -35,6 +35,10 @@ export default function Sidebar() {
         Agendamentos
       </Link>
 
+      <Link to="/pedidos" className="sidebar-link">
+        Pedidos
+      </Link>
+
       {role === 'ADMIN' && (
         <>
           <Link to="/admin/servicos" className="sidebar-link">
@@ -46,12 +50,11 @@ export default function Sidebar() {
           <Link to="/admin/produtos" className="sidebar-link">
             Produtos
           </Link>
+          <Link to="/admin/relatorios" className="sidebar-link">
+            Relatórios
+          </Link>
         </>
       )}
-
-      <Link to="/pedidos" className="sidebar-link">
-        Pedidos
-      </Link>
 
       <button
         onClick={handleLogout}
