@@ -10,8 +10,16 @@ export default function ProductsPage({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
-  addToCartTotal
+  removeAllFromCart,
+  addToCartTotal,
+  searchTerm,
+  setSearchTerm,
+  darkMode
 }) {
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div className="page-inner-content">
       <div className="section-title">
@@ -19,19 +27,22 @@ export default function ProductsPage({
         <div className="underline"></div>
       </div>
       <SidebarCart
-        addToCartTotal={addToCartTotal}
+        darkMode={darkMode}
+        addProductToCart={addProductToCart}
+        removeAllFromCart={removeAllFromCart}
         removeProductFromCart={removeProductFromCart}
         cartTotal={cartTotal}
         selectedProducts={selectedProducts}
         setShowSidebarCart={setShowSidebarCart}
         showSidebarCart={showSidebarCart}
-      ></SidebarCart>
+      />
+
       <div className="main-content">
         <ProductList
           addProductToCart={addProductToCart}
-          products={products}
+          products={filteredProducts}
           addToCartTotal={addToCartTotal}
-        ></ProductList>
+        />
       </div>
     </div>
   )

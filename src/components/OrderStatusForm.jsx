@@ -2,45 +2,32 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import api from '../services/api'
 
-const validStatus = ['em andamento', 'a pagar', 'concluído']
+const validStatus = ['cancelado', 'pendente', 'concluído']
 
-const AppointmentStatusForm = ({
-  appointmentId,
-  onClose,
-  fetchAppointments
-}) => {
+const OrderStatusForm = ({ orderId, onClose, fetchOrders }) => {
   const [status, setStatus] = useState('')
-  const [appointment, setAppointment] = useState(null)
+  const [order, setOrder] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchAppointment = async () => {
+    const fetchOrder = async () => {
       try {
         const token = localStorage.getItem('token')
-        const user = JSON.parse(localStorage.getItem('user'))
-
-        const endpoint =
-          user.role === 'ADMIN'
-            ? `/appointments/admin/${appointmentId}`
-            : `/appointments/${appointmentId}`
-
-        const res = await api.get(endpoint, {
+        const res = await api.get(`/order-reservation/${orderId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
-
-        console.log(res)
-        console.log(res.data.appointment)
-        setAppointment(res.data.appointment)
-        setLoading(false)
+        setOrder(res.data.reservation)
+        setStatus(res.data.reservation.status || '')
       } catch (err) {
         console.error(err)
-        toast.error(err.response?.data?.msg || 'Erro ao carregar agendamento.')
+        toast.error('Erro ao carregar pedido.')
+      } finally {
         setLoading(false)
       }
     }
 
-    fetchAppointment()
-  }, [appointmentId, onClose])
+    fetchOrder()
+  }, [orderId])
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -52,13 +39,8 @@ const AppointmentStatusForm = ({
 
     try {
       const token = localStorage.getItem('token')
-      if (!token) {
-        toast.error('Sessão expirada, faça login novamente.')
-        return
-      }
-
       await api.put(
-        `/appointments/status/${appointmentId}`,
+        `/order-reservation/status/${orderId}`,
         { status },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -66,7 +48,7 @@ const AppointmentStatusForm = ({
       )
 
       toast.success('Status atualizado com sucesso!')
-      fetchAppointments()
+      fetchOrders()
       onClose()
     } catch (error) {
       console.error(error)
@@ -75,34 +57,34 @@ const AppointmentStatusForm = ({
   }
 
   if (loading) {
-    return <p>Carregando dados do agendamento...</p>
+    return <p>Carregando dados do pedido...</p>
   }
 
-  if (!appointment) {
-    return <p>Agendamento não encontrado.</p>
+  if (!order) {
+    return <p>Pedido não encontrado.</p>
   }
 
   return (
     <div className="status-form-container">
       <h2>Alterar Status</h2>
 
-      <div className="appointment-details">
+      <div className="order-details">
         <p>
-          <strong>Pet:</strong> {appointment.pet?.name || 'N/D'}
+          <strong>Cliente:</strong> {order.user?.name || 'N/D'}
         </p>
         <p>
-          <strong>Serviços:</strong>{' '}
-          {appointment.services?.map(s => s.name).join(', ') || 'N/D'}
+          <strong>Produtos:</strong>{' '}
+          {order.items?.map(p => p.name).join(', ') || 'N/D'}
         </p>
         <p>
-          <strong>Data:</strong>{' '}
-          {new Date(appointment.scheduledDate).toLocaleString() || 'N/D'}
+          <strong>Data do Pedido:</strong>{' '}
+          {new Date(order.createdAt).toLocaleString() || 'N/D'}
         </p>
         <p>
-          <strong>Preço:</strong> R$ {appointment.totalPrice || 'N/D'}
+          <strong>Total:</strong> R$ {order.totalAmount?.toFixed(2) || 'N/D'}
         </p>
         <p>
-          <strong>Status atual:</strong> {appointment.status || 'N/D'}
+          <strong>Status atual:</strong> {order.status || 'N/D'}
         </p>
       </div>
 
@@ -137,4 +119,4 @@ const AppointmentStatusForm = ({
   )
 }
 
-export default AppointmentStatusForm
+export default OrderStatusForm
