@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ProductTable from '../../components/ProductTable'
 import AppointmentTable from '../../components/AppointmentTable'
 import OrderTable from '../../components/OrderTable'
+import ChartTable from '../../components/ChartTable'
 import './reportPage.css'
 import './tableStyles.css'
 import './tableNavigator.css'
@@ -83,7 +84,7 @@ const Reports = () => {
         <option value="products">Produtos</option>
         <option value="appointments">Agendamentos</option>
         <option value="orders">Pedidos</option>
-        <option value="orders">Gráficos</option>
+        <option value="graphics">Gráficos</option>
       </select>
 
       {selectedTable === 'products' && <ProductTable products={products} />}
@@ -91,6 +92,8 @@ const Reports = () => {
         <AppointmentTable appointments={appointments} />
       )}
       {selectedTable === 'orders' && <OrderTable orders={orders} />}
+      {selectedTable === 'graphics' && <ChartTable />}
+
     </div>
   )
 }
