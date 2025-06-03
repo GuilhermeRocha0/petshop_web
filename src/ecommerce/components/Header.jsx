@@ -23,7 +23,7 @@ export default function Header() {
         </div>
 
         <div className="right-side">
-          <img src="/images/header.jpg" className="image-header"></img>
+          <img src="/images/header.jpg" className="image-header" title='Cachorro e Mulher na Loja'></img>
         </div>
       </div>
     </header>

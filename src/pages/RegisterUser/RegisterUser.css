@@ -223,6 +223,11 @@ body {
     text-align: center;
   }
 
+  [data-theme='dark'] .cad-box {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
   .return-msg {
     font-size: 1.4rem;
     text-align: center;

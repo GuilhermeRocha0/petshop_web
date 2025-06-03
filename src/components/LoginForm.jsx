@@ -4,6 +4,7 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
 import HomeButton from './HomeButton'
+import EcommerceButton from './EcommerceButton'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -88,24 +89,25 @@ const LoginForm = () => {
           <div className="lo-p">
             <p>
               Esqueceu sua senha?{' '}
-              <Link to="/redefinir-senha">Redefina aqui</Link>
+              <Link to="/redefinir-senha" alt='redefina sua senha'>Redefina aqui</Link>
             </p>
           </div>
 
           <br />
 
-          <button className="btn" type="submit">
+          <button className="btn" type="submit" alt='Clique para logar'>
             Login
           </button>
 
           <p className="ponto">
-            Caso não tenha conta: <Link to="/cadastrar">Cadastre-se</Link>
+            Caso não tenha conta: <Link to="/cadastrar" alt='Caso nao tenha Conta'>Cadastre-se</Link>
           </p>
         </form>
       </div>
 
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
     </div>
   )
 }

@@ -552,7 +552,7 @@ section {
 [data-theme='dark'] body .btn-default-fi:hover {
   background-color: #2979ff;
   color: white !important;
-}
+} 
 
 [data-theme='dark'] body .dish,
 [data-theme='dark'] body #feedback {

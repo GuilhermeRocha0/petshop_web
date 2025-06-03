@@ -8,6 +8,7 @@ import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
 import EditProfileForm from '../../components/EditProfileForm'
 import ChangePasswordForm from '../../components/ChangePasswordForm'
+import EcommerceButton from '../../components/EcommerceButton'
 
 const Profile = () => {
   const [user, setUser] = useState(null)
@@ -96,6 +97,7 @@ const Profile = () => {
     <div className="page-container">
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
 
       <div className="painel-container">
         <Sidebar />

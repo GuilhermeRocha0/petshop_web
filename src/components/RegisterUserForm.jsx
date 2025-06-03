@@ -3,6 +3,7 @@ import api from '../services/api'
 import { useNavigate, Link } from 'react-router-dom'
 import BotaoTema from './BotaoTema'
 import HomeButton from './HomeButton'
+import EcommerceButton from './EcommerceButton'
 
 const RegisterUserForm = () => {
   const [formData, setFormData] = useState({
@@ -128,16 +129,17 @@ const RegisterUserForm = () => {
         </div>
 
         <br />
-        <button type="submit" className="btn">
+        <button type="submit" className="btn" alt='Cadastre-se'>
           Cadastre-se
         </button>
         <p className="ponto">
-          Já tem uma conta? <Link to="/login">Entre</Link>
+          Já tem uma conta? <Link to="/login" alt='Já tem uma conta?'>Entre</Link>
         </p>
       </form>
 
       <HomeButton />
       <BotaoTema />
+      <EcommerceButton/>
     </div>
   )
 }
