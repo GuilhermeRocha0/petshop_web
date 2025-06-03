@@ -1,5 +1,11 @@
 @media only screen and (min-width: 1440px) {
   .page-wrapper {
-    margin-inline: 3.2rem;
+    padding-inline: 3.2rem;
   }
+}
+
+.page-wrapper {
+    padding-bottom: 7.2rem ;
+    background-color: #6f94c7;
+    min-height: 100vh;
 }

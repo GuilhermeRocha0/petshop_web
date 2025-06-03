@@ -39,7 +39,7 @@
   padding: 0.4rem 1.2rem;
   margin-right: 0.3rem;
   border: 0.1rem solid #ccc;
-  border-radius: 0.4rem;
+  border-radius: 3rem;
   background: #f0f0f0;
   color: #333;
   cursor: pointer;
@@ -53,6 +53,10 @@
 .navigator-buttons button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.table-navigator {
+  background-color: #bac3d4;
 }
 
 /* Dark mode */

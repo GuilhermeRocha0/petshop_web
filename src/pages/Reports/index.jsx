@@ -9,6 +9,7 @@ import LoadingModal from '../../components/LoadingModal'
 import api from '../../services/api'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import BotaoTema from '../../components/BotaoTema'
 
 const Reports = () => {
   const [selectedTable, setSelectedTable] = useState('')
@@ -72,6 +73,7 @@ const Reports = () => {
   return (
     <div className="page-wrapper">
       <LoadingModal isOpen={isLoading} />
+      <BotaoTema />
       <h1>Relatórios</h1>
       <select
         onChange={e => setSelectedTable(e.target.value)}
@@ -81,6 +83,7 @@ const Reports = () => {
         <option value="products">Produtos</option>
         <option value="appointments">Agendamentos</option>
         <option value="orders">Pedidos</option>
+        <option value="orders">Gráficos</option>
       </select>
 
       {selectedTable === 'products' && <ProductTable products={products} />}

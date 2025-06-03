@@ -42,7 +42,6 @@ const ProductTable = ({ products }) => {
                   <th className="custom-th">Preço</th>
                   <th className="custom-th">Quantidade</th>
                   <th className="custom-th">Categoria</th>
-                  <th className="custom-th">Imagem</th>
                 </tr>
               </thead>
               <tbody className="custom-tbody">
@@ -53,15 +52,6 @@ const ProductTable = ({ products }) => {
                     <td className="custom-td">R$ {product.price.toFixed(2)}</td>
                     <td className="custom-td">{product.quantity}</td>
                     <td className="custom-td">{product.category.name}</td>
-                    <td className="custom-td">
-                      {product.image && (
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          width="50"
-                        />
-                      )}
-                    </td>
                   </tr>
                 ))}
               </tbody>
