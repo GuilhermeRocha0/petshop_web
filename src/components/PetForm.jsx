@@ -61,13 +61,16 @@ const PetForm = ({ editingPet, handleSubmit }) => {
 
       <div>
         <label className="pet-form-label">Raça:</label>
-        <input
-          type="text"
-          value={breed}
-          onChange={e => setBreed(e.target.value)}
-          className="input-standard"
-          required
-        />
+          <input
+            type="text"
+            value={breed}
+            onChange={e => {
+              const onlyLetters = e.target.value.replace(/[0-9]/g, '');
+              setBreed(onlyLetters);
+            }}
+            className="input-standard"
+            required
+          />
       </div>
 
       <div>
