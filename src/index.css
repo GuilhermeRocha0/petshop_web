@@ -905,3 +905,19 @@ header .right-side .image-header {
   border-radius: 4px;
 }
 
+.confirmation-buttons{
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0.8rem 0.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  transition: all 0.2s;
+}
+
+.confirmation-buttons:hover {
+  background-color: var(--dark-secondary-color);
+}
