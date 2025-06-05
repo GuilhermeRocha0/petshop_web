@@ -39,7 +39,7 @@ const ProductTable = ({ products }) => {
                 <tr className="custom-tr">
                   <th className="custom-th">Nome</th>
                   <th className="custom-th">Descrição</th>
-                  <th className="custom-th">Preço</th>
+                  <th className="custom-th">Preço (R$)</th>
                   <th className="custom-th">Quantidade</th>
                   <th className="custom-th">Categoria</th>
                 </tr>
@@ -49,7 +49,7 @@ const ProductTable = ({ products }) => {
                   <tr className="custom-tr" key={product._id}>
                     <td className="custom-td">{product.name}</td>
                     <td className="custom-td">{product.description}</td>
-                    <td className="custom-td">R$ {product.price.toFixed(2)}</td>
+                    <td className="custom-td">{product.price.toFixed(2)}</td>
                     <td className="custom-td">{product.quantity}</td>
                     <td className="custom-td">{product.category.name}</td>
                   </tr>
