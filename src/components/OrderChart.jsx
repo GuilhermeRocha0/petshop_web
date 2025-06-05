@@ -1,72 +1,80 @@
 import React, { useEffect, useState } from 'react'
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { Pie } from 'react-chartjs-2'
+import 'chart.js/auto'
 import api from '../services/api'
 
 const OrderChart = () => {
-  const [chartData, setChartData] = useState([])
+  const [orders, setOrders] = useState([])
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token')
-        const res = await api.get('/orders', {
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        if (!token || !user) return
+
+        const route =
+          user.role === 'ADMIN'
+            ? '/admin/order-reservations'
+            : '/order-reservation'
+
+        const res = await api.get(route, {
           headers: { Authorization: `Bearer ${token}` }
         })
-        const orders = res.data
 
-        // Contagem por status
-        const statusCount = {
-          cancelado: 0,
-          pendente: 0,
-          concluído: 0
-        }
-
-        orders.forEach(order => {
-          const status = order.status.toLowerCase()
-          if (statusCount[status] !== undefined) {
-            statusCount[status]++
-          }
-        })
-
-        const formatted = Object.entries(statusCount).map(([status, value]) => ({
-          name: status.charAt(0).toUpperCase() + status.slice(1),
-          value
-        }))
-
-        setChartData(formatted)
-      } catch (err) {
-        console.error('Erro ao buscar pedidos:', err)
+        const orderList = res.data.reservations || res.data
+        setOrders(orderList)
+      } catch (error) {
+        console.error('Erro ao buscar pedidos: ', error)
       }
     }
 
     fetchOrders()
   }, [])
 
-  const COLORS = ['#f44336', '#ff9800', '#4caf50'] // Cancelado, Pendente, Concluído
+  const statusCounts = {
+    cancelado: 0,
+    pendente: 0,
+    concluído: 0
+  }
+
+  orders.forEach(order => {
+    if (statusCounts[order.status] !== undefined) {
+      statusCounts[order.status]++
+    }
+  })
+
+  const data = {
+    labels: ['Cancelado', 'Pendente', 'Concluído'],
+    datasets: [
+      {
+        data: [
+          statusCounts.cancelado,
+          statusCounts.pendente,
+          statusCounts.concluído
+        ],
+        backgroundColor: ['#e74c3c', '#f1c40f', '#2ecc71']
+      }
+    ]
+  }
+
+  const options = {
+    plugins: {
+      legend: {
+        position: 'right',
+        labels: {
+          color: 'white'
+        }
+      }
+    }
+  }
 
   return (
     <div className='chart-card'>
-      <h3 style={{ textAlign: 'center' }}>Status dos Pedidos</h3>
-      <ResponsiveContainer>
-        <PieChart>
-          <Pie
-            data={chartData}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-            fill="#8884d8"
-            label
-          >
-            {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend verticalAlign="bottom" />
-        </PieChart>
-      </ResponsiveContainer>
+      <h3>Status dos Pedidos</h3>
+        <Pie data={data} options={options} className='pie-chart' />
+      
     </div>
   )
 }
