@@ -9,6 +9,7 @@ import Modal from '../../components/Modal'
 import './services.css'
 import HomeButton from '../../components/HomeButton'
 import BotaoTema from '../../components/BotaoTema'
+import LoadingModal from '../../components/LoadingModal'
 
 const Services = () => {
   const [services, setServices] = useState([])
@@ -19,6 +20,7 @@ const Services = () => {
   const [editingService, setEditingService] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [selectedServiceId, setSelectedServiceId] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const toggleForm = () => {
     setEditingService(null)
@@ -30,25 +32,32 @@ const Services = () => {
   }, [])
 
   const fetchServices = async () => {
+    setIsLoading(true)
+
     try {
       const res = await api.get('/services')
       setServices(res.data.services || [])
     } catch (err) {
       toast.error('Erro ao carregar serviços.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleSubmit = async (e, name, price, estimatedTime) => {
     e.preventDefault()
+    setIsLoading(true)
 
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
     if (!name || !price || !estimatedTime) {
       toast.error('Preencha todos os campos obrigatórios.')
+      setIsLoading(false)
       return
     }
 
@@ -74,6 +83,8 @@ const Services = () => {
       fetchServices()
     } catch (err) {
       toast.error('Erro ao salvar serviço.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -88,9 +99,12 @@ const Services = () => {
   }
 
   const confirmDelete = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
@@ -102,7 +116,10 @@ const Services = () => {
       fetchServices()
     } catch (err) {
       toast.error('Erro ao deletar serviço.')
+    } finally {
+      setIsLoading(false)
     }
+
     setShowModal(false)
   }
 
@@ -115,6 +132,7 @@ const Services = () => {
 
   return (
     <div className="page-container">
+      <LoadingModal isOpen={isLoading} />
       <HomeButton />
       <BotaoTema />
 
