@@ -905,11 +905,11 @@ header .right-side .image-header {
   border-radius: 4px;
 }
 
-.confirmation-buttons{
-   display: flex;
+.confirmation-buttons-1{
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 5rem;
   padding: 0.8rem 0.5rem;
   background-color: var(--primary-color);
   color: #fff;
@@ -918,6 +918,33 @@ header .right-side .image-header {
   transition: all 0.2s;
 }
 
-.confirmation-buttons:hover {
-  background-color: var(--dark-secondary-color);
+.confirmation-buttons-1:hover {
+  background-color: var(--dark-primary-color);
+}
+
+.confirmation-buttons-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 0.8rem 0.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  transition: all 0.2s;
+  margin-left: 5px;
+}
+
+.confirmation-buttons-2:hover {
+  background-color: var(--dark-primary-color);
+}
+
+.div-conf-button{
+  display: flex;
+  flex-direction: row;
+}
+
+.total{
+  color: #22c55e;
 }
