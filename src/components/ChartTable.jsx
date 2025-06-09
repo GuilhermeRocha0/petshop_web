@@ -1,6 +1,7 @@
 import React from 'react'
 import ItemChart from './ItemChart'
 import OrderChart from './OrderChart'
+import AppointmentChart from './AppointmentChart'
 import './chartTable.css'
 const ChartTable = () => {
   return (
@@ -10,7 +11,7 @@ const ChartTable = () => {
       <div className="charts-grid">
         {<ItemChart/>}
         {<OrderChart/>}  
-        {<ItemChart/>}
+        {<AppointmentChart/>}
         {<ItemChart/>}        
 
         </div>
