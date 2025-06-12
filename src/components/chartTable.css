@@ -27,5 +27,10 @@
 }
 [data-theme='dark']  .chart-card{
   background-color: #222;
-  color: #ced6e0;
+  color: #1971dd;
+}
+
+.page-wrapper h1 {
+  text-align: center;
+
 }

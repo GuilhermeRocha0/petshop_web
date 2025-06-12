@@ -53,7 +53,7 @@ export default function ItemChart() {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="quantidade" fill="#8884d8" />
+          <Bar dataKey="quantidade" fill="#00c04b" />
         </BarChart>
       </ResponsiveContainer>
     </div>

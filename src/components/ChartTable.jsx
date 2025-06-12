@@ -11,8 +11,7 @@ const ChartTable = () => {
       <div className="charts-grid">
         {<ItemChart/>}
         {<OrderChart/>}  
-        {<AppointmentChart/>}
-        {<ItemChart/>}        
+        {<AppointmentChart/>}      
 
         </div>
         </div>

@@ -75,7 +75,15 @@ const Reports = () => {
     <div className="page-wrapper">
       <LoadingModal isOpen={isLoading} />
       <BotaoTema />
-      <h1>Relatórios</h1>
+
+    <button
+  className="botao-voltar"
+  onClick={() => navigate('/perfil')}
+  >
+    Voltar ao menu do Administrador
+  </button>
+
+    <h1 className="report-title">Todos os relatórios estão aqui!</h1>
       <select
         onChange={e => setSelectedTable(e.target.value)}
         className="filter-select"
