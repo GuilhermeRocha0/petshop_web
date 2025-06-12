@@ -79,11 +79,11 @@ export default function ConfirmOrder({
             <strong>Total: </strong>R$ {confirmedTotal.toFixed(2)}
           </p>
 
-          <div className="confirmation-buttons">
-            <button onClick={() => navigate('/loja')}>
+          <div className='div-conf-button'>
+            <button className="confirmation-buttons-1" onClick={() => navigate('/loja')}>
               Continuar Navegando
             </button>
-            <button onClick={() => navigate('/pedidos')}>
+            <button className="confirmation-buttons-2" onClick={() => navigate('/pedidos')}>
               Meus Pedidos
             </button>
           </div>
