@@ -9,6 +9,7 @@ import Modal from '../../components/Modal'
 import './pets.css'
 import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
+import LoadingModal from '../../components/LoadingModal'
 
 const Pets = () => {
   const [pets, setPets] = useState([])
@@ -20,6 +21,9 @@ const Pets = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedPetId, setSelectedPetId] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(false)
+  
+
   const toggleForm = () => {
     setEditingPet(null)
     setShowForm(prev => !prev)
@@ -30,9 +34,12 @@ const Pets = () => {
   }, [])
 
   const fetchPets = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
@@ -43,22 +50,28 @@ const Pets = () => {
       setPets(res.data.pets || [])
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao carregar pets.')
+    } finally {
+      setIsLoading(false) 
     }
   }
 
   const handleSubmit = async (e, name, size, age, breed, notes) => {
     e.preventDefault()
+    setIsLoading(true)
 
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
     if (!name || !size || !breed || age === '' || isNaN(age)) {
       toast.error('Preencha todos os campos obrigatórios.')
+      setIsLoading(false)
       return
     }
+
 
     try {
       if (editingPet) {
@@ -82,6 +95,8 @@ const Pets = () => {
       fetchPets()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao salvar pet.')
+    } finally {
+      setIsLoading(false) 
     }
   }
 
@@ -96,9 +111,12 @@ const Pets = () => {
   }
 
   const confirmDelete = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
@@ -110,6 +128,8 @@ const Pets = () => {
       fetchPets()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao deletar pet.')
+    } finally {
+      setIsLoading(false) 
     }
 
     setShowModal(false)
@@ -121,6 +141,7 @@ const Pets = () => {
 
   return (
     <div className="page-container">
+      <LoadingModal isOpen={isLoading} />
       <HomeButton />
       <BotaoTema />
 

@@ -1,5 +1,50 @@
 @media only screen and (min-width: 1440px) {
   .page-wrapper {
-    margin-inline: 3.2rem;
+    padding-inline: 3.2rem;
   }
+}
+
+.page-wrapper {
+    padding-bottom: 7.2rem ;
+    background-color: #6f94c7;
+    min-height: 100vh;
+}
+
+.report-title {
+  text-align: center;
+  color: #000000; 
+  margin-top: 0px; 
+  font-size: 2em; 
+  margin-left: 12vw;
+}
+
+[data-theme='dark'] .report-title {
+  color: #FFFFFF; 
+}
+
+
+.botao-voltar {
+  float: right;
+  margin: 30px 0;
+  padding: 8px 16px;
+  background-color: #ffffff; 
+  color: rgb(8, 7, 7); 
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.botao-voltar:hover {
+  background-color: #eeeeee; 
+}
+
+/* Estilos para o modo escuro */
+[data-theme='dark'] .botao-voltar {
+  background-color: #333333; 
+  color: #FFFFFF; 
+  border: 1px solid #eeeeee;
+}
+
+[data-theme='dark'] .botao-voltar:hover {
+  background-color: #555555; 
 }

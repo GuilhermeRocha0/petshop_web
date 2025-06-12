@@ -10,6 +10,7 @@ import Pagination from '../../components/Pagination'
 import BotaoTema from '../../components/BotaoTema'
 import HomeButton from '../../components/HomeButton'
 import OrderStatusForm from '../../components/OrderStatusForm'
+import LoadingModal from '../../components/LoadingModal'
 import './style.css'
 
 const Orders = () => {
@@ -23,10 +24,15 @@ const Orders = () => {
   const [userRole, setUserRole] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [editingOrderId, setEditingOrderId] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  
 
   const fetchOrders = async () => {
+    setIsLoading(true)
+
     if (!isAuthenticated()) {
       toast.error('Sessão expirada. Faça login novamente.')
+      setIsLoading(false)
       logout()
       navigate('/login')
       return
@@ -37,6 +43,7 @@ const Orders = () => {
 
     if (!user) {
       toast.error('Informações de usuário ausentes.')
+      setIsLoading(false)
       logout()
       navigate('/login')
       return
@@ -55,6 +62,8 @@ const Orders = () => {
       setOrders(res.data.reservations || [])
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao carregar pedidos.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -96,9 +105,12 @@ const Orders = () => {
   }
 
   const confirmCancel = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada, faça login novamente.')
+      setIsLoading(false)
       logout()
       navigate('/login')
       return
@@ -118,11 +130,14 @@ const Orders = () => {
       setShowModal(false)
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao cancelar o pedido.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <div className="page-container">
+      <LoadingModal isOpen={isLoading} />
       <HomeButton />
       <BotaoTema />
 

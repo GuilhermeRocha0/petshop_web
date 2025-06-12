@@ -1,0 +1,36 @@
+
+
+  .charts-grid {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+    justify-content: center;
+
+  }
+  
+  .chart-card {
+    background: #ced6e0;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60rem;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    max-height: 34rem;
+    text-align: center;
+
+  }
+.pie-chart{
+  display: inline-block !important;
+}
+[data-theme='dark']  .chart-card{
+  background-color: #222;
+  color: #1971dd;
+}
+
+.page-wrapper h1 {
+  text-align: center;
+
+}

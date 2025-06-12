@@ -9,6 +9,7 @@ import Modal from '../../components/Modal'
 import './categories.css'
 import HomeButton from '../../components/HomeButton'
 import BotaoTema from '../../components/BotaoTema'
+import LoadingModal from '../../components/LoadingModal'
 
 const Categories = () => {
   const [categories, setCategories] = useState([])
@@ -20,6 +21,9 @@ const Categories = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedCategoryId, setSelectedCategoryId] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(false)
+  
+
   const toggleForm = () => {
     setEditingCategory(null)
     setShowForm(prev => !prev)
@@ -30,9 +34,12 @@ const Categories = () => {
   }, [])
 
   const fetchCategories = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
@@ -43,20 +50,25 @@ const Categories = () => {
       setCategories(res.data || [])
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao carregar categorias.')
+    } finally {
+      setIsLoading(false) // Finaliza o loading
     }
   }
 
   const handleSubmit = async (e, name) => {
     e.preventDefault()
+    setIsLoading(true)
 
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
     if (!name) {
       toast.error('Nome da categoria é obrigatório.')
+      setIsLoading(false)
       return
     }
 
@@ -82,6 +94,8 @@ const Categories = () => {
       fetchCategories()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao salvar categoria.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -96,9 +110,12 @@ const Categories = () => {
   }
 
   const confirmDelete = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
@@ -110,6 +127,8 @@ const Categories = () => {
       fetchCategories()
     } catch (err) {
       toast.error(err.response?.data?.msg || 'Erro ao deletar categoria.')
+    } finally {
+      setIsLoading(false)
     }
 
     setShowModal(false)
@@ -124,6 +143,7 @@ const Categories = () => {
 
   return (
     <div className="page-container">
+      <LoadingModal isOpen={isLoading} />
       <HomeButton />
       <BotaoTema />
 

@@ -9,6 +9,7 @@ import Modal from '../../components/Modal'
 import './products.css'
 import HomeButton from '../../components/HomeButton'
 import BotaoTema from '../../components/BotaoTema'
+import LoadingModal from '../../components/LoadingModal'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -21,6 +22,8 @@ const Products = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedProductId, setSelectedProductId] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const toggleForm = () => {
     setEditingProduct(null)
     setShowForm(prev => !prev)
@@ -32,9 +35,11 @@ const Products = () => {
   }, [])
 
   const fetchProducts = async () => {
+    setIsLoading(true)
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Token não encontrado')
+      setIsLoading(false)
       return
     }
 
@@ -51,15 +56,21 @@ const Products = () => {
       setProducts(sortedProducts || [])
     } catch (err) {
       toast.error('Erro ao carregar produtos.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const fetchCategories = async () => {
+    setIsLoading(true)
+
     try {
       const res = await api.get('/categories')
       setCategories(res.data)
     } catch (err) {
       toast.error('Erro ao carregar categorias.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -67,12 +78,13 @@ const Products = () => {
     e,
     name,
     price,
-    stock,
+    quantity,
     category,
     image,
     description
   ) => {
     e.preventDefault()
+    setIsLoading(true)
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -80,8 +92,21 @@ const Products = () => {
       return
     }
 
-    if (!name || !price || !category || !stock) {
+    if (!name || !price || !category || !quantity) {
       toast.error('Preencha todos os campos obrigatórios.')
+      setIsLoading(false)
+      return
+    }
+
+    if (quantity < 0) {
+      toast.error('Quantidade não pode ser menor que 0.')
+      setIsLoading(false)
+      return
+    }
+
+    if (price <= 0) {
+      toast.error('Preço não pode ser menor ou igual a 0.')
+      setIsLoading(false)
       return
     }
 
@@ -89,7 +114,7 @@ const Products = () => {
       const formData = new FormData()
       formData.append('name', name)
       formData.append('price', price)
-      formData.append('quantity', stock)
+      formData.append('quantity', quantity)
       formData.append('description', description) // ✅ Adicionei a description
       formData.append('category', category)
       if (image) formData.append('image', image)
@@ -118,6 +143,8 @@ const Products = () => {
     } catch (err) {
       console.log(err)
       toast.error('Erro ao salvar produto.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -132,9 +159,12 @@ const Products = () => {
   }
 
   const confirmDelete = async () => {
+    setIsLoading(true)
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Sessão expirada.')
+      setIsLoading(false)
       return
     }
 
@@ -147,6 +177,8 @@ const Products = () => {
     } catch (err) {
       console.error(err)
       toast.error(err.response?.data?.msg || 'Erro ao deletar produto.')
+    } finally {
+      setIsLoading(true)
     }
 
     setShowModal(false)
@@ -161,6 +193,7 @@ const Products = () => {
 
   return (
     <div className="page-container">
+      <LoadingModal isOpen={isLoading} />
       <HomeButton />
       <BotaoTema />
 
